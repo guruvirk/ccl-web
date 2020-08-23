@@ -1,0 +1,20 @@
+mat-sidenav {
+    background-color: var(--primary) !important;
+}
+
+.title {
+    margin-right: 2%;
+}
+
+.fotterTitle {
+    color: var(--accent);
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.active {
+    background-color: var(--accent);
+    color: var(--primary);
+}

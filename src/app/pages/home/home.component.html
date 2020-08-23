@@ -1,0 +1,22 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="header">
+    <span class="spacer"></span>
+    <h3>Shop By Categories</h3>
+    <span class="spacer"></span>
+</div>
+<br>
+<div *ngIf="categories && categories.length" class="container page">
+    <div class="row">
+        <ng-container *ngFor="let category of categories">
+            <div class="col-md-4 col-12 catgoryCard single-products-catagory clearfix">
+                <a (click)="select(category.id);">
+                    <img [src]="category.pic">
+                    <div class="hover-content">
+                        <div class="line"></div>
+                        <h4>{{category.name | titlecase}}</h4>
+                    </div>
+                </a>
+            </div>
+        </ng-container>
+    </div>
+</div>

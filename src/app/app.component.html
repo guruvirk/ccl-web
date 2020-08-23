@@ -1,0 +1,121 @@
+<div style="width: 100%;">
+    <mat-toolbar style="position: fixed;z-index: 100;" color="primary">
+        <mat-toolbar-row>
+            <button style="margin-bottom: 1%;" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="title">
+                Comfort & Care
+            </span>
+            <span class="spacer"></span>
+            <button *ngIf="cart" [routerLink]="['cart']" style="margin-bottom: 1%;" mat-icon-button fxShow="true"
+                fxHide.gt-sm>
+                <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
+            </button>
+            <span flex></span>
+            <div fxShow="true" fxHide.lt-md>
+                <button routerLinkActive="active" [routerLink]="['home']" color="accent" mat-button>Home</button>
+                <button routerLinkActive="active" [routerLink]="['items']" color="accent" mat-button>Best Sellers</button>
+                <ng-container *ngIf="categories && categories.length">
+                    <button *ngFor="let category of categories" routerLinkActive="active" [routerLink]="['category', category.id]" color="accent"
+                        mat-button>{{category.name | titlecase }}</button>
+                </ng-container>
+                <button routerLinkActive="active" *ngIf="currentUser" [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
+                <button routerLinkActive="active" *ngIf="!currentUser" [routerLink]="['login']" color="accent" mat-button>Login</button>
+                <button routerLinkActive="active" *ngIf="currentUser" (click)="logout()" color="accent" mat-button>LogOut</button>
+                <button *ngIf="cart" [routerLink]="['cart']" style="margin-left: 2%;" mat-icon-button>
+                    <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container fxFlexFill>
+        <mat-sidenav style="width: 50%;" [attr.color]="themeColor" #sidenav>
+            <mat-nav-list style="margin-top: 50px;">
+                <div style="width: 100%;text-align: right;">
+                    <button (click)="sidenav.toggle()" mat-icon-button color="accent"><i class="fa fa-close"
+                            aria-hidden="true"></i></button>
+                </div>
+                <button style="width: 100%; text-align: left;" [routerLink]="['home']" routerLinkActive="active" color="accent"
+                    mat-button>Home</button>
+                <br>
+                <button style="width: 100%; text-align: left;" [routerLink]="['items']" routerLinkActive="active" color="accent" mat-button>Best
+                    Sellers</button>
+                <ng-container *ngIf="categories && categories.length">
+                    <button routerLinkActive="active" *ngFor="let category of categories" style="width: 100%; text-align: left;"
+                        [routerLink]="['category', category.id]" color="accent"
+                        mat-button>{{category.name | titlecase }}</button>
+                </ng-container>
+                <button routerLinkActive="active" style="width: 100%; text-align: left;" *ngIf="!currentUser" [routerLink]="['login']" color="accent" mat-button>Login</button>
+                <button routerLinkActive="active" style="width: 100%; text-align: left;" *ngIf="currentUser" [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
+                <button routerLinkActive="active" style="width: 100%; text-align: left;" *ngIf="currentUser" (click)="logout()" color="accent" mat-button>LogOut</button>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content style="overflow-x: hidden;" autosize fxFlexFill>
+            <div class="main">
+                <router-outlet></router-outlet>
+                <footer style="margin-top: 20px;" class="footer_area clearfix">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-4">
+                                <div class="single_widget_area">
+                                    <h4 class="fotterTitle">Comfort And
+                                        Care</h4>
+                                    <p class="copywrite">
+                                        Copyright &copy;
+                                        <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                        Comfort And
+                                        Care Limited
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="single_widget_area">
+                                            <div class="footer_menu">
+                                                <span class="fotterTitle">Follow us</span>
+                                                <div class="row" style="padding-top: 5px;">
+                                                    <div class="col-2 col-md-2">
+                                                        <a style="color: #3b5998;" href="index.html"><i
+                                                                class="fa fa-facebook-square fa-2x"
+                                                                aria-hidden="true"></i></a>
+                                                    </div>
+                                                    <div class="col-2 col-md-2">
+                                                        <a style="color: #C13584;" href="index.html"><i
+                                                                class="fa fa-instagram fa-2x"
+                                                                aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="single_widget_area">
+                                            <div class="footer_menu">
+                                                <span class="fotterTitle">Payment methods supported</span>
+                                                <div class="row" style="padding-top: 5px;">
+                                                    <div class="col-2 col-md-2">
+                                                        <a style="color: #3b7bbf;" href="index.html"><i
+                                                                class="fa fa-cc-paypal fa-2x"
+                                                                aria-hidden="true"></i></a>
+                                                    </div>
+                                                    <div class="col-2 col-md-2">
+                                                        <a style="color: #008cdd;" href="index.html"><i
+                                                                class="fa fa-cc-stripe fa-2x"
+                                                                aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

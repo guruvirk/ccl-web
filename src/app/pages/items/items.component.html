@@ -1,0 +1,92 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="header">
+    <span class="spacer"></span>
+    <h3 *ngIf="label">{{label | titlecase}}</h3>
+    <h3 *ngIf="!label">{{'best seller' | titlecase}}</h3>
+    <span class="spacer"></span>
+    <button *ngIf="isMobile" (click)="back()" mat-icon-button color="primary">
+        <mat-icon>cancel</mat-icon>
+    </button>
+    <button *ngIf="!isMobile" (click)="back()" mat-raised-button color="primary">
+        BACK
+    </button>
+</div>
+<br>
+<div *ngIf="page && page.items && page.items.length" class="container page">
+    <div class="row">
+        <div class="col-12">
+            <div class="product-topbar d-xl-flex align-items-end justify-content-between">
+                <!-- Total Products -->
+                <div class="total-products">
+                    <p *ngIf="page.limit && page.limit <= page.total">Showing 1-{{page.limit}} 0f {{page.total}}</p>
+                    <p *ngIf="page.limit && page.limit > page.total">Showing 1-{{page.total}} 0f {{page.total}}</p>
+                    <p *ngIf="!page.limit">Showing 1-{{page.total}} 0f {{page.total}}</p>
+                </div>
+                <!-- Sorting -->
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>Sort by</mat-label>
+                            <mat-select>
+                                <mat-option>Date
+                                </mat-option>
+                                <mat-option>Newest
+                                </mat-option>
+                                <mat-option>Popular
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>View</mat-label>
+                            <mat-select>
+                                <mat-option>10
+                                </mat-option>
+                                <mat-option>20
+                                </mat-option>
+                                <mat-option>30
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <ng-container *ngFor="let item of page.items;">
+            <div class="col-6 col-md-4">
+                <div class="single-product-wrapper">
+                    <div class="product-img">
+                        <img [src]="item.pic">
+                        <img class="hover-img" [src]="getSecandoryPic(item)">
+                    </div>
+
+                    <div class="product-description d-flex align-items-center justify-content-between">
+                        <div class="product-meta-data">
+                            <div class="line"></div>
+                            <p class="product-price">${{item.defaultOption.price}}</p>
+                            <a (click)="select(item)">
+                                <h6>{{item.name}}</h6>
+                            </a>
+                        </div>
+                        <div class="ratings-cart text-right">
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                            <div class="cart">
+                                <a (click)="addToCart(item)" data-toggle="tooltip" data-placement="left"
+                                    title="Add to Cart"><img src="../../../assets/img/core-img/cart.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

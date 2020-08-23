@@ -1,0 +1,31 @@
+.otherImages {
+    margin-bottom: 10px;
+    border-radius: 5px 5px;
+}
+
+.selectedImage {
+    margin-bottom: 10px;
+    border: 2px solid var(--accent);
+    border-radius: 5px 5px;
+}
+
+.imagesContainer {
+    margin-top: 10px;
+}
+
+.available {
+    color: green;
+}
+
+.notAvailable {
+    color: orangered;
+}
+
+.note {
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.warranty {
+    color: green;
+}

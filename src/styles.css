@@ -1,0 +1,67 @@
+/* width */
+  ::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.main {
+  margin-top: 80px;
+}
+
+.logo {
+  margin-right: 20%;
+  margin-left: 5%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.page {
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.pageTitle {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100% !important;
+}
+
+.header {
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.header .spacer {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.header >.btn:hover {
+  color: var(--accent) !important;
+}
+
+.category-price {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.catgoryCard {
+  margin-bottom: 10px;
+}
+
+.footerIcon {
+  margin: 3px;
+}

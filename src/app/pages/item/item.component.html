@@ -1,0 +1,85 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div *ngIf="item">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3>{{item.name | titlecase}}</h3>
+        <span class="spacer"></span>
+        <button *ngIf="isMobile" (click)="back()" mat-icon-button color="primary">
+            <mat-icon>cancel</mat-icon>
+        </button>
+        <button *ngIf="!isMobile" (click)="back()" mat-raised-button color="primary">
+            BACK
+        </button>
+    </div>
+    <br>
+    <div class="container page">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="single_product_thumb">
+                    <img class="d-block w-100" [src]="item.pic" alt="First slide">
+                    <div class="row imagesContainer">
+                        <div (click)="selectImage(image)" *ngFor="let image of item.images" class="col-4 col-md-3">
+                            <img *ngIf="image == item.pic" class="selectedImage d-block w-100" [src]="image"
+                                alt="First slide">
+                            <img *ngIf="image != item.pic" class="otherImages d-block w-100" [src]="image"
+                                alt="First slide">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+
+                <div class="single_product_desc">
+                    <div class="product-meta-data">
+                        <div class="row">
+                            <div class="col-12 col-md-9">
+                                <div
+                                    *ngIf="item.option && item.option.options && item.option.options.length && item.option.options.length > 1">
+                                    <h4>Available {{item.option.type | titlecase}}'s</h4>
+                                    <div class="row">
+                                        <ng-container *ngFor="let option of item.option.options;">
+                                            <div class="col-6 col-md-4">
+                                                <h5>{{option.label | titlecase}}</h5>
+                                                <p class="product-price">${{option.price}}</p>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div
+                                    *ngIf="!item.option || !item.option.options || !item.option.options.length || item.option.options.length < 2">
+                                    <h5>{{item.defaultOption.label | titlecase}}</h5>
+                                    <p class="product-price">${{item.defaultOption.price}}</p>
+                                </div>
+                                <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+                                    <div class="ratings">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="product-meta-data">
+                                    <p *ngIf="item.availability" class="available"><i class="fa fa-circle"></i> In Stock
+                                    </p>
+                                    <p *ngIf="!item.availability" class="notAvailable"><i class="fa fa-circle"></i> Out
+                                        Of Stock
+                                    </p>
+                                </div>
+                                <button (click)="addToCart()" color="accent" mat-raised-button>Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="short_overview my-1" [innerHTML]="item.description">
+                    </div>
+                    <div *ngIf="item.note" class="note short_overview my-1" [innerHTML]="item.note">
+                    </div>
+                    <div *ngIf="item.warranty" class="warranty short_overview my-1" [innerHTML]="item.warranty">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

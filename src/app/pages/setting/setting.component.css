@@ -1,0 +1,23 @@
+mat-card {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  mat-form-field {
+    display: block;
+  }
+
+  .mat-checkbox-layout {
+    white-space: normal !important;
+  }
+
+  .checkBoxText{
+    margin-left: 4%;
+  }
+
+  @media screen and (max-width: 960px) {
+    mat-card {
+        width: 70%;
+    }
+  }

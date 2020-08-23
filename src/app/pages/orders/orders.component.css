@@ -1,0 +1,72 @@
+a {
+    cursor: pointer;
+}
+
+.cartImage {
+    width: 100px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.tableHeader {
+    background-color: var(--primary);
+    color: var(--accent);
+}
+
+.price {
+    color: var(--accent);
+}
+
+h6 {
+    margin-bottom: 0;
+}
+
+.checkoutCard {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+
+.cardHeader {
+    padding: 12px;
+    vertical-align: middle;
+    height: 50px;
+}
+
+.quantityBod {
+    width: 20%;
+    border: none;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.primaryColor {
+    color: var(--primary) !important;
+  }
+
+  .auto {
+      margin: auto;
+      padding: 5px;
+  }
+
+  .panel {
+    margin-top: 10px;
+      margin-bottom: 10px;
+  }
+
+@media only screen and (max-width: 780px) {
+    .auto {
+        margin: 0;
+        padding: 0;
+    }
+    .panel {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
