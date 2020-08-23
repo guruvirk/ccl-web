@@ -80,8 +80,9 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="cart">
-                                <a (click)="addToCart(item)" data-toggle="tooltip" data-placement="left"
-                                    title="Add to Cart"><img src="../../../assets/img/core-img/cart.png" alt=""></a>
+                                <button (click)="addToCart(item)" mat-icon-button color="primary">
+                                    <mat-icon>add_shopping_cart</mat-icon>
+                                </button>
                             </div>
                         </div>
                     </div>

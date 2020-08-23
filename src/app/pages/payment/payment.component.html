@@ -22,7 +22,7 @@
               <mat-label>Card Number</mat-label>
               <input (input)="updated()" matInput type="tel" autocomplete="cc-number" name="cc-number" minlength="16" maxlength="16"
                 [(ngModel)]="number">
-              <mat-error *ngIf="!number || number.length < 16">
+              <mat-error *ngIf="!number || number.toString().length < 16">
                 Invalid Card Number
               </mat-error>
             </mat-form-field>
@@ -32,7 +32,7 @@
               <mat-label>Expiry Month</mat-label>
               <input (input)="updated()" type="tel" minlength="2" maxlength="2" matInput numbersOnly
                 name="month" [(ngModel)]="month" [required]="true">
-              <mat-error *ngIf="!month || month.length < 2">
+              <mat-error *ngIf="!month || month.toString().length < 2">
                 Invalid Card Expiry
               </mat-error>
             </mat-form-field>
@@ -42,7 +42,7 @@
               <mat-label>Expiry Year</mat-label>
               <input (input)="updated()" minlength="2" maxlength="4" type="tel" matInput numbersOnly name="year"
                 [(ngModel)]="year" [required]="true">
-              <mat-error *ngIf="!year || year.length < 2">
+              <mat-error *ngIf="!year || year.toString().length < 2">
                 Invalid Card Expiry
               </mat-error>
             </mat-form-field>
@@ -52,7 +52,7 @@
               <mat-label>CVC</mat-label>
               <input (input)="updated()" type="tel" minlength="3" maxlength="5" matInput numbersOnly name="cvc"
                 [(ngModel)]="cvc" [required]="true">
-              <mat-error *ngIf="!cvc || cvc.length < 3">
+              <mat-error *ngIf="!cvc || cvc.toString().length < 3">
                 Invalid Card CVC
               </mat-error>
             </mat-form-field>

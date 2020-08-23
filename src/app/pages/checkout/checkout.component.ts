@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   user: User;
   isRegistered = false
   isLoading = false;
+  emailError: string;
 
   constructor(
     private api: OrderService,

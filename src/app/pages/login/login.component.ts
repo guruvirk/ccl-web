@@ -13,10 +13,16 @@ export class LoginComponent implements OnInit {
   phone: Number
   password: String
   email: string
+  isLoading = false
+  isMobile: boolean;
 
   constructor(private auth: RoleService,
     private router: Router,
-    private uxService: UxService) { }
+    private uxService: UxService) { 
+      if (window.screen.width < 574) {
+        this.isMobile = true
+      }
+    }
 
   ngOnInit() {
     if (this.auth.currentUser()) {

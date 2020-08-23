@@ -17,10 +17,15 @@ export class RegisterComponent implements OnInit {
   confirmPassword: string
   phoneValid: Boolean = false
   isLoading = false;
+  isMobile: boolean;
 
   constructor(private auth: RoleService,
     private router: Router,
-    private uxService: UxService) { }
+    private uxService: UxService) {
+    if (window.screen.width < 574) {
+      this.isMobile = true
+    }
+  }
 
   ngOnInit() {
     if (this.auth.currentUser()) {
@@ -56,9 +61,11 @@ export class RegisterComponent implements OnInit {
       name: this.name,
       password: this.password,
       phone: this.phone,
-      email: this.email
+      email: this.email,
+      isValidated: true
     }).subscribe(response => {
       if (response && response.id) {
+        this.auth.changeUser(response)
         this.isLoading = false;
         this.uxService.handleError("SignUp Succesfull")
         this.router.navigate(["/"])

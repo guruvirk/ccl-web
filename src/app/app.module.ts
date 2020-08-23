@@ -31,6 +31,9 @@ import { SettingComponent } from './pages/setting/setting.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { OrderComponent } from './pages/order/order.component';
 import { ProcessingIndicatorComponent } from './components/processing-indicator/processing-indicator.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ResetComponent } from './pages/reset/reset.component';
+import { ConfirmComponent } from './pages/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -48,11 +51,10 @@ import { ProcessingIndicatorComponent } from './components/processing-indicator/
     PaymentComponent,
     OrderComponent,
     ProcessingIndicatorComponent,
-    // ConfirmComponent,
-    // ResetComponent,
-    // HelpComponent,
+    ConfirmComponent,
+    ResetComponent,
     SettingComponent,
-    // ChangePasswordComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
