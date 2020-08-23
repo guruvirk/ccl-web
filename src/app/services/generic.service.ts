@@ -220,7 +220,7 @@ export class GenericService<T> {
       }
 
       if (tenant && tenant.code) {
-        headers = headers.set('x-tenant', tenant.code);
+        headers = headers.set('x-tenant', tenant.code || "ccl");
       }
 
     }
