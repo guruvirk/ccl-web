@@ -40,8 +40,6 @@ export class CartComponent implements OnInit, OnDestroy {
       for (const item of this.cart.items) {
         items.push(item)
       }
-    } else {
-      this.router.navigate([""])
     }
     this.cart.items = items
   }

@@ -1,11 +1,11 @@
-<div style="width: 100%;">
+<div style="width: 100%; height: 100%;">
     <mat-toolbar style="position: fixed;z-index: 100;" color="primary">
         <mat-toolbar-row>
             <button style="margin-bottom: 1%;" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
                 <mat-icon>menu</mat-icon>
             </button>
             <span class="title">
-                Comfort & Care
+                Comfort <span class="accentColor">& Care</span>
             </span>
             <span class="spacer"></span>
             <button *ngIf="cart" [routerLink]="['cart']" style="margin-bottom: 1%;" mat-icon-button fxShow="true"
@@ -15,14 +15,19 @@
             <span flex></span>
             <div fxShow="true" fxHide.lt-md>
                 <button routerLinkActive="active" [routerLink]="['home']" color="accent" mat-button>Home</button>
-                <button routerLinkActive="active" [routerLink]="['items']" color="accent" mat-button>Best Sellers</button>
+                <button routerLinkActive="active" [routerLink]="['items']" color="accent" mat-button>Best
+                    Sellers</button>
                 <ng-container *ngIf="categories && categories.length">
-                    <button *ngFor="let category of categories" routerLinkActive="active" [routerLink]="['category', category.id]" color="accent"
+                    <button *ngFor="let category of categories" routerLinkActive="active"
+                        [routerLink]="['category', category.id]" color="accent"
                         mat-button>{{category.name | titlecase }}</button>
                 </ng-container>
-                <button routerLinkActive="active" *ngIf="currentUser" [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
-                <button routerLinkActive="active" *ngIf="!currentUser" [routerLink]="['login']" color="accent" mat-button>Login</button>
-                <button routerLinkActive="active" *ngIf="currentUser" (click)="logout()" color="accent" mat-button>LogOut</button>
+                <button routerLinkActive="active" *ngIf="currentUser" [routerLink]="['orders']" color="accent"
+                    mat-button>My Orders</button>
+                <button routerLinkActive="active" *ngIf="!currentUser" [routerLink]="['login']" color="accent"
+                    mat-button>Login</button>
+                <button routerLinkActive="active" *ngIf="currentUser" (click)="logout()" color="accent"
+                    mat-button>LogOut</button>
                 <button *ngIf="cart" [routerLink]="['cart']" style="margin-left: 2%;" mat-icon-button>
                     <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
@@ -31,25 +36,28 @@
     </mat-toolbar>
 
     <mat-sidenav-container fxFlexFill>
-        <mat-sidenav style="width: 50%;" #sidenav>
+        <mat-sidenav style="width: 50%;text-align: center;" #sidenav>
             <mat-nav-list style="margin-top: 60px;">
                 <div style="width: 100%;text-align: right;">
-                    <button (click)="sidenav.toggle()" mat-icon-button color="accent"><i class="fa fa-close"
-                            aria-hidden="true"></i></button>
+                    <button (click)="sidenav.toggle()" mat-icon-button color="accent"><mat-icon>close</mat-icon></button>
                 </div>
-                <button style="width: 100%; text-align: left;" [routerLink]="['home']" routerLinkActive="active" color="accent"
-                    mat-button>Home</button>
+                <button style="width: fit-content; min-width: 60%;" [routerLink]="['home']" routerLinkActive="active"
+                    color="accent" mat-button>Home</button>
                 <br>
-                <button style="width: 100%; text-align: left;" [routerLink]="['items']" routerLinkActive="active" color="accent" mat-button>Best
+                <button style="width: fit-content; min-width: 60%;" [routerLink]="['items']" routerLinkActive="active"
+                    color="accent" mat-button>Best
                     Sellers</button>
                 <ng-container *ngIf="categories && categories.length">
-                    <button routerLinkActive="active" *ngFor="let category of categories" style="width: 100%; text-align: left;"
-                        [routerLink]="['category', category.id]" color="accent"
-                        mat-button>{{category.name | titlecase }}</button>
+                    <button routerLinkActive="active" *ngFor="let category of categories"
+                        style="width: fit-content; min-width: 60%;" [routerLink]="['category', category.id]"
+                        color="accent" mat-button>{{category.name | titlecase }}</button>
                 </ng-container>
-                <button routerLinkActive="active" style="width: 100%; text-align: left;" *ngIf="!currentUser" [routerLink]="['login']" color="accent" mat-button>Login</button>
-                <button routerLinkActive="active" style="width: 100%; text-align: left;" *ngIf="currentUser" [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
-                <button routerLinkActive="active" style="width: 100%; text-align: left;" *ngIf="currentUser" (click)="logout()" color="accent" mat-button>LogOut</button>
+                <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="!currentUser"
+                    [routerLink]="['login']" color="accent" mat-button>Login</button>
+                <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="currentUser"
+                    [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
+                <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="currentUser"
+                    (click)="logout()" color="accent" mat-button>LogOut</button>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content style="overflow-x: hidden;" autosize fxFlexFill>

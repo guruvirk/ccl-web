@@ -25,6 +25,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.categoryService.search({}).subscribe(page => {
         this.categories = page.items
         this.isLoading = false;
+      }, err => {
+        this.isLoading = false;
       })
   }
 

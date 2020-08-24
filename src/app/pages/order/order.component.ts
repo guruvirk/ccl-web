@@ -33,6 +33,8 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.api.get(params.id).subscribe(item => {
           this.order = item
           this.isLoading = false;
+        }, err => {
+          this.isLoading = false;
         })
       }
     })

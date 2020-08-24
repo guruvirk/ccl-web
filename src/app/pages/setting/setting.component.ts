@@ -43,6 +43,8 @@ export class SettingComponent implements OnInit {
       this.auth.changeUser(user)
       this.user = this.auth.currentUser()
       this.uxService.showInfo("Username changed successfully")
+    }, err => {
+      // this.isLoading = false;
     })
   }
 }

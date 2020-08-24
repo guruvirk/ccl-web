@@ -40,6 +40,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.api.search({}).subscribe(page => {
       this.page = page
       this.isLoading = false;
+    }, err => {
+      this.isLoading = false;
     })
   }
 

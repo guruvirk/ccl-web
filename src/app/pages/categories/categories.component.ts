@@ -31,9 +31,15 @@ export class CategoriesComponent implements OnInit, OnDestroy {
           this.api.search({ category: item.id }).subscribe(page => {
             this.categories = page.items
             this.isLoading = false;
+          }, err => {
+            this.isLoading = false;
           })
+        }, err => {
+          this.isLoading = false;
         })
       }
+    }, err => {
+      this.isLoading = false;
     })
   }
 

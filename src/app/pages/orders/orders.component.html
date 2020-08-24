@@ -3,10 +3,10 @@
     <span class="spacer"></span>
     <h3>My Orders</h3>
     <span class="spacer"></span>
-    <button *ngIf="isMobile" (click)="back()" mat-icon-button color="primary">
+    <button *ngIf="isMobile" (click)="back()" class="backIcon" mat-icon-button color="primary">
         <mat-icon>cancel</mat-icon>
     </button>
-    <button *ngIf="!isMobile" (click)="back()" mat-raised-button color="primary">
+    <button *ngIf="!isMobile" (click)="back()"  class="backButton" mat-raised-button color="primary">
         BACK
     </button>
 </div>
@@ -14,7 +14,7 @@
 <div *ngIf="page && page.items && page.items.length" class="container page">
     <mat-accordion *ngFor="let order of page.items">
         <mat-expansion-panel class="panel">
-            <mat-expansion-panel-header [collapsedHeight]="'150px'" [expandedHeight]="'150px'">
+            <mat-expansion-panel-header>
                 <mat-panel-title class="primaryColor">
                     <img (click)="select(order)" class="cartImage" [src]="order.items[0].item.pic">
                 </mat-panel-title>
@@ -94,4 +94,7 @@
             </mat-card>
         </mat-expansion-panel>
     </mat-accordion>
+</div>
+<div *ngIf="page && (!page.items || !page.items.length)" class="empty">
+    <h4 class="emptyText">Oops ! You dont have any orders.</h4>
 </div>

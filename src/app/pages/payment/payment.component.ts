@@ -38,6 +38,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.api.get(params.id).subscribe(item => {
           this.cart = item
           this.isLoading = false;
+        }, err => {
+          this.isLoading = false;
         })
       }
     })
@@ -70,6 +72,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
         } else {
           this.error = item
         }
+      }, err => {
+        this.isLoading = false;
       })
     }
   }
@@ -91,6 +95,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.uxService.showInfo("Payment Successfull")
         this.router.navigate(["/order", this.cart.id])
+      }, err => {
+        this.isLoading = false;
       })
     } else {
       this.uxService.handleError("Invalid Card Details")

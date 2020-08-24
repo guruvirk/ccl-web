@@ -6,6 +6,11 @@
 
 .main {
   margin-top: 80px;
+  /* height: 80vh; */
+}
+
+.mat-button-focus-overlay {
+  background-color: transparent!important;
 }
 
 .logo {
@@ -65,3 +70,41 @@ mat-form-field {
 .footerIcon {
   margin: 3px;
 }
+
+.emptyText {
+  margin: 10px;
+  margin-top: 60px;
+}
+
+.empty {
+  height: 120px;
+  text-align: center;
+}
+
+.primaryColor {
+  color: var(--primary) !important;
+}
+
+.accentColor {
+  color: var(--accent) !important;
+}
+
+.mat-button-focus-overlay { 
+  background-color: transparent!important; 
+  }
+
+  .mat-icon-button {
+    outline: 0 !important;
+  }
+  
+  button {
+    outline: 0 !important;
+  }
+
+  .backIcon {
+    top: -2px;
+  }
+
+  .backButton {
+    top: -5px;
+  }

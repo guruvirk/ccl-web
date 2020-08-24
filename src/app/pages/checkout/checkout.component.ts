@@ -122,6 +122,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.auth.emptyCart()
         this.isLoading = false;
         this.router.navigate(["/payment", cart.id])
+      }, err => {
+        this.isLoading = false;
       })
     } else {
       this.user.address.country = "New Zealand"
@@ -136,7 +138,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           this.auth.emptyCart()
           this.isLoading = false;
           this.router.navigate(["/payment", cart.id])
+        }, err => {
+          this.isLoading = false;
         })
+      }, err => {
+        this.isLoading = false;
       })
     }
   }

@@ -43,6 +43,8 @@ export class ItemsComponent implements OnInit, OnDestroy {
           this.category = item.category
           this.label = item.name
           this.isLoading = false
+        }, err => {
+          this.isLoading = false;
         })
       } else if (params.category) {
         this.isLoading = true
@@ -51,6 +53,8 @@ export class ItemsComponent implements OnInit, OnDestroy {
           this.category = item
           this.label = item.name
           this.isLoading = false
+        }, err => {
+          this.isLoading = false;
         })
       } else if (params.label) {
         this.label = params.label
@@ -73,6 +77,8 @@ export class ItemsComponent implements OnInit, OnDestroy {
     this.api.search(this.query).subscribe(page => {
       this.page = page
       this.isLoading = false
+    }, err => {
+      this.isLoading = false;
     })
   }
 

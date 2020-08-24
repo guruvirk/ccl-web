@@ -219,8 +219,8 @@ export class GenericService<T> {
         headers = headers.set('x-session', user.session.id);
       }
 
-      if (tenant && tenant.code) {
-        headers = headers.set('x-tenant', tenant.code || environment.tenant);
+      if ((tenant && tenant.code) || environment.tenant) {
+        headers = headers.set('x-tenant', tenant ? tenant.code : environment.tenant);
       }
 
     }
@@ -230,7 +230,7 @@ export class GenericService<T> {
 
   private handleError(err: any, subject: Subject<any>) {
     this.uxService.handleError(err)
-    subject.complete()
+    subject.error(err)
   }
 
 }

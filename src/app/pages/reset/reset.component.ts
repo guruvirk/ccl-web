@@ -34,6 +34,8 @@ export class ResetComponent implements OnInit {
     }
     this.auth.sendOtp(this.phone).subscribe(() => {
       this.otpSent = true
+    }, err => {
+      // this.isLoading = false;
     })
   }
 
@@ -57,6 +59,8 @@ export class ResetComponent implements OnInit {
     this.auth.changePasswordWithOtp(this.phone, this.otp, this.password).subscribe(() => {
       this.uxService.showInfo("Password Changed Successfully")
       this.router.navigate(["/","login"])
+    }, err => {
+      // this.isLoading = false;
     })
   }
 

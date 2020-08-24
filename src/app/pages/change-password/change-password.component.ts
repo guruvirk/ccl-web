@@ -42,6 +42,8 @@ export class ChangePasswordComponent implements OnInit {
     this.auth.changePassword(this.auth.currentUser(), this.oldPassword, this.password).subscribe(() => {
       this.uxService.showInfo("Password Changed Successfully")
       this.auth.logout()
+    }, err => {
+      // this.isLoading = false;
     })
   }
 

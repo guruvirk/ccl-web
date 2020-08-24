@@ -60,6 +60,11 @@ input::-webkit-inner-spin-button {
       margin-bottom: 10px;
   }
 
+  ::ng-deep .mat-expansion-panel-header
+{
+    height: 150px !important;
+}
+
 @media only screen and (max-width: 780px) {
     .auto {
         margin: 0;

@@ -30,8 +30,12 @@ export class ItemComponent implements OnInit, OnDestroy {
         this.api.get(params.id).subscribe(item => {
           this.item = item
           this.isLoading = false;
+        }, err => {
+          this.isLoading = false;
         })
       }
+    }, err => {
+      this.isLoading = false;
     })
     if (window.screen.width < 574) {
       this.isMobile = true
