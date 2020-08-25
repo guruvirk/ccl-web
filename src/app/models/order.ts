@@ -1,7 +1,7 @@
 import { User } from './user.model';
 import { Transaction } from './transaction';
 import { Item } from './item';
-import { Tracking } from '.';
+import { Tracking, Address } from '.';
 
 export class Order {
 
@@ -11,10 +11,12 @@ export class Order {
   user: User;
   estimate: Date;
   method: string;
+  delivery: string;
   transaction: Transaction;
   tracking: Tracking;
   status: string;
   amount: number;
+  address: Address;
   items: {
     item: Item,
     option: {
@@ -48,8 +50,10 @@ export class Order {
     this.estimate = obj.estimate;
     this.lastUpdate = obj.lastUpdate;
     this.method = obj.method;
+    this.delivery = obj.delivery;
     this.updates = []
     this.items = []
+    this.address = new Address(obj.address || {})
 
     if (obj.updates && obj.updates.length) {
       for (const update of obj.updates) {

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { RoleService } from '../../services/role.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UxService } from '../../services/ux.service';
-import { Item, Order, User } from 'src/app/models';
+import { Item, Order, User, Address } from 'src/app/models';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -18,6 +18,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   isRegistered = false
   isLoading = false;
   emailError: string;
+  isCod = false
+  isPickup = false
 
   constructor(
     private api: OrderService,
@@ -114,8 +116,24 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       return
     }
     this.isLoading = true;
+    this.user.address.country = "New Zealand"
+    this.cart.status = "pending"
+    this.cart.address = new Address(this.user.address)
+    this.cart.address.name = this.user.name
+    if (this.isCod) {
+      this.cart.method = "cod"
+    } else {
+      this.cart.method = "online"
+    }
+    if (this.isPickup) {
+      this.cart.delivery = "pickup"
+    } else {
+      this.cart.delivery = "delivery"
+    }
     if (this.isRegistered) {
-      this.cart.status = "pending"
+      this.auth.updateMyUser(this.user).subscribe(item => {
+        this.auth.changeUser(item)
+      })
       this.api.create(this.cart).subscribe(cart => {
         this.uxService.showInfo("Order Created")
         this.cart = cart
@@ -126,12 +144,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       })
     } else {
-      this.user.address.country = "New Zealand"
       this.user.isValidated = true
       this.auth.register(this.user).subscribe(user => {
         this.user = user
         this.auth.changeUser(user)
-        this.cart.status = "pending"
         this.api.create(this.cart).subscribe(cart => {
           this.uxService.showInfo("Order Created")
           this.cart = cart

@@ -1,5 +1,6 @@
 import { User } from './user.model';
 import { Order } from './order';
+import { Address } from '.';
 
 export class Tracking {
 
@@ -11,6 +12,7 @@ export class Tracking {
   trackingId: string;
   user: User;
   order: Order;
+  address: Address;
   updates: [{
     label: string,
     date: Date
@@ -29,6 +31,7 @@ export class Tracking {
     this.order = obj.order ? new Order(obj.order) : null;
     this.trackingId = obj.trackingId;
     this.estimate = obj.estimate;
+    this.address = new Address(obj.address || {})
 
     if (obj.updates && obj.updates.length) {
       for (const update of obj.updates) {

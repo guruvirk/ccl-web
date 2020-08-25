@@ -34,6 +34,7 @@ import { ProcessingIndicatorComponent } from './components/processing-indicator/
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { ResetComponent } from './pages/reset/reset.component';
 import { ConfirmComponent } from './pages/confirm/confirm.component';
+import { OrderDetailsDialogComponent } from './components/order-details-dialog/order-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ConfirmComponent } from './pages/confirm/confirm.component';
     ResetComponent,
     SettingComponent,
     ChangePasswordComponent,
+    OrderDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,7 @@ import { ConfirmComponent } from './pages/confirm/confirm.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [OptionDialogComponent],
+  entryComponents: [OptionDialogComponent, OrderDetailsDialogComponent],
   exports: [ProcessingIndicatorComponent]
 })
 export class AppModule { }

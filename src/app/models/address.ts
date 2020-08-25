@@ -1,5 +1,6 @@
 export class Address {
 
+    name: string;
     line1: string;
     line2: string;
     district: string;
@@ -13,6 +14,7 @@ export class Address {
             return;
         }
 
+        this.name = obj.name;
         this.line1 = obj.line1;
         this.line2 = obj.line2;
         this.district = obj.district;

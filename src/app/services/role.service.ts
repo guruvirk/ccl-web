@@ -344,6 +344,10 @@ export class RoleService implements IAuth {
     })
   }
 
+  updateMyUser(user: User): Observable<User> {
+    return this._authApi.update(`users/my`, user)
+  }
+
   logout() {
     this._authApi.get(`users/logout/${this._user.session.id}`).subscribe()
     const tenant = this.localDb.get('tenant');

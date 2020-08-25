@@ -6,7 +6,7 @@
     <button *ngIf="isMobile" (click)="back()" class="backIcon" mat-icon-button color="primary">
         <mat-icon>cancel</mat-icon>
     </button>
-    <button *ngIf="!isMobile" (click)="back()"  class="backButton" mat-raised-button color="primary">
+    <button *ngIf="!isMobile" (click)="back()" class="backButton" mat-raised-button color="primary">
         BACK
     </button>
 </div>
@@ -36,8 +36,13 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <br>
-                <h5 class="primaryColor">Delivery Address</h5>
+                <section class="checkbox-section">
+                    <mat-checkbox [(ngModel)]="isPickup" class="checkbox-margin">
+                        <h6>I will pick up from store</h6>
+                    </mat-checkbox>
+                </section>
+                <h5 *ngIf="!isPickup" class="primaryColor">Delivery Address / Billing Address</h5>
+                <h5 *ngIf="isPickup" class="primaryColor">Billing Address</h5>
                 <div class="row">
                     <div class="col-12">
                         <mat-form-field class="field-full-width">
@@ -83,15 +88,30 @@
             <mat-card class="checkoutCard">
                 <h5 class="tableHeader cardHeader">Cart Total</h5>
                 <div style="margin: 10px;">
+                    <h6>Payment Option</h6>
+                    <br>
+                    <mat-radio-group class="radio-group" [(ngModel)]="isCod">
+                        <mat-radio-button class="radio-button" [value]="false">Online</mat-radio-button>
+                        <mat-radio-button class="radio-button" [value]="true">COD</mat-radio-button>
+                    </mat-radio-group>
+                    <p>
+                        <i *ngIf="!isCod" class="accentColor fa fa-credit-card fa-2x" aria-hidden="true"></i>
+                        <i *ngIf="isCod" class="accentColor fa fa-money fa-2x" aria-hidden="true"></i>
+                    </p>
                     <div class="header">
                         <h6>Sub Total : </h6>
                         <span class="spacer"></span>
                         <h6>${{cart.amount}}</h6>
                     </div>
                     <div class="header">
-                        <h6>Delivery : </h6>
+                        <h6 style="margin:auto">Delivery : </h6>
                         <span class="spacer"></span>
-                        <h6>FREE</h6>
+                        <span *ngIf="isPickup" class="material-icons primaryColor">
+                            store
+                        </span>
+                        <span *ngIf="!isPickup" class="material-icons primaryColor">
+                            local_shipping
+                        </span>
                     </div>
                     <div class="header">
                         <h6>Total : </h6>

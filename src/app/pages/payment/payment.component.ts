@@ -36,7 +36,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
       if (params.id) {
         this.isLoading = true;
         this.api.get(params.id).subscribe(item => {
-          this.cart = item
+          if (item.method == "cod" || item.transaction.status != "pending") {
+            this.isLoading = false;
+            this.router.navigate(["/order", item.id])
+          } else {
+            this.cart = item
+          }
           this.isLoading = false;
         }, err => {
           this.isLoading = false;

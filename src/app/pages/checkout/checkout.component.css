@@ -80,3 +80,19 @@ input::-webkit-inner-spin-button {
   .primaryColor {
     color: var(--primary) !important;
   }
+
+  .radio-group {
+    margin: 15px 0;
+  }
+  
+  .radio-button {
+    margin: 5px;
+  }
+
+  .checkbox-margin {
+    margin: 0 12px;
+  }
+
+  .checkbox-section {
+    text-align: right;
+  }
