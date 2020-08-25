@@ -13,6 +13,7 @@ import { Order } from 'src/app/models';
 export class OrderDetailsDialogComponent implements OnInit, OnDestroy {
 
   order: Order
+  isMobile: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +21,9 @@ export class OrderDetailsDialogComponent implements OnInit, OnDestroy {
     private router: Router,
     private uxService: UxService,
     public dialogRef: MatDialogRef<OrderDetailsDialogComponent>,) {
+    if (window.screen.width < 574) {
+      this.isMobile = true
+    }
   }
 
   ngOnInit() {
