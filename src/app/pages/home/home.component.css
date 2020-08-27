@@ -1,0 +1,22 @@
+.listItems {
+    text-align: center;
+    background-image: url(../../../assets/img/bg-1.jpg);
+    background-size: cover;padding: 5%;
+}
+
+.itemCard {
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+    background-image: url(../../../assets/img/bg-wood.jpg);
+    background-size: cover;
+    padding: 0;
+    border-radius: 20px;
+}
+
+.cardData {
+    padding: 5%;
+    position: relative;
+}

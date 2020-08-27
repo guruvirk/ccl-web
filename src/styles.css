@@ -102,9 +102,33 @@ mat-form-field {
   }
 
   .backIcon {
-    top: -2px;
+    top: -5px;
   }
 
   .backButton {
     top: -5px;
   }
+
+  @media only screen and (max-width: 780px) {
+    p {
+      font-size: 12px !important;
+    }
+    div {
+      font-size: 12px !important;
+    }
+    h6 {
+      font-size: 15px !important;
+    }
+    h5 {
+      font-size: 18px !important;
+    }
+    h4 {
+      font-size: 22px !important;
+    }
+    h3 {
+      font-size: 25px !important;
+    }
+    h2 {
+      font-size: 30px !important;
+    }
+}
