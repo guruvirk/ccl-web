@@ -3,7 +3,7 @@ a {
 }
 
 .product-description {
-    border-top: 2px solid var(--accent);
+    /* border-top: 2px solid var(--accent); */
     margin-top: 10px;
     padding-top: 10px;
 }
@@ -20,8 +20,17 @@ a {
     margin-bottom: 10px;
 }
 
+.itemCard {
+    box-shadow: 0 2px 2px -3px rgba(0,0,0,.2), 0 4px 5px 1px rgba(0,0,0,.14), 0 1px 7px 2px rgba(0,0,0,.12);
+    border: 0;
+}
+
 .oldPrice {
     font-size: 15px;
+}
+
+.single-product-wrapper {
+    margin-bottom: 5px !important;
 }
 
 @media only screen and (max-width: 780px) {
@@ -34,4 +43,29 @@ a {
     .oldPrice {
         font-size: 12px;
     }
+}
+
+.paginator {
+    margin: 10px;
+}
+
+@media (max-width: 385.98px){ 
+    .card-columns {
+        column-count: 1; }
+}
+@media (min-width: 386px){
+    .card-columns {
+        column-count: 2; }
+}
+@media (min-width: 768px){
+    .card-columns {
+        column-count: 3; }
+}
+@media (min-width: 992px){
+    .card-columns {
+        column-count: 4; }
+}
+@media (min-width: 1200px){
+    .card-columns {
+        column-count: 4; }
 }

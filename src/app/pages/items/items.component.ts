@@ -8,17 +8,20 @@ import { CatgoryService } from 'src/app/services/catgory.service';
 import { SubCatgoryService } from 'src/app/services/sub-catgory.service';
 import { OptionDialogComponent } from 'src/app/components/option-dialog/option-dialog.component';
 import { MatDialog } from '@angular/material';
+import { IPager } from 'src/app/models/pager.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css']
 })
-export class ItemsComponent implements OnInit, OnDestroy {
+export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
 
   isMobile: boolean;
   query = {
-    limit: 6
+    limit: 10,
+    sort: "new"
   };
   page: Page<Item>;
   subCategory: SubCategory;
@@ -72,14 +75,42 @@ export class ItemsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  get() {
+  get(options?) {
     this.isLoading = true
-    this.api.search(this.query).subscribe(page => {
+    this.api.search(options || this.query).subscribe(page => {
       this.page = page
+      this.page.totalPages = (page.total / page.limit)
       this.isLoading = false
     }, err => {
       this.isLoading = false;
     })
+  }
+
+  showPage(pageNo: number) {
+    if (this.isLoading) {
+      return;
+    }
+    if (pageNo === -2) {
+      pageNo = 1;
+      return;
+    }
+
+    if (pageNo === -1) {
+      pageNo = (this.page.total / this.page.limit);
+      return;
+    }
+
+    return this.get(this.convertToPageOption(pageNo));
+  }
+
+  private convertToPageOption(pageNo: number) {
+    const options: any = {};
+    if (this.page) {
+      options.offset = (pageNo - 1) * this.page.limit;
+      options.limit = this.page.limit;
+      options.sort = this.page.sort;
+    }
+    return options;
   }
 
   select(item: Item) {

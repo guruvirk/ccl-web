@@ -12,7 +12,7 @@
     </button>
 </div>
 <br>
-<div *ngIf="page && page.items && page.items.length" class="container page">
+<div *ngIf="page && page.items && page.items.length" class="container page" style="padding-bottom: 10px;">
     <div class="row">
         <div class="col-12">
             <div class="product-topbar d-xl-flex align-items-end justify-content-between">
@@ -27,12 +27,12 @@
                     <div class="col-6">
                         <mat-form-field>
                             <mat-label>Sort by</mat-label>
-                            <mat-select>
-                                <mat-option>Date
+                            <mat-select [(ngModel)]="query.sort" (selectionChange)="get()">
+                                <mat-option value="new">Newest
                                 </mat-option>
-                                <mat-option>Newest
+                                <mat-option value="rating">Ratings
                                 </mat-option>
-                                <mat-option>Popular
+                                <mat-option value="purchase">Popular
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -40,12 +40,12 @@
                     <div class="col-6">
                         <mat-form-field>
                             <mat-label>View</mat-label>
-                            <mat-select>
-                                <mat-option>10
+                            <mat-select [(ngModel)]="query.limit" (selectionChange)="get()">
+                                <mat-option [value]="10">10
                                 </mat-option>
-                                <mat-option>20
+                                <mat-option [value]="20">20
                                 </mat-option>
-                                <mat-option>30
+                                <mat-option [value]="30">30
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -54,9 +54,9 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <ng-container *ngFor="let item of page.items;">
-            <div class="col-6 col-md-4">
+    <div class="card-columns">
+        <ng-container *ngFor="let item of page.items;let i=index">
+            <div class="card itemCard" id="card{{i+1}}">
                 <div class="single-product-wrapper">
                     <div class="product-img">
                         <img [src]="item.pic">
@@ -88,5 +88,8 @@
                 </div>
             </div>
         </ng-container>
+    </div>
+    <div class="paginator">
+        <app-paginator [page]="this"></app-paginator>
     </div>
 </div>

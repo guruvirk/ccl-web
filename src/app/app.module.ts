@@ -35,6 +35,7 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { ResetComponent } from './pages/reset/reset.component';
 import { ConfirmComponent } from './pages/confirm/confirm.component';
 import { OrderDetailsDialogComponent } from './components/order-details-dialog/order-details-dialog.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { OrderDetailsDialogComponent } from './components/order-details-dialog/o
     ResetComponent,
     SettingComponent,
     ChangePasswordComponent,
-    OrderDetailsDialogComponent
+    OrderDetailsDialogComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,
