@@ -1,3 +1,37 @@
 a {
     cursor: pointer;
 }
+
+.product-description {
+    border-top: 2px solid var(--accent);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.product-description {
+    width: 100%;text-align: center;
+}
+
+.product-meta-data {
+    margin-top: 10px;
+}
+
+.cart {
+    margin-bottom: 10px;
+}
+
+.oldPrice {
+    font-size: 15px;
+}
+
+@media only screen and (max-width: 780px) {
+    .product-price {
+        font-size: 16px !important;
+        font-weight: 300 !important;
+        margin-bottom: 5px!important;
+    }
+
+    .oldPrice {
+        font-size: 12px;
+    }
+}

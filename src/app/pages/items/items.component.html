@@ -62,16 +62,8 @@
                         <img [src]="item.pic">
                         <img class="hover-img" [src]="getSecandoryPic(item)">
                     </div>
-
-                    <div class="product-description d-flex align-items-center justify-content-between">
-                        <div class="product-meta-data" style="width: 60%;">
-                            <div class="line"></div>
-                            <p class="product-price">${{item.defaultOption.price}}</p>
-                            <a (click)="select(item)">
-                                <h6>{{item.name}}</h6>
-                            </a>
-                        </div>
-                        <div class="ratings-cart text-right">
+                    <div class="product-description align-items-center justify-content-between">
+                        <div class="ratings-cart">
                             <div class="ratings">
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -79,11 +71,18 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
-                            <div class="cart">
-                                <button (click)="addToCart(item)" mat-icon-button color="primary">
-                                    <mat-icon>add_shopping_cart</mat-icon>
-                                </button>
-                            </div>
+                        </div>
+                        <div class="product-meta-data">
+                            <a (click)="select(item)">
+                                <h6>{{item.name}}</h6>
+                            </a>
+                        </div>
+                        <div class="product-meta-data">
+                            <p><b class="product-price">${{item.defaultOption.price}} </b><s class="oldPrice">
+                                    ${{item.defaultOption.actualPrice}}</s></p>
+                        </div>
+                        <div class="cart">
+                            <button (click)="addToCart(item)" mat-raised-button color="accent">Add To Cart</button>
                         </div>
                     </div>
                 </div>
