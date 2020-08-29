@@ -950,6 +950,7 @@ img {
     position: relative;
     z-index: 10; }
     .single-products-catagory a::after {
+      border-radius: 20px;
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms;
       position: absolute;
@@ -958,7 +959,7 @@ img {
       top: 0;
       left: 0;
       content: '';
-      background-color: rgba(60, 60, 60, 0.7);
+      background-color: black;
       z-index: 1;
       opacity: 0;
       visibility: visible; }
@@ -991,7 +992,7 @@ img {
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms; }
   .single-products-catagory a::after, .single-products-catagory a::after {
-    opacity: .8;
+    opacity: .6;
     visibility: visible; }
   .single-products-catagory .hover-content p,
   .single-products-catagory .hover-content h2, .single-products-catagory .hover-content p,
