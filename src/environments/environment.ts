@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  url: 'http://localhost:8080/api',
-  // url: 'https://playludo.live/ccl',
+  // url: 'http://localhost:8080/api',
+  url: 'https://playludo.live/ccl',
   production: false,
   tenant: "ccl",
   error: {

@@ -103,6 +103,7 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
     for (const filter of this.filters) {
       filter.isSelected = false
     }
+    this.get()
   }
 
   get(options?) {
