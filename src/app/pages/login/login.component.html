@@ -1,38 +1,41 @@
 <processing-indicator *ngIf="isLoading"></processing-indicator>
-<div class="header">
-    <span class="spacer"></span>
-    <h3>Login</h3>
-    <span class="spacer"></span>
-    <button *ngIf="isMobile" (click)="back()" class="backIcon" mat-icon-button color="primary">
-        <mat-icon>cancel</mat-icon>
-    </button>
-    <button *ngIf="!isMobile" (click)="back()"  class="backButton" mat-raised-button color="primary">
-        BACK
-    </button>
-</div>
-<div class="container page">
-    <div class="loginCard">
-        <mat-form-field class="full-width-input">
-            <mat-label>Mobile No</mat-label>
-            <input (ngModelChange)="emptyEmail()" matInput numbersOnly name="phone" [(ngModel)]="phone" minlength="10" maxlength="10"
-                [required]="true">
-        </mat-form-field>
-        OR
-        <mat-form-field class="full-width-input">
-            <mat-label>Email</mat-label>
-            <input (ngModelChange)="emptyPhone()" matInput numbersOnly name="email" [(ngModel)]="email" [required]="true">
-        </mat-form-field>
-        <mat-form-field class="full-width-input">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" name="password" [(ngModel)]="password" [required]="true">
-        </mat-form-field>
-        <button (click)="login()" mat-raised-button color="accent"><b>Login</b></button>
-        <br>
-        <br>
-        <div>
-            <h5 style="margin: 0;">New here?</h5>
-            <button [routerLink]="['/','register']" mat-button color="accent"><b>Sign Up</b></button>
+<div class="page">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3>Login</h3>
+        <span class="spacer"></span>
+        <button *ngIf="isMobile" (click)="back()" class="backIcon" mat-icon-button color="primary">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button *ngIf="!isMobile" (click)="back()" class="backButton" mat-raised-button color="primary">
+            BACK
+        </button>
+    </div>
+    <div class="container page">
+        <div class="loginCard">
+            <mat-form-field class="full-width-input">
+                <mat-label>Mobile No</mat-label>
+                <input (ngModelChange)="emptyEmail()" matInput numbersOnly name="phone" [(ngModel)]="phone"
+                    minlength="10" maxlength="10" [required]="true">
+            </mat-form-field>
+            OR
+            <mat-form-field class="full-width-input">
+                <mat-label>Email</mat-label>
+                <input (ngModelChange)="emptyPhone()" matInput numbersOnly name="email" [(ngModel)]="email"
+                    [required]="true">
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" name="password" [(ngModel)]="password" [required]="true">
+            </mat-form-field>
+            <button (click)="login()" mat-raised-button color="accent"><b>Login</b></button>
+            <br>
+            <br>
+            <div>
+                <h5 style="margin: 0;">New here?</h5>
+                <button [routerLink]="['/','register']" mat-button color="accent"><b>Sign Up</b></button>
+            </div>
+            <!-- <p><a [routerLink]="['/', 'reset']">Forgot password?</a></p> -->
         </div>
-        <!-- <p><a [routerLink]="['/', 'reset']">Forgot password?</a></p> -->
     </div>
 </div>

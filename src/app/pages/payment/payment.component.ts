@@ -48,7 +48,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
         })
       }
     })
-    if (window.screen.width < 574) {
+    if (window.screen.width < 781) {
       this.isMobile = true
     }
   }

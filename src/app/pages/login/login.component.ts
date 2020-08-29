@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private auth: RoleService,
     private router: Router,
     private uxService: UxService) { 
-      if (window.screen.width < 574) {
+      if (window.screen.width < 781) {
         this.isMobile = true
       }
     }

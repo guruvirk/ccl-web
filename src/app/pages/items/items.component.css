@@ -45,8 +45,18 @@ a {
     }
 }
 
+.filterCheck {
+width: 100%;
+text-align: center;
+}
+
 .paginator {
     margin: 10px;
+}
+
+.underTitle {
+    width: 100%;
+    text-align: center;
 }
 
 @media (max-width: 385.98px){ 

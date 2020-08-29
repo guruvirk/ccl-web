@@ -23,7 +23,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private router: Router,
     private uxService: UxService,
     public dialog: MatDialog) {
-    if (window.screen.width < 574) {
+    if (window.screen.width < 781) {
       this.isMobile = true
     }
     this.get()

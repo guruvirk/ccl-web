@@ -7,7 +7,11 @@ export class SubCategory {
     name: string;
     pic: string;
     status: string;
-    category: Category
+    category: Category;
+    filters: {
+        isSelected: boolean,
+        label: String
+    }[]
 
     constructor(obj?: any) {
         if (!obj) {
@@ -20,6 +24,15 @@ export class SubCategory {
         this.pic = obj.pic;
         this.status = obj.status;
         this.category = new Category(obj.category)
+        if (obj.filters && obj.filters.length) {
+            this.filters = []
+            for (const filter of obj.filters) {
+                this.filters.push({
+                    label: filter,
+                    isSelected: false
+                })
+            }
+        }
     }
 }
 

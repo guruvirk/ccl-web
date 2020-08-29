@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private auth: RoleService,
     private router: Router,
     private uxService: UxService) {
-    if (window.screen.width < 574) {
+    if (window.screen.width < 781) {
       this.isMobile = true
     }
     this.get()

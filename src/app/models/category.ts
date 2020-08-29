@@ -5,6 +5,10 @@ export class Category {
     name: string;
     pic: string;
     status: string;
+    filters: {
+        isSelected: boolean,
+        label: String
+    }[]
 
     constructor(obj?: any) {
         if (!obj) {
@@ -16,6 +20,22 @@ export class Category {
         this.name = obj.name;
         this.pic = obj.pic;
         this.status = obj.status;
+        if (obj.filters && obj.filters.length) {
+            this.filters = []
+            for (const filter of obj.filters) {
+                if (filter.label) {
+                    this.filters.push({
+                        label: filter.label,
+                        isSelected: false
+                    })
+                } else {
+                    this.filters.push({
+                        label: filter,
+                        isSelected: false
+                    })
+                }
+            }
+        }
     }
 }
 

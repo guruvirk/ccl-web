@@ -1,5 +1,5 @@
 <div style="width: 100%; height: 100%;">
-    <mat-toolbar style="position: fixed;z-index: 100;" color="primary">
+    <mat-toolbar style="position: fixed;z-index: 100;height: 11vh;max-height: 11vh;" color="primary">
         <mat-toolbar-row>
             <button style="margin-bottom: 1%;" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
                 <mat-icon>menu</mat-icon>
@@ -37,9 +37,11 @@
 
     <mat-sidenav-container fxFlexFill>
         <mat-sidenav style="width: 50%;text-align: center;" #sidenav>
-            <mat-nav-list style="margin-top: 60px;">
+            <mat-nav-list style="margin-top: 11vh;">
                 <div style="width: 100%;text-align: right;">
-                    <button (click)="sidenav.toggle()" mat-icon-button color="accent"><mat-icon>close</mat-icon></button>
+                    <button (click)="sidenav.toggle()" mat-icon-button color="accent">
+                        <mat-icon>close</mat-icon>
+                    </button>
                 </div>
                 <button style="width: fit-content; min-width: 60%;" [routerLink]="['home']" routerLinkActive="active"
                     color="accent" mat-button>Home</button>

@@ -27,6 +27,10 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
   subCategory: SubCategory;
   category: Category;
   label: string;
+  filters: {
+    isSelected: boolean,
+    label: String
+  }[];
   isLoading = false;
 
   constructor(private api: ItemService,
@@ -42,7 +46,14 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
         this.isLoading = true
         this.query["subCategory"] = params.subCategory
         this.subCategoryApi.get(params.subCategory).subscribe(item => {
-          this.subCategory = item
+          this.subCategory = new SubCategory(item)
+          if (this.subCategory && this.subCategory.filters && this.subCategory.filters.length) {
+            this.filters = this.subCategory.filters
+          } else {
+            if (this.subCategory && this.subCategory.category) {
+              this.filters = this.subCategory.category.filters
+            }
+          }
           this.category = item.category
           this.label = item.name
           this.isLoading = false
@@ -53,7 +64,10 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
         this.isLoading = true
         this.query["category"] = params.category
         this.categoryApi.get(params.category).subscribe(item => {
-          this.category = item
+          this.category = new Category(item)
+          if (this.category && this.category.filters && this.category.filters.length) {
+            this.filters = this.category.filters
+          }
           this.label = item.name
           this.isLoading = false
         }, err => {
@@ -61,9 +75,19 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
         })
       } else if (params.label) {
         this.label = params.label
+      } else {
+        this.categoryApi.search({}).subscribe(page => {
+          for (const item of page.items) {
+            let newItem = new Category(item)
+            if (newItem.filters && newItem.filters.length) {
+              this.filters = this.filters || []
+              this.filters.push(...newItem.filters);
+            }
+          }
+        })
       }
     })
-    if (window.screen.width < 574) {
+    if (window.screen.width < 781) {
       this.isMobile = true
     }
     this.get()
@@ -75,8 +99,29 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
   ngOnDestroy(): void {
   }
 
+  resetFilters() {
+    for (const filter of this.filters) {
+      filter.isSelected = false
+    }
+  }
+
   get(options?) {
     this.isLoading = true
+    if (this.filters && this.filters.length) {
+      let options = []
+      for (const filter of this.filters) {
+        if (filter.isSelected) {
+          options.push(filter.label.toLowerCase())
+        }
+      }
+      if (options.length) {
+        this.query["options"] = options
+      } else {
+        delete this.query["options"];
+      }
+    } else {
+      delete this.query["options"];
+    }
     this.api.search(options || this.query).subscribe(page => {
       this.page = page
       this.page.totalPages = (page.total / page.limit)

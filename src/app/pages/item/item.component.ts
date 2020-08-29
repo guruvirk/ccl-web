@@ -37,7 +37,7 @@ export class ItemComponent implements OnInit, OnDestroy {
     }, err => {
       this.isLoading = false;
     })
-    if (window.screen.width < 574) {
+    if (window.screen.width < 781) {
       this.isMobile = true
     }
   }

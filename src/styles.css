@@ -5,7 +5,8 @@
 }
 
 .main {
-  margin-top: 80px;
+  /* margin-top: 80px; */
+  margin-top: 11vh;
   /* height: 80vh; */
 }
 
@@ -22,8 +23,8 @@
 
 .page {
   width: 100%;
-  margin-top: 2%;
-  margin-bottom: 5%;
+  padding-top: 2%;
+  padding-bottom: 5%;
 }
 
 .pageTitle {
