@@ -4,12 +4,6 @@
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
-.main {
-  /* margin-top: 80px; */
-  margin-top: 11vh;
-  /* height: 80vh; */
-}
-
 .mat-button-focus-overlay {
   background-color: transparent!important;
 }

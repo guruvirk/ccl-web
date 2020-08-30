@@ -125,6 +125,13 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
     }
     this.api.search(options || this.query).subscribe(page => {
       this.page = page
+      if (page.items && page.items.length) {
+        let i = 0
+        for (let item of page.items) {
+          this.page.items[i] = (new Item(item))
+          i++
+        }
+      }
       this.page.totalPages = (page.total / page.limit)
       this.isLoading = false
     }, err => {
@@ -176,6 +183,18 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
       }
     } else {
       return item.pic
+    }
+  }
+
+  getTeratoryPic(item: Item): string {
+    if (item.images && item.images.length) {
+      if (item.images.length > 2) {
+        return item.images[2]
+      } else {
+        return null
+      }
+    } else {
+      return null
     }
   }
 

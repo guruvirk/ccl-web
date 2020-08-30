@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../../services/role.service';
 import { Router } from '@angular/router';
 import { UxService } from '../../services/ux.service';
+import { Address } from 'src/app/models';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,8 @@ import { UxService } from '../../services/ux.service';
 })
 export class RegisterComponent implements OnInit {
 
-  name: string
+  firstName: string;
+  lastName: string
   phone: number
   email: string
   password: string
@@ -18,6 +20,7 @@ export class RegisterComponent implements OnInit {
   phoneValid: Boolean = false
   isLoading = false;
   isMobile: boolean;
+  address: Address = new Address;
 
   constructor(private auth: RoleService,
     private router: Router,
@@ -44,6 +47,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    if (!this.firstName) {
+      this.uxService.handleError("First Name is required")
+      return
+    }
+    if (!this.lastName) {
+      this.uxService.handleError("Last Name is required")
+      return
+    }
     if (!this.phoneValid) {
       this.uxService.handleError("Mobile No is already taken")
       return
@@ -58,10 +69,12 @@ export class RegisterComponent implements OnInit {
     }
     this.isLoading = true;
     this.auth.register({
-      name: this.name,
+      firstName: this.firstName,
+      lastName: this.lastName,
       password: this.password,
       phone: this.phone,
       email: this.email,
+      address: this.address,
       isValidated: true
     }).subscribe(response => {
       if (response && response.id) {

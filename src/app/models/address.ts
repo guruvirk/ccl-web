@@ -1,6 +1,6 @@
 export class Address {
 
-    name: string;
+    suburb: string;
     line1: string;
     line2: string;
     district: string;
@@ -8,13 +8,14 @@ export class Address {
     state: string;
     pinCode: string;
     country: string;
+    special: string;
 
     constructor(obj?: any) {
         if (!obj) {
             return;
         }
 
-        this.name = obj.name;
+        this.suburb = obj.suburb;
         this.line1 = obj.line1;
         this.line2 = obj.line2;
         this.district = obj.district;
@@ -22,6 +23,7 @@ export class Address {
         this.state = obj.state;
         this.pinCode = obj.pinCode;
         this.country = obj.country;
+        this.special = obj.special;
     }
 }
 

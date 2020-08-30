@@ -9,6 +9,39 @@
     border-radius: 5px 5px;
 }
 
+.activeOption{
+    border-radius: 2%;
+    position:relative;
+    border: 2px solid var(--accent);
+}
+
+.oldPrice {
+    font-size: 15px;
+    color: gray;
+}
+
+.activeStar {
+    color: var(--accent) !important;
+}
+
+.star {
+    color: black;
+}
+
+.option {
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.check{
+    position:absolute;
+        top:2px;
+        right:2px;
+        color: var(--accent);
+    }
+
 .imagesContainer {
     margin-top: 10px;
 }

@@ -19,7 +19,7 @@
                     <br>
                     <h5 class="primaryColor">Contact Details</h5>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <mat-form-field color="accent" class="field-full-width">
                                 <mat-label>Email</mat-label>
                                 <input *ngIf="user" [(ngModel)]="user.email" matInput>
@@ -28,10 +28,10 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <mat-form-field color="accent" class="field-full-width">
-                                <mat-label>Telephone</mat-label>
-                                <span class="primaryColor" matPrefix>+1 &nbsp;</span>
+                                <mat-label>Mobile</mat-label>
+                                <span class="primaryColor" matPrefix>+61 &nbsp;</span>
                                 <input minlength="10" maxlength="10" *ngIf="user" [(ngModel)]="user.phone" matInput>
                                 <mat-icon color="primary" matSuffix>mode_edit</mat-icon>
                             </mat-form-field>
@@ -45,25 +45,36 @@
                     <h5 *ngIf="!isPickup" class="primaryColor">Delivery Address / Billing Address</h5>
                     <h5 *ngIf="isPickup" class="primaryColor">Billing Address</h5>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 col-md-6">
                             <mat-form-field class="field-full-width">
-                                <mat-label>Name</mat-label>
-                                <input [(ngModel)]="user.name" matInput>
+                                <mat-label>First Name</mat-label>
+                                <input [(ngModel)]="user.firstName" matInput>
                             </mat-form-field>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 col-md-6">
                             <mat-form-field class="field-full-width">
-                                <mat-label>Address 1</mat-label>
+                                <mat-label>Last Name</mat-label>
+                                <input [(ngModel)]="user.firstName" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Line 1</mat-label>
                                 <input [(ngModel)]="user.address.line1" matInput>
                             </mat-form-field>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 col-md-6">
                             <mat-form-field class="field-full-width">
-                                <mat-label>Address 2</mat-label>
+                                <mat-label>Line 2</mat-label>
                                 <input [(ngModel)]="user.address.line2" matInput>
                             </mat-form-field>
                         </div>
-
+                        <div class="col-4">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Suburb</mat-label>
+                                <input [(ngModel)]="user.address.suburb" matInput>
+                            </mat-form-field>
+                        </div>
                         <div class="col-4">
                             <mat-form-field class="field-full-width">
                                 <mat-label>City</mat-label>
@@ -72,13 +83,7 @@
                         </div>
                         <div class="col-4">
                             <mat-form-field class="field-full-width">
-                                <mat-label>State</mat-label>
-                                <input [(ngModel)]="user.address.state" matInput>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-4">
-                            <mat-form-field class="field-full-width">
-                                <mat-label>Postal Code</mat-label>
+                                <mat-label>Post Code</mat-label>
                                 <input [(ngModel)]="user.address.pinCode" matInput maxlength="5">
                             </mat-form-field>
                         </div>

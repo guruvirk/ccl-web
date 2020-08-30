@@ -14,24 +14,25 @@ export class Item {
     warranty: string;
     likes: User[]
     defaultOption: {
-        label: string,
+        label: string;
         price: number;
         actualPrice: number;
         code: string;
         type: string;
+        availability: boolean;
     };
     option: {
         type: string,
         options: {
-            label: string,
-            price: number,
-            actualPrice: number,
+            label: string
+            price: number
+            actualPrice: number
             code: string
+            availability: boolean
         }[]
     };
     tags: string[];
     status: string;
-    availability: boolean;
     meta: any;
     category: Category;
     subCategory: SubCategory;
@@ -46,6 +47,7 @@ export class Item {
         fiveStar: number
     }
     owner: User;
+    isAvailable: boolean;
 
     constructor(obj?: any) {
         if (!obj) {
@@ -60,11 +62,11 @@ export class Item {
         this.warranty = obj.warranty;
         this.note = obj.note;
         this.status = obj.status;
-        this.availability = obj.availability;
         this.meta = obj.meta;
         this.category = new Category(obj.category)
         this.subCategory = new SubCategory(obj.subCategory)
         this.owner = new User(obj.owner)
+        this.isAvailable = false;
 
         if (obj.images && obj.images.length) {
             for (const image of obj.images) {
@@ -108,12 +110,16 @@ export class Item {
 
         if (obj.option && obj.option.options && obj.option.options.length) {
             for (const option of obj.option.options) {
+                if (option.availability) {
+                    this.isAvailable = true
+                }
                 if (this.option && this.option.options && this.option.options.length) {
                     this.option.options.push({
                         label: option.label,
                         price: option.price,
                         actualPrice: option.actualPrice,
-                        code: option.code
+                        code: option.code,
+                        availability: option.availability
                     })
                 } else {
                     this.option = {
@@ -122,7 +128,8 @@ export class Item {
                             label: option.label,
                             price: option.price,
                             actualPrice: option.actualPrice,
-                            code: option.code
+                            code: option.code,
+                            availability: option.availability
                         }]
                     }
                 }
@@ -135,7 +142,11 @@ export class Item {
                 price: obj.defaultOption.price,
                 actualPrice: obj.defaultOption.actualPrice,
                 code: obj.defaultOption.code,
-                type: obj.defaultOption.type
+                type: obj.defaultOption.type,
+                availability: obj.defaultOption.availability
+            }
+            if (this.defaultOption.availability) {
+                this.isAvailable = true
             }
         }
 

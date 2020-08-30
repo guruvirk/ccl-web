@@ -17,6 +17,14 @@ export class ItemComponent implements OnInit, OnDestroy {
   isMobile: boolean;
   item: Item;
   isLoading = false;
+  currentOption: {
+    label: string;
+    price: number;
+    actualPrice: number;
+    code: string;
+    type: string;
+    availability: boolean;
+  }
 
   constructor(private api: ItemService,
     private route: ActivatedRoute,
@@ -28,7 +36,8 @@ export class ItemComponent implements OnInit, OnDestroy {
       if (params.id) {
         this.isLoading = true;
         this.api.get(params.id).subscribe(item => {
-          this.item = item
+          this.item = new Item(item)
+          this.currentOption = this.item.defaultOption
           this.isLoading = false;
         }, err => {
           this.isLoading = false;
@@ -48,6 +57,18 @@ export class ItemComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
+  selectOption(index: number) {
+    let selectedOption = this.item.option.options[index]
+    this.currentOption = {
+      label: selectedOption.label,
+      price: selectedOption.price,
+      actualPrice: selectedOption.actualPrice,
+      code: selectedOption.code,
+      type: this.item.option.type,
+      availability: selectedOption.availability
+    }
+  }
+
   selectImage(image: string) {
     this.item.pic = image
   }
@@ -57,20 +78,8 @@ export class ItemComponent implements OnInit, OnDestroy {
   }
 
   addToCart() {
-    if (this.item.option.options && this.item.option.options.length > 1) {
-      const dialogRef = this.dialog.open(OptionDialogComponent);
-      dialogRef.componentInstance.options = this.item.option.options
-      dialogRef.afterClosed().subscribe(result => {
-        if (result && result.price) {
-          result.type = this.item.option.type
-          this.auth.addToCart(this.item, result, 1)
-          this.uxService.showInfo("Added to Cart Succesfully")
-        }
-      });
-    } else {
-      this.auth.addToCart(this.item, this.item.defaultOption, 1)
-      this.uxService.showInfo("Added to Cart Succesfully")
-    }
+    this.auth.addToCart(this.item, this.currentOption, 1)
+    this.uxService.showInfo("Added to Cart Succesfully")
   }
 
 }

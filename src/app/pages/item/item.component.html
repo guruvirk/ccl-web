@@ -38,10 +38,15 @@
                                         *ngIf="item.option && item.option.options && item.option.options.length && item.option.options.length > 1">
                                         <h4>Available {{item.option.type | titlecase}}'s</h4>
                                         <div class="row">
-                                            <ng-container *ngFor="let option of item.option.options;">
-                                                <div class="col-6 col-md-4">
+                                            <ng-container *ngFor="let option of item.option.options;let i=index">
+                                                <div (click)="selectOption(i)"
+                                                    [class.activeOption]="option.code == currentOption.code"
+                                                    class="col-6 col-md-4 option">
+                                                    <mat-icon *ngIf="option.code == currentOption.code" class="check">
+                                                        check_circle</mat-icon>
                                                     <h5>{{option.label | titlecase}}</h5>
-                                                    <p class="product-price">${{option.price}}</p>
+                                                    <h5 class="accentColor">${{option.price}}<s class="oldPrice">
+                                                            ${{option.actualPrice}}</s></h5>
                                                 </div>
                                             </ng-container>
                                         </div>
@@ -51,27 +56,35 @@
                                         <h5>{{item.defaultOption.label | titlecase}}</h5>
                                         <p class="product-price">${{item.defaultOption.price}}</p>
                                     </div>
-                                    <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+                                    <div *ngIf="item.rating.value" class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                                         <div class="ratings">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i [class.activeStar]="item.rating.value > 0" class="fa fa-star star"
+                                                aria-hidden="true"></i>
+                                            <i [class.activeStar]="item.rating.value > 1" class="fa fa-star star"
+                                                aria-hidden="true"></i>
+                                            <i [class.activeStar]="item.rating.value > 2" class="fa fa-star star"
+                                                aria-hidden="true"></i>
+                                            <i [class.activeStar]="item.rating.value > 3" class="fa fa-star star"
+                                                aria-hidden="true"></i>
+                                            <i [class.activeStar]="item.rating.value > 4" class="fa fa-star star"
+                                                aria-hidden="true"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <div class="product-meta-data">
-                                        <p *ngIf="item.availability" class="available"><i class="fa fa-circle"></i> In
+                                        <p *ngIf="currentOption.availability" class="available"><i
+                                                class="fa fa-circle"></i> In
                                             Stock
                                         </p>
-                                        <p *ngIf="!item.availability" class="notAvailable"><i class="fa fa-circle"></i>
+                                        <p *ngIf="!currentOption.availability" class="notAvailable"><i
+                                                class="fa fa-circle"></i>
                                             Out
                                             Of Stock
                                         </p>
                                     </div>
-                                    <button (click)="addToCart()" color="accent" mat-raised-button>Add to cart</button>
+                                    <button *ngIf="currentOption.availability" (click)="addToCart()" color="accent"
+                                        mat-raised-button>Add to cart</button>
                                 </div>
                             </div>
                         </div>

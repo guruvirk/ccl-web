@@ -1,6 +1,6 @@
 <processing-indicator *ngIf="isLoading"></processing-indicator>
 <div class="page">
-    <div class="header">
+    <!-- <div class="header">
         <span class="spacer"></span>
         <h3>Login</h3>
         <span class="spacer"></span>
@@ -10,13 +10,23 @@
         <button *ngIf="!isMobile" (click)="back()" class="backButton" mat-raised-button color="primary">
             BACK
         </button>
-    </div>
+    </div> -->
     <div class="container page">
+        <div style="width: 100%; text-align: center;">
+            <h4>New Customer ?</h4>
+            <p style="width: 80%;margin: auto;">Creating account will allow you shop faster. Be up to date with your
+                order and keep track or previous orders</p>
+            <button style="margin: 10px;" [routerLink]="['/','register']" mat-raised-button color="accent"><b>Click here to create an
+                    account</b></button>
+        </div>
         <div class="loginCard">
+            <h4 style="margin-top: 20px;">Existing Customer</h4>
             <mat-form-field class="full-width-input">
-                <mat-label>Mobile No</mat-label>
+                <mat-label>Mobile</mat-label>
+                <span class="primaryColor" matPrefix>+61 &nbsp;</span>
                 <input (ngModelChange)="emptyEmail()" matInput numbersOnly name="phone" [(ngModel)]="phone"
                     minlength="10" maxlength="10" [required]="true">
+                <mat-icon color="primary" matSuffix>mode_edit</mat-icon>
             </mat-form-field>
             OR
             <mat-form-field class="full-width-input">
@@ -28,13 +38,9 @@
                 <mat-label>Password</mat-label>
                 <input matInput type="password" name="password" [(ngModel)]="password" [required]="true">
             </mat-form-field>
-            <button (click)="login()" mat-raised-button color="accent"><b>Login</b></button>
+            <button (click)="login()" mat-raised-button color="accent"><b>Continue to Login</b></button>
             <br>
             <br>
-            <div>
-                <h5 style="margin: 0;">New here?</h5>
-                <button [routerLink]="['/','register']" mat-button color="accent"><b>Sign Up</b></button>
-            </div>
             <!-- <p><a [routerLink]="['/', 'reset']">Forgot password?</a></p> -->
         </div>
     </div>

@@ -1,7 +1,17 @@
 .loginCard {
-  width: 70%;
+  width: 90%;
   margin: auto;
   text-align: center;
+  border: 1.5px solid var(--accent);
+  border-radius: 10px;
+  box-shadow: 0 5px 5px -3px rgba(255,167,38,.2), 0 8px 10px 1px rgba(255,167,38,.14), 0 3px 14px 2px rgba(255,167,38,.12);
+}
+
+.smallLabel {
+  color: var(--accent);
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 0;
 }
 
 mat-form-field {

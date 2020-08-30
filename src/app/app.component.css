@@ -18,3 +18,31 @@ mat-sidenav {
     background-color: var(--accent);
     color: var(--primary);
 }
+
+.topvh {
+    height: 11vh !important;
+}
+
+.fixvh {
+    margin-top: 11vh !important;
+}
+
+@media only screen and (max-width: 780px) {
+    .topvh {
+        height: 9vh !important;
+    }
+    
+    .fixvh {
+        margin-top: 9vh !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .topvh {
+        height: 8vh !important;
+    }
+    
+    .fixvh {
+        margin-top: 8vh !important;
+    }
+}

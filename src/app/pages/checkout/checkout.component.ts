@@ -119,7 +119,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.user.address.country = "New Zealand"
     this.cart.status = "pending"
     this.cart.address = new Address(this.user.address)
-    this.cart.address.name = this.user.name
     if (this.isCod) {
       this.cart.method = "cod"
     } else {

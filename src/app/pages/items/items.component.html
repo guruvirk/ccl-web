@@ -88,32 +88,81 @@
                         <div class="card itemCard" id="card{{i+1}}">
                             <div class="single-product-wrapper">
                                 <div class="product-img">
-                                    <img [src]="item.pic">
-                                    <img class="hover-img" [src]="getSecandoryPic(item)">
+                                    <div [id]="'carousel'+i" class="carousel slide" data-ride="carousel">
+                                        <ol style="background-color: rgba(0,0,0,.3);" class="carousel-indicators">
+                                            <li [attr.data-target]="'#carousel' + i" data-slide-to="0" class="active">
+                                            </li>
+                                            <li [attr.data-target]="'#carousel' + i" data-slide-to="1"></li>
+                                            <li [attr.data-target]="'#carousel' + i" data-slide-to="2"></li>
+                                        </ol>
+                                        <div (click)="select(item)" style="cursor: pointer;" class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img style="height: 50vh;" class="d-block w-100" [src]="item.pic"
+                                                    alt="First slide">
+                                            </div>
+                                            <div class="carousel-item" *ngIf="getSecandoryPic(item)">
+                                                <img style="height: 50vh;" class="d-block w-100"
+                                                    [src]="getSecandoryPic(item)" alt="Second slide">
+                                            </div>
+                                            <div class="carousel-item" *ngIf="getTeratoryPic(item)">
+                                                <img style="height: 50vh;" class="d-block w-100"
+                                                    [src]="getTeratoryPic(item)" alt="Third slide">
+                                            </div>
+                                        </div>
+                                        <a style="z-index: 100;" class="carousel-control-prev" [href]="'#carousel' + i"
+                                            role="button" data-slide="prev">
+                                            <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+                                            <!-- <span class="sr-only">Previous</span> -->
+                                            <i *ngIf="!isMobile" class="fa fa-arrow-circle-left fa-2x primaryColor"
+                                                aria-hidden="true"></i>
+                                            <i *ngIf="isMobile" class="fa fa-arrow-circle-left fa-3x primaryColor"
+                                                aria-hidden="true"></i>
+                                        </a>
+                                        <a style="z-index: 100;" class="carousel-control-next" [href]="'#carousel' + i"
+                                            role="button" data-slide="next">
+                                            <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span> -->
+                                            <i *ngIf="!isMobile" class="fa fa-arrow-circle-right fa-2x primaryColor"
+                                                aria-hidden="true"></i>
+                                            <i *ngIf="isMobile" class="fa fa-arrow-circle-right fa-3x primaryColor"
+                                                aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="product-description align-items-center justify-content-between">
-                                    <div class="ratings-cart">
+                                    <div *ngIf="item.rating.value" (click)="select(item)" class="ratings-cart">
                                         <div class="ratings">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i style="color: black;" [class.activeStar]="item.rating.value > 0" class="fa fa-star star"
+                                                aria-hidden="true"></i>
+                                            <i style="color: black;" [class.activeStar]="item.rating.value > 1" class="fa fa-star star"
+                                                aria-hidden="true"></i>
+                                            <i style="color: black;" [class.activeStar]="item.rating.value > 2" class="fa fa-star star"
+                                                aria-hidden="true"></i>
+                                            <i style="color: black;" [class.activeStar]="item.rating.value > 3" class="fa fa-star star"
+                                                aria-hidden="true"></i>
+                                            <i style="color: black;" [class.activeStar]="item.rating.value > 4" class="fa fa-star star"
+                                                aria-hidden="true"></i>
                                         </div>
                                     </div>
-                                    <div class="product-meta-data">
+                                    <div (click)="select(item)" class="product-meta-data">
                                         <a (click)="select(item)">
                                             <h6>{{item.name}}</h6>
                                         </a>
                                     </div>
-                                    <div class="product-meta-data">
+                                    <div (click)="select(item)" class="product-meta-data">
                                         <p><b class="product-price">${{item.defaultOption.price}} </b><s
                                                 class="oldPrice">
                                                 ${{item.defaultOption.actualPrice}}</s></p>
                                     </div>
-                                    <div class="cart">
+                                    <div *ngIf="item.isAvailable" class="cart">
                                         <button (click)="addToCart(item)" mat-raised-button color="accent">Add To
                                             Cart</button>
+                                    </div>
+                                    <div *ngIf="!item.isAvailable" class="cart">
+                                        <p class="notAvailable"><i class="fa fa-circle"></i>
+                                            Out
+                                            Of Stock
+                                        </p>
                                     </div>
                                 </div>
                             </div>
