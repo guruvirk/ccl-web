@@ -17,7 +17,10 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="single_product_thumb">
-                        <img class="d-block w-100" [src]="item.pic" alt="First slide">
+                        <lib-easy-zoom class="d-block w-100" [thumbImage]="item.pic" [fullImage]="item.pic"
+                            [enableLens]="false" [enableScrollZoom]="true" [lensWidth]="200" [lensHeight]="200"
+                            [circularLens]="false" [minZoomRatio]="1" [maxZoomRatio]="5" [scrollStepSize]="0.1">
+                        </lib-easy-zoom>
                         <div class="row imagesContainer">
                             <div (click)="selectImage(image)" *ngFor="let image of item.images" class="col-4 col-md-3">
                                 <img *ngIf="image == item.pic" class="selectedImage d-block w-100" [src]="image"
@@ -56,7 +59,8 @@
                                         <h5>{{item.defaultOption.label | titlecase}}</h5>
                                         <p class="product-price">${{item.defaultOption.price}}</p>
                                     </div>
-                                    <div *ngIf="item.rating.value" class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+                                    <div *ngIf="item.rating.value"
+                                        class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                                         <div class="ratings">
                                             <i [class.activeStar]="item.rating.value > 0" class="fa fa-star star"
                                                 aria-hidden="true"></i>

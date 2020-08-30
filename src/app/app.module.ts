@@ -36,6 +36,8 @@ import { ResetComponent } from './pages/reset/reset.component';
 import { ConfirmComponent } from './pages/confirm/confirm.component';
 import { OrderDetailsDialogComponent } from './components/order-details-dialog/order-details-dialog.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { TncDialogComponent } from './components/tnc-dialog/tnc-dialog.component';
+import { EasyZoomModule } from 'angular-easy-zoom';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     SettingComponent,
     ChangePasswordComponent,
     OrderDetailsDialogComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    TncDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -83,10 +86,11 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     MatTableModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    EasyZoomModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [OptionDialogComponent, OrderDetailsDialogComponent],
+  entryComponents: [OptionDialogComponent, OrderDetailsDialogComponent, TncDialogComponent],
   exports: [ProcessingIndicatorComponent]
 })
 export class AppModule { }

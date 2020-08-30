@@ -29,6 +29,7 @@ h6 {
     width: 100%;
     text-align: center;
     padding: 0;
+    padding-bottom: 10px;
     margin-bottom: 10px;
     box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
 }
@@ -94,5 +95,13 @@ input::-webkit-inner-spin-button {
   }
 
   .checkbox-section {
+    margin-top: 10px;
     text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .tnc-checkbox-section {
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
   }

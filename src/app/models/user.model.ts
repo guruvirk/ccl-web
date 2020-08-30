@@ -5,7 +5,8 @@ import { Address } from '.';
 export class User {
 
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   dob: Date;
   age: Number;
   bloodGroup: any;
@@ -32,7 +33,8 @@ export class User {
     this.id = obj.id;
     this.email = obj.email;
     this.phone = obj.phone;
-    this.name = obj.name;
+    this.firstName = obj.firstName;
+    this.lastName = obj.lastName;
     this.status = obj.status;
     this.dob = obj.dob;
     this.age = obj.age;

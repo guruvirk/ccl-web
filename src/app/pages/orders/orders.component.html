@@ -14,7 +14,7 @@
     <br>
     <div *ngIf="page && page.items && page.items.length" class="container page" style="min-height: 300px;">
         <mat-card (click)="select(order)" *ngFor="let order of page.items" class="orderCard">
-            <div class="row" style="width: 100%;">
+            <div class="row" style="width: 100%; margin: 0;">
                 <div class="col-3" style="margin: auto;">
                     <img class="cartImage" [src]="order.items[0].item.pic">
                 </div>

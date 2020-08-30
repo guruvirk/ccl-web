@@ -26,6 +26,23 @@
     position: relative;
 }
 
+.banner {
+    background-color: var(--primary);
+}
+
+.bannerDiv {
+    height: 50vh;
+}
+
+.bannnerHead {
+    width: 100%;
+    padding-top: 9%;
+    padding-bottom: 9%;
+    position: absolute;
+    font-size: 3rem;
+    text-align: center;
+}
+
 @media (max-width: 299.98px){ 
     .card-columns {
         column-count: 1; }
@@ -33,16 +50,28 @@
 @media (min-width: 300px){
     .card-columns {
         column-count: 2; }
+        .bannerDiv {
+            height: 30vh;
+        }
 }
 @media (min-width: 768px){
     .card-columns {
         column-count: 3; }
+        .bannerDiv {
+            height: 40vh;
+        }
 }
 @media (min-width: 992px){
     .card-columns {
         column-count: 4; }
+        .bannerDiv {
+            height: 50vh;
+        }
 }
 @media (min-width: 1200px){
     .card-columns {
         column-count: 4; }
+        .bannerDiv {
+            height: 50vh;
+        }
 }

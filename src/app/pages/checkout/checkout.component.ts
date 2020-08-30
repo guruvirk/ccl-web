@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UxService } from '../../services/ux.service';
 import { Item, Order, User, Address } from 'src/app/models';
 import { OrderService } from 'src/app/services/order.service';
+import { TncDialogComponent } from 'src/app/components/tnc-dialog/tnc-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-checkout',
@@ -14,6 +16,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   cart: Order;
   isMobile: boolean = false;
+  changeDetails: boolean = true;
+  isTnc: boolean = true;
   user: User;
   isRegistered = false
   isLoading = false;
@@ -25,7 +29,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private api: OrderService,
     private auth: RoleService,
     private router: Router,
-    private uxService: UxService) {
+    private uxService: UxService,
+    public dialog: MatDialog) {
     if (window.screen.width < 781) {
       this.isMobile = true
     }
@@ -86,33 +91,45 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.auth.updateCart(this.cart)
   }
 
+  tncDialog() {
+    const dialogRef = this.dialog.open(TncDialogComponent);
+  }
+
   proceed() {
     if (!this.user.email) {
       this.uxService.handleError("Email is required")
       return
     }
     if (!this.user.phone) {
-      this.uxService.handleError("Telephone is required")
+      this.uxService.handleError("Mobile is required")
       return
     }
-    if (!this.user.name) {
-      this.uxService.handleError("Name is required")
+    if (!this.user.firstName) {
+      this.uxService.handleError("First Name is required")
+      return
+    }
+    if (!this.user.lastName) {
+      this.uxService.handleError("Last Name is required")
       return
     }
     if (!this.user.address.line1) {
-      this.uxService.handleError("Address 1 is required")
+      this.uxService.handleError("Line 1 is required")
       return
     }
     if (!this.user.address.city) {
       this.uxService.handleError("City is required")
       return
     }
-    if (!this.user.address.state) {
-      this.uxService.handleError("State is required")
+    if (!this.user.address.suburb) {
+      this.uxService.handleError("Suburb is required")
       return
     }
     if (!this.user.address.pinCode) {
-      this.uxService.handleError("Postal Code is required")
+      this.uxService.handleError("Post Code is required")
+      return
+    }
+    if (!this.isTnc) {
+      this.uxService.handleError("Please accept terms and conditions")
       return
     }
     this.isLoading = true;
@@ -130,9 +147,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.cart.delivery = "delivery"
     }
     if (this.isRegistered) {
-      this.auth.updateMyUser(this.user).subscribe(item => {
-        this.auth.changeUser(item)
-      })
+      if (this.changeDetails) {
+        this.auth.updateMyUser(this.user).subscribe(item => {
+          this.auth.changeUser(item)
+        })
+      }
       this.api.create(this.cart).subscribe(cart => {
         this.uxService.showInfo("Order Created")
         this.cart = cart

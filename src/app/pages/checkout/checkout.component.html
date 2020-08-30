@@ -17,12 +17,12 @@
             <div class="col-12 col-lg-9">
                 <mat-card class="detailsCard">
                     <br>
-                    <h5 class="primaryColor">Contact Details</h5>
+                    <h5 class="accentColor"><b>Contact Details</b></h5>
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <mat-form-field color="accent" class="field-full-width">
                                 <mat-label>Email</mat-label>
-                                <input *ngIf="user" [(ngModel)]="user.email" matInput>
+                                <input *ngIf="user" [(ngModel)]="user.email" matInput required>
                                 <mat-error *ngIf="emailError">
                                     Please enter a valid email address
                                 </mat-error>
@@ -32,35 +32,41 @@
                             <mat-form-field color="accent" class="field-full-width">
                                 <mat-label>Mobile</mat-label>
                                 <span class="primaryColor" matPrefix>+61 &nbsp;</span>
-                                <input minlength="10" maxlength="10" *ngIf="user" [(ngModel)]="user.phone" matInput>
+                                <input minlength="10" maxlength="10" *ngIf="user" [(ngModel)]="user.phone" matInput
+                                    required>
                                 <mat-icon color="primary" matSuffix>mode_edit</mat-icon>
                             </mat-form-field>
                         </div>
                     </div>
+                    <section *ngIf="isRegistered" class="checkbox-section">
+                        <mat-checkbox [(ngModel)]="changeDetails" class="checkbox-margin">
+                            <h6>Remember details for future orders</h6>
+                        </mat-checkbox>
+                    </section>
                     <section class="checkbox-section">
                         <mat-checkbox [(ngModel)]="isPickup" class="checkbox-margin">
                             <h6>I will pick up from store</h6>
                         </mat-checkbox>
                     </section>
-                    <h5 *ngIf="!isPickup" class="primaryColor">Delivery Address / Billing Address</h5>
-                    <h5 *ngIf="isPickup" class="primaryColor">Billing Address</h5>
+                    <h5 *ngIf="!isPickup" class="accentColor"><b>Delivery Address / Billing Address</b></h5>
+                    <h5 *ngIf="isPickup" class="accentColor"><b>Billing Address</b></h5>
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <mat-form-field class="field-full-width">
                                 <mat-label>First Name</mat-label>
-                                <input [(ngModel)]="user.firstName" matInput>
+                                <input [(ngModel)]="user.firstName" matInput required>
                             </mat-form-field>
                         </div>
                         <div class="col-12 col-md-6">
                             <mat-form-field class="field-full-width">
                                 <mat-label>Last Name</mat-label>
-                                <input [(ngModel)]="user.firstName" matInput>
+                                <input [(ngModel)]="user.lastName" matInput required>
                             </mat-form-field>
                         </div>
                         <div class="col-12 col-md-6">
                             <mat-form-field class="field-full-width">
                                 <mat-label>Line 1</mat-label>
-                                <input [(ngModel)]="user.address.line1" matInput>
+                                <input [(ngModel)]="user.address.line1" matInput required>
                             </mat-form-field>
                         </div>
                         <div class="col-12 col-md-6">
@@ -72,19 +78,25 @@
                         <div class="col-4">
                             <mat-form-field class="field-full-width">
                                 <mat-label>Suburb</mat-label>
-                                <input [(ngModel)]="user.address.suburb" matInput>
+                                <input [(ngModel)]="user.address.suburb" matInput required>
                             </mat-form-field>
                         </div>
                         <div class="col-4">
                             <mat-form-field class="field-full-width">
                                 <mat-label>City</mat-label>
-                                <input [(ngModel)]="user.address.city" matInput>
+                                <input [(ngModel)]="user.address.city" matInput required>
                             </mat-form-field>
                         </div>
                         <div class="col-4">
                             <mat-form-field class="field-full-width">
                                 <mat-label>Post Code</mat-label>
-                                <input [(ngModel)]="user.address.pinCode" matInput maxlength="5">
+                                <input [(ngModel)]="user.address.pinCode" matInput maxlength="5" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Room No/Unit or delivery instructions</mat-label>
+                                <input [(ngModel)]="user.address.special" matInput maxlength="5">
                             </mat-form-field>
                         </div>
                     </div>
@@ -93,7 +105,7 @@
             <div class="col-12 col-lg-3">
                 <mat-card class="checkoutCard">
                     <h5 class="tableHeader cardHeader">Cart Total</h5>
-                    <div style="margin: 10px;">
+                    <div style="margin: 10px;padding-left: 10px;padding-right: 10px;">
                         <h6>Payment Option</h6>
                         <br>
                         <mat-radio-group class="radio-group" [(ngModel)]="isCod">
@@ -125,6 +137,14 @@
                             <h6>${{cart.amount}}</h6>
                         </div>
                     </div>
+                    <section class="tnc-checkbox-section">
+                        <mat-checkbox [(ngModel)]="isTnc" class="checkbox-margin">
+                            <h6>I accept terms and conditions</h6>
+                        </mat-checkbox>
+                        <p (click)="tncDialog()" class="accentColor"
+                            style="text-decoration: underline; z-index: 1000;cursor: pointer;"><b>Terms and
+                                conditions</b></p>
+                    </section>
                     <mat-card-actions style="padding: 10px;">
                         <button (click)="proceed()" mat-raised-button color="accent"><b>Create Order</b></button>
                     </mat-card-actions>
