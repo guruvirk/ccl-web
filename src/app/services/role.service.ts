@@ -17,6 +17,7 @@ export class RoleService implements IAuth {
 
   private _authApi: GenericService<any>;
   private _tenantApi: GenericService<Tenant>;
+  private _upload: GenericService<string>;
   private _user: User
   private _cart: Order;
   private _tenant: Tenant
@@ -34,6 +35,7 @@ export class RoleService implements IAuth {
     private uxService: UxService) {
     this._authApi = new GenericService(this.http, this, this.uxService);
     this._tenantApi = new GenericService(this.http, this, this.uxService);
+    this._upload = new GenericService(this.http, this, this.uxService);
     this.setTenant()
     this.getCart()
   }
@@ -342,6 +344,10 @@ export class RoleService implements IAuth {
       this._user = user
       this._userSubject.next(this._user)
     })
+  }
+
+  upload(file: File): Observable<string> {
+    return this._upload.upload(`upload`, file)
   }
 
   updateMyUser(user: User): Observable<User> {

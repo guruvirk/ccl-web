@@ -38,9 +38,10 @@ export class UserGuard implements CanActivate {
 
     if (!canAccess) {
       console.error(`you don't have any of of the permission: ${permissions}`);
+      return false;
     }
 
-    return canAccess;
+    return true;
   }
 
 }

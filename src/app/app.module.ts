@@ -38,6 +38,9 @@ import { OrderDetailsDialogComponent } from './components/order-details-dialog/o
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { TncDialogComponent } from './components/tnc-dialog/tnc-dialog.component';
 import { EasyZoomModule } from 'angular-easy-zoom';
+import { AddCategoryComponent } from './pages/add-category/add-category.component';
+import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
+import { ViewCategoriesComponent } from './pages/view-categories/view-categories.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import { EasyZoomModule } from 'angular-easy-zoom';
     ChangePasswordComponent,
     OrderDetailsDialogComponent,
     PaginatorComponent,
-    TncDialogComponent
+    TncDialogComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    ViewCategoriesComponent
   ],
   imports: [
     BrowserModule,

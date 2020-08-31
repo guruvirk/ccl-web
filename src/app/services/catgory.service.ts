@@ -23,8 +23,8 @@ export class CatgoryService {
   create(category: Category): Observable<Category> {
     return this._api.create('categories', category)
   }
-  update(category: Category): Observable<Category> {
-    return this._api.update('categories', category)
+  update(id: string, category: Category): Observable<Category> {
+    return this._api.update(`categories/${id}`, category)
   }
   get(id): Observable<Category> {
     return this._api.get(`categories/${id}`)

@@ -12,6 +12,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { OrderComponent } from './pages/order/order.component';
+import { AddCategoryComponent } from './pages/add-category/add-category.component';
+import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
+import { ViewCategoriesComponent } from './pages/view-categories/view-categories.component';
 
 const routes: Routes = [
   {
@@ -39,7 +42,25 @@ const routes: Routes = [
   { path: 'payment/:id', component: PaymentComponent },
   { path: 'register', component: RegisterComponent },
   // { path: 'confirm/:id', component: ConfirmComponent },
-  // { path: 'contest/:id', component: ContestComponent, canActivate: [UserGuard] },
+  {
+    path: 'add-category', component: AddCategoryComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
+    path: 'view-categories', component: ViewCategoriesComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
+    path: 'edit-category/:id', component: EditCategoryComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+
   { path: 'orders', component: OrdersComponent, canActivate: [UserGuard] },
   { path: 'order/:id', component: OrderComponent, canActivate: [UserGuard] },
   // { path: 'home/:status', component: HomeComponent, canActivate: [UserGuard] },

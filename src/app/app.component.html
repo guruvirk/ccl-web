@@ -8,12 +8,13 @@
                 Comfort <span class="accentColor">& Care</span>
             </span>
             <span class="spacer"></span>
-            <button *ngIf="cart" [routerLink]="['cart']" mat-icon-button fxShow="true"
-                fxHide.gt-sm>
+            <button *ngIf="cart" [routerLink]="['cart']" mat-icon-button fxShow="true" fxHide.gt-sm>
                 <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
             </button>
             <span flex></span>
             <div fxShow="true" fxHide.lt-md>
+                <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
+                    [routerLink]="['view-categories']" color="accent" mat-button>Categories</button>
                 <button routerLinkActive="active" [routerLink]="['home']" color="accent" mat-button>Home</button>
                 <button routerLinkActive="active" [routerLink]="['items']" color="accent" mat-button>Best
                     Sellers</button>
@@ -43,6 +44,9 @@
                         <mat-icon>close</mat-icon>
                     </button>
                 </div>
+                <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;"
+                    routerLinkActive="active" [routerLink]="['view-categories']" color="accent" mat-button
+                    routerLinkActive="active">Categories</button>
                 <button style="width: fit-content; min-width: 60%;" [routerLink]="['home']" routerLinkActive="active"
                     color="accent" mat-button>Home</button>
                 <br>
