@@ -2,30 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../../services/role.service';
 import { Router } from '@angular/router';
 import { UxService } from '../../services/ux.service';
+import { SubCategory } from 'src/app/models';
+import { SubCatgoryService } from 'src/app/services/sub-catgory.service';
 import { Category } from 'src/app/models';
 import { CatgoryService } from 'src/app/services/catgory.service';
 
 @Component({
-  selector: 'app-add-category',
-  templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.css']
+  selector: 'app-add-sub-category',
+  templateUrl: './add-sub-category.component.html',
+  styleUrls: ['./add-sub-category.component.css']
 })
-export class AddCategoryComponent implements OnInit {
+export class AddSubCategoryComponent implements OnInit {
 
   isLoading = false
   isMobile: boolean;
   image: File;
   imageUrl: string | ArrayBuffer;
-  category: Category = new Category({})
+  subCategory: SubCategory = new SubCategory({})
+  categories: Category[] = []
 
   constructor(
-    private api: CatgoryService,
+    private api: SubCatgoryService,
     private auth: RoleService,
     private router: Router,
+    private categoryApi: CatgoryService,
     private uxService: UxService) {
     if (window.screen.width < 781) {
       this.isMobile = true
     }
+    this.categoryApi.search({}).subscribe(page => {
+      this.categories = page.items
+    })
   }
 
   ngOnInit() {
@@ -36,7 +43,7 @@ export class AddCategoryComponent implements OnInit {
   }
 
   create() {
-    if (!this.category.name) {
+    if (!this.subCategory.name) {
       this.uxService.handleError("Name is Required")
       return
     }
@@ -46,8 +53,8 @@ export class AddCategoryComponent implements OnInit {
     }
     this.isLoading = true
     this.auth.upload(this.image).subscribe(url => {
-      this.category.pic = url
-      this.api.create(this.category).subscribe(item => {
+      this.subCategory.pic = url
+      this.api.create(this.subCategory).subscribe(item => {
         this.isLoading = false;
         this.uxService.showInfo("Category Created")
         this.router.navigate(["view-sub-categories"])
@@ -60,8 +67,8 @@ export class AddCategoryComponent implements OnInit {
   }
 
   addFilter() {
-    this.category.filters = this.category.filters || []
-    this.category.filters.push({
+    this.subCategory.filters = this.subCategory.filters || []
+    this.subCategory.filters.push({
       isSelected: false,
       label: null
     })

@@ -55,6 +55,7 @@ export class Item {
         }
 
         this.id = obj.id;
+        this.code = obj.code;
         this.name = obj.name;
         this.pic = obj.pic;
         this.status = obj.status;
@@ -67,7 +68,10 @@ export class Item {
         this.subCategory = new SubCategory(obj.subCategory)
         this.owner = new User(obj.owner)
         this.isAvailable = false;
-
+        this.option = {
+            type: null,
+            options: []
+        }
         if (obj.images && obj.images.length) {
             for (const image of obj.images) {
                 if (this.images && this.images.length) {
@@ -84,16 +88,6 @@ export class Item {
                     this.likes.push(new User(like))
                 } else {
                     this.likes = [new User(like)]
-                }
-            }
-        }
-
-        if (obj.tags && obj.tags.length) {
-            for (const tag of obj.tags) {
-                if (this.tags && this.tags.length) {
-                    this.tags.push(tag)
-                } else {
-                    this.tags = [tag]
                 }
             }
         }

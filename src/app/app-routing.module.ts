@@ -15,6 +15,12 @@ import { OrderComponent } from './pages/order/order.component';
 import { AddCategoryComponent } from './pages/add-category/add-category.component';
 import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
 import { ViewCategoriesComponent } from './pages/view-categories/view-categories.component';
+import { EditSubCategoryComponent } from './pages/edit-sub-category/edit-sub-category.component';
+import { ViewSubCategoriesComponent } from './pages/view-sub-categories/view-sub-categories.component';
+import { AddSubCategoryComponent } from './pages/add-sub-category/add-sub-category.component';
+import { ViewItemsComponent } from './pages/view-items/view-items.component';
+import { AddItemComponent } from './pages/add-item/add-item.component';
+import { EditItemComponent } from './pages/edit-item/edit-item.component';
 
 const routes: Routes = [
   {
@@ -60,7 +66,42 @@ const routes: Routes = [
       permissions: ['admin']
     }
   },
-
+  {
+    path: 'add-sub-category', component: AddSubCategoryComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
+    path: 'view-sub-categories', component: ViewSubCategoriesComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
+    path: 'edit-sub-category/:id', component: EditSubCategoryComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
+    path: 'view-items', component: ViewItemsComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
+    path: 'add-item', component: AddItemComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
+    path: 'edit-item/:id', component: EditItemComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
   { path: 'orders', component: OrdersComponent, canActivate: [UserGuard] },
   { path: 'order/:id', component: OrderComponent, canActivate: [UserGuard] },
   // { path: 'home/:status', component: HomeComponent, canActivate: [UserGuard] },

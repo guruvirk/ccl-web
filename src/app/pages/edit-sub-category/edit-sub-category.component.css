@@ -1,0 +1,45 @@
+.loginCard {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  mat-form-field {
+    display: block;
+  }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: var(--primary) !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: var(--primary) !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: var(--primary) !important;;
+  }
+
+  mat-label {
+    color: var(--primary) !important;
+  }
+
+  .unSelect {
+    margin-top: 10px;
+  }
+
+  .primaryColor {
+    color: var(--primary) !important;
+  }
+
+  @media screen and (max-width: 960px) {
+  }

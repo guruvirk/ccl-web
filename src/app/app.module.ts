@@ -41,6 +41,12 @@ import { EasyZoomModule } from 'angular-easy-zoom';
 import { AddCategoryComponent } from './pages/add-category/add-category.component';
 import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
 import { ViewCategoriesComponent } from './pages/view-categories/view-categories.component';
+import { EditSubCategoryComponent } from './pages/edit-sub-category/edit-sub-category.component';
+import { ViewSubCategoriesComponent } from './pages/view-sub-categories/view-sub-categories.component';
+import { AddSubCategoryComponent } from './pages/add-sub-category/add-sub-category.component';
+import { ViewItemsComponent } from './pages/view-items/view-items.component';
+import { AddItemComponent } from './pages/add-item/add-item.component';
+import { EditItemComponent } from './pages/edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +73,13 @@ import { ViewCategoriesComponent } from './pages/view-categories/view-categories
     TncDialogComponent,
     AddCategoryComponent,
     EditCategoryComponent,
-    ViewCategoriesComponent
+    ViewCategoriesComponent,
+    EditSubCategoryComponent,
+    ViewSubCategoriesComponent,
+    AddSubCategoryComponent,
+    ViewItemsComponent,
+    AddItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,

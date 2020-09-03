@@ -4,25 +4,30 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UxService } from '../../services/ux.service';
 import { Category } from 'src/app/models';
 import { CatgoryService } from 'src/app/services/catgory.service';
+import { SubCategory } from 'src/app/models';
+import { SubCatgoryService } from 'src/app/services/sub-catgory.service';
 
 @Component({
-  selector: 'app-edit-category',
-  templateUrl: './edit-category.component.html',
-  styleUrls: ['./edit-category.component.css']
+  selector: 'app-edit-sub-category',
+  templateUrl: './edit-sub-category.component.html',
+  styleUrls: ['./edit-sub-category.component.css']
 })
-export class EditCategoryComponent implements OnInit {
+export class EditSubCategoryComponent implements OnInit {
 
   isLoading = false
   isMobile: boolean;
   image: File;
   imageUrl: string | ArrayBuffer;
-  category: Category;
+  subCategory: SubCategory;
   isNewImage = false
+  categories: Category[] = []
+  selectedCategory: string
 
   constructor(
-    private api: CatgoryService,
+    private api: SubCatgoryService,
     private auth: RoleService,
     private router: Router,
+    private categoryApi: CatgoryService,
     private route: ActivatedRoute,
     private uxService: UxService) {
     if (window.screen.width < 781) {
@@ -32,7 +37,8 @@ export class EditCategoryComponent implements OnInit {
       if (params.id) {
         this.isLoading = true;
         this.api.get(params.id).subscribe(item => {
-          this.category = new Category(item)
+          this.subCategory = new SubCategory(item)
+          this.selectedCategory = this.subCategory.category.id
           this.isLoading = false;
         }, err => {
           this.isLoading = false;
@@ -40,6 +46,12 @@ export class EditCategoryComponent implements OnInit {
       }
     }, err => {
       this.isLoading = false;
+    })
+    this.categoryApi.search({}).subscribe(page => {
+      this.categories = []
+      for (const item of page.items) {
+        this.categories.push(new Category(item))
+      }
     })
   }
 
@@ -51,21 +63,25 @@ export class EditCategoryComponent implements OnInit {
   }
 
   create() {
-    if (!this.category.name) {
+    if (!this.subCategory.name) {
       this.uxService.handleError("Name is Required")
       return
     }
-    if ((!this.image || !this.imageUrl) && !this.category.pic) {
+    if ((!this.image || !this.imageUrl) && !this.subCategory.pic) {
       this.uxService.handleError("Please Select an Image")
       return
+    }
+    if (this.selectedCategory != this.subCategory.category.id) {
+      this.subCategory.category = new Category({ id: this.selectedCategory })
     }
     this.isLoading = true
     if (this.isNewImage) {
       this.auth.upload(this.image).subscribe(url => {
-        this.category.pic = url
-        this.api.update(this.category.id, this.category).subscribe(item => {
+        this.subCategory.pic = url
+        this.api.update(this.subCategory.id, this.subCategory).subscribe(item => {
           this.isLoading = false;
           this.uxService.showInfo("Category Updated")
+          this.router.navigate(["view-sub-categories"])
         }, err => {
           this.isLoading = false;
         })
@@ -73,7 +89,7 @@ export class EditCategoryComponent implements OnInit {
         this.isLoading = false;
       })
     } else {
-      this.api.update(this.category.id, this.category).subscribe(item => {
+      this.api.update(this.subCategory.id, this.subCategory).subscribe(item => {
         this.isLoading = false;
         this.uxService.showInfo("Category Updated")
         this.router.navigate(["view-sub-categories"])
@@ -84,15 +100,15 @@ export class EditCategoryComponent implements OnInit {
   }
 
   addFilter() {
-    this.category.filters = this.category.filters || []
-    this.category.filters.push({
+    this.subCategory.filters = this.subCategory.filters || []
+    this.subCategory.filters.push({
       isSelected: false,
       label: null
     })
   }
 
   removeFilter(index) {
-    this.category.filters.splice(index, 1)
+    this.subCategory.filters.splice(index, 1)
   }
 
   onImageSelect($event) {
@@ -104,7 +120,7 @@ export class EditCategoryComponent implements OnInit {
   }
 
   unSelect() {
-    this.category.pic = null
+    this.subCategory.pic = null
     this.image = null
     this.imageUrl = null
     this.isNewImage = true

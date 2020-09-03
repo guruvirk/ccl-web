@@ -23,8 +23,8 @@ export class ItemService {
   create(item: Item): Observable<Item> {
     return this._api.create('items', item)
   }
-  update(item: Item): Observable<Item> {
-    return this._api.update('items', item)
+  update(id: string ,item: Item): Observable<Item> {
+    return this._api.update(`items/${id}`, item)
   }
   get(id): Observable<Item> {
     return this._api.get(`items/${id}`)

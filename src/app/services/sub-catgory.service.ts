@@ -23,8 +23,8 @@ export class SubCatgoryService {
   create(subCategory: SubCategory): Observable<SubCategory> {
     return this._api.create('subCategories', subCategory)
   }
-  update(subCategory: SubCategory): Observable<SubCategory> {
-    return this._api.update('subCategories', subCategory)
+  update(id: string, subCategory: SubCategory): Observable<SubCategory> {
+    return this._api.update(`subCategories/${id}`, subCategory)
   }
   get(id): Observable<SubCategory> {
     return this._api.get(`subCategories/${id}`)

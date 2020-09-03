@@ -1,0 +1,124 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="page">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3>Create Item</h3>
+        <span class="spacer"></span>
+        <button *ngIf="isMobile" (click)="back()" class="backIcon" mat-icon-button color="primary">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button *ngIf="!isMobile" (click)="back()" class="backButton" mat-raised-button color="primary">
+            BACK
+        </button>
+    </div>
+    <div *ngIf="item" class="container page">
+        <div class="loginCard">
+            <div class="row">
+                <div class="col-4" *ngFor="let image of images;let i=index"
+                    style="padding:10px;text-align: center;margin: auto;">
+                    <div *ngIf="image.url">
+                        <img [src]="image.url">
+                        <button class="unSelect" (click)="unSelect(i)" mat-raised-button color="primary">
+                            Remove Image
+                        </button>
+                    </div>
+                    <button *ngIf="!image.url" #file mat-flat-button color="primary">Select Image
+                        <input (change)="onImageSelect($event, i)"
+                            style="opacity: 0; position:absolute; left:0px; top:0px; width:100%; height:100%;"
+                            type="file" />
+                    </button>
+                </div>
+            </div>
+            <button (click)="addImages()" mat-raised-button color="primary"><b>Add Image</b></button>
+            <mat-form-field class="full-width-input">
+                <mat-label>Name</mat-label>
+                <input matInput name="name" type="text" [(ngModel)]="item.name" [required]="true">
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <mat-label>Description</mat-label>
+                <input matInput name="description" type="text" [(ngModel)]="item.description" [required]="true">
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <mat-label>Code</mat-label>
+                <input matInput name="code" type="text" [(ngModel)]="item.code" [required]="true">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select [(ngModel)]="item.category" (selectionChange)="getSubCategories()">
+                    <mat-option *ngFor="let category of categories" [value]="category">{{category.name | titlecase}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="subCategories && subCategories.length">
+                <mat-label>Sub Category</mat-label>
+                <mat-select [(ngModel)]="item.subCategory">
+                    <mat-option *ngFor="let subCategory of subCategories" [value]="subCategory">
+                        {{subCategory.name | titlecase}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Option Type</mat-label>
+                <input matInput name="name" type="text" [(ngModel)]="item.option.type" [required]="true">
+            </mat-form-field>
+            <div class="row">
+                <div class="col-4" *ngFor="let option of item.option.options;let i=index"
+                    style="padding:10px;text-align: center;margin: auto;">
+                    Option {{i+1}}
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Label</mat-label>
+                        <input matInput name="label{{i}}" type="text" [(ngModel)]="option.label" [required]="true">
+                    </mat-form-field>
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Price</mat-label>
+                        <input matInput name="price{{i}}" type="number" [(ngModel)]="option.price" [required]="true">
+                    </mat-form-field>
+                    <mat-form-field class="full-width-input">
+                        <mat-label>ActualPrice</mat-label>
+                        <input matInput name="actualPrice{{i}}" type="text" [(ngModel)]="option.actualPrice"
+                            [required]="true">
+                    </mat-form-field>
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Code</mat-label>
+                        <input matInput name="code{{i}}" type="text" [(ngModel)]="option.code" [required]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Availability</mat-label>
+                        <mat-select [(ngModel)]="option.availability">
+                            <mat-option [value]="true">True
+                            </mat-option>
+                            <mat-option [value]="false">False
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button class="unSelect" (click)="unSelectOption(i)" mat-raised-button color="primary">
+                        Remove Option
+                    </button>
+                </div>
+            </div>
+            <button (click)="addOptions()" mat-raised-button color="primary"><b>Add Option</b></button>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-4" *ngFor="let tag of item.tags;let i=index"
+                    style="padding:10px;text-align: center;margin: auto;">
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Tag {{i}}</mat-label>
+                        <input matInput name="tag{{i}}" type="text" [(ngModel)]="tag" [required]="true">
+                    </mat-form-field>
+                    <button class="unSelect" (click)="unSelectTag(i)" mat-raised-button color="primary">
+                        Remove Tag
+                    </button>
+                </div>
+            </div>
+            <button (click)="addTags()" mat-raised-button color="primary"><b>Add Tag</b></button>
+            <br>
+            <br>
+            <button (click)="create()" mat-raised-button color="accent"><b>Create Item</b></button>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
