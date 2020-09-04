@@ -22,8 +22,8 @@ export class TrackingService {
   create(tracking: Tracking): Observable<Tracking> {
     return this._api.create('trackings', tracking)
   }
-  update(tracking: Tracking): Observable<Tracking> {
-    return this._api.update('trackings', tracking)
+  update(id: string, tracking): Observable<Tracking> {
+    return this._api.update(`trackings/${id}`, tracking)
   }
   get(id): Observable<Tracking> {
     return this._api.get(`trackings/${id}`)

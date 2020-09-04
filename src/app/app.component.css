@@ -27,6 +27,14 @@ mat-sidenav {
     margin-top: 11vh !important;
 }
 
+.logoImg {
+    height: 8vh;
+}
+
+.fotterImg {
+    height: 13vh;
+}
+
 @media only screen and (max-width: 780px) {
     .topvh {
         height: 9vh !important;
@@ -34,6 +42,12 @@ mat-sidenav {
     
     .fixvh {
         margin-top: 9vh !important;
+    }
+    .logoImg {
+        height: 5vh;
+    }
+    .fotterImg {
+        height: 7vh;
     }
 }
 
@@ -44,5 +58,11 @@ mat-sidenav {
     
     .fixvh {
         margin-top: 8vh !important;
+    }
+    .logoImg {
+        height: 4vh;
+    }
+    .fotterImg {
+        height: 6vh;
     }
 }

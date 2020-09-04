@@ -47,6 +47,8 @@ import { AddSubCategoryComponent } from './pages/add-sub-category/add-sub-catego
 import { ViewItemsComponent } from './pages/view-items/view-items.component';
 import { AddItemComponent } from './pages/add-item/add-item.component';
 import { EditItemComponent } from './pages/edit-item/edit-item.component';
+import { ViewOrdersComponent } from './pages/view-orders/view-orders.component';
+import { EditOrderComponent } from './pages/edit-order/edit-order.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { EditItemComponent } from './pages/edit-item/edit-item.component';
     AddSubCategoryComponent,
     ViewItemsComponent,
     AddItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    ViewOrdersComponent,
+    EditOrderComponent
   ],
   imports: [
     BrowserModule,

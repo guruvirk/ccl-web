@@ -26,8 +26,8 @@ export class OrderService {
     return this._api.create('orders', order)
   }
 
-  update(order: Order): Observable<Order> {
-    return this._api.update('orders', order)
+  update(id: string, order): Observable<Order> {
+    return this._api.update(`orders/${id}`, order)
   }
 
   get(id): Observable<Order> {

@@ -16,6 +16,7 @@ export class AppComponent {
   currentTenant: Tenant;
   categories: Category[];
   cart: Order;
+  isMobile = false;
 
   constructor(
     public auth: RoleService,
@@ -34,6 +35,9 @@ export class AppComponent {
     this.auth.cartChanges.subscribe((cart) => {
       this.cart = cart;
     });
+    if (window.screen.width < 781) {
+      this.isMobile = true
+    }
   }
 
   ngOnInit(): void {

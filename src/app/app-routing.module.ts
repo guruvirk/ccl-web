@@ -21,6 +21,8 @@ import { AddSubCategoryComponent } from './pages/add-sub-category/add-sub-catego
 import { ViewItemsComponent } from './pages/view-items/view-items.component';
 import { AddItemComponent } from './pages/add-item/add-item.component';
 import { EditItemComponent } from './pages/edit-item/edit-item.component';
+import { ViewOrdersComponent } from './pages/view-orders/view-orders.component';
+import { EditOrderComponent } from './pages/edit-order/edit-order.component';
 
 const routes: Routes = [
   {
@@ -91,6 +93,12 @@ const routes: Routes = [
     }
   },
   {
+    path: 'view-orders', component: ViewOrdersComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
     path: 'add-item', component: AddItemComponent, canActivate: [UserGuard],
     data: {
       permissions: ['admin']
@@ -98,6 +106,12 @@ const routes: Routes = [
   },
   {
     path: 'edit-item/:id', component: EditItemComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
+  {
+    path: 'edit-order/:id', component: EditOrderComponent, canActivate: [UserGuard],
     data: {
       permissions: ['admin']
     }

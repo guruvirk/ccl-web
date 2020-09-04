@@ -22,8 +22,8 @@ export class TransactionService {
   create(transaction: Transaction): Observable<Transaction> {
     return this._api.create('transactions', transaction)
   }
-  update(transaction: Transaction): Observable<Transaction> {
-    return this._api.update(`transactions/${transaction.id}`, transaction)
+  update(id, transaction): Observable<Transaction> {
+    return this._api.update(`transactions/${id}`, transaction)
   }
   pay(id, meta): Observable<Transaction> {
     return this._api.update(`transactions/pay/${id}`, { meta: meta })

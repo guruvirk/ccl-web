@@ -17,6 +17,7 @@ export class Order {
   status: string;
   amount: number;
   address: Address;
+  reviewDone: boolean;
   items: {
     item: Item,
     option: {
@@ -29,7 +30,7 @@ export class Order {
     quantity: number
   }[];
   updates: {
-    status: string,
+    label: string,
     date: Date
   }[];
   lastUpdate: Date;
@@ -42,6 +43,7 @@ export class Order {
     this.id = obj.id;
     this.date = obj.date ? new Date(obj.date) : null;
     this.code = obj.code;
+    this.reviewDone = obj.reviewDone;
     this.status = obj.status;
     this.user = obj.user ? new User(obj.user) : null;
     this.tracking = obj.tracking ? new Tracking(obj.tracking) : null;
@@ -59,12 +61,12 @@ export class Order {
       for (const update of obj.updates) {
         if (this.updates && this.updates.length) {
           this.updates.push({
-            status: update.status,
+            label: update.label,
             date: update.date ? new Date(update.date) : null
           })
         } else {
           this.updates = [{
-            status: update.status,
+            label: update.label,
             date: update.date ? new Date(update.date) : null
           }]
         }
