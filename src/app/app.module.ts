@@ -34,7 +34,6 @@ import { ProcessingIndicatorComponent } from './components/processing-indicator/
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { ResetComponent } from './pages/reset/reset.component';
 import { ConfirmComponent } from './pages/confirm/confirm.component';
-import { OrderDetailsDialogComponent } from './components/order-details-dialog/order-details-dialog.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { TncDialogComponent } from './components/tnc-dialog/tnc-dialog.component';
 import { EasyZoomModule } from 'angular-easy-zoom';
@@ -71,7 +70,6 @@ import { ReviewOrderComponent } from './pages/review-order/review-order.componen
     ResetComponent,
     SettingComponent,
     ChangePasswordComponent,
-    OrderDetailsDialogComponent,
     PaginatorComponent,
     TncDialogComponent,
     AddCategoryComponent,
@@ -101,7 +99,6 @@ import { ReviewOrderComponent } from './pages/review-order/review-order.componen
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    FlexLayoutModule,
     MatSnackBarModule,
     MatExpansionModule,
     MatBadgeModule,
@@ -114,7 +111,7 @@ import { ReviewOrderComponent } from './pages/review-order/review-order.componen
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [OptionDialogComponent, OrderDetailsDialogComponent, TncDialogComponent],
+  entryComponents: [OptionDialogComponent, TncDialogComponent],
   exports: [ProcessingIndicatorComponent]
 })
 export class AppModule { }
