@@ -92,6 +92,7 @@ import { ReviewOrderComponent } from './pages/review-order/review-order.componen
     MatCardModule,
     HttpClientModule,
     FormsModule,
+    FlexLayoutModule,
     MatInputModule,
     MatCheckboxModule,
     MatToolbarModule,
