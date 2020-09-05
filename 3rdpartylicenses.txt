@@ -54,6 +54,9 @@ THE SOFTWARE.
 @angular/common
 MIT
 
+@angular/compiler
+MIT
+
 @angular/core
 MIT
 
@@ -110,39 +113,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-@angular/material/button
-
-@angular/material/card
-
-@angular/material/checkbox
-
-@angular/material/core
-
-@angular/material/dialog
-
-@angular/material/form-field
-
-@angular/material/icon
-
-@angular/material/list
-
-@angular/material/progress-spinner
-
-@angular/material/radio
-
-@angular/material/select
-
-@angular/material/sidenav
-
-@angular/material/snack-bar
-
-@angular/material/toolbar
-
 @angular/platform-browser
+MIT
+
+@angular/platform-browser-dynamic
 MIT
 
 @angular/router
 MIT
+
+angular-easy-zoom
 
 bootstrap
 MIT
@@ -450,6 +430,21 @@ Apache-2.0
  limitations under the License.
  
 
+
+tslib
+0BSD
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
 
 zone.js
 MIT
