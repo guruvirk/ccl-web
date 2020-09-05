@@ -28,6 +28,9 @@
                 <h6 *ngFor="let update of order.updates" class="headDetails">{{update.label | titlecase}} on
                     {{update.date | date}}</h6>
             </div>
+            <div class="col-12 col-md-12 auto" style="text-align: center;" *ngIf="order.status == 'done' && !order.reviewDone">
+                <button (click)="review()" mat-raised-button color="accent"><b>Review</b></button>
+            </div>
         </div>
         <mat-card *ngFor="let element of order.items" class="checkoutCard">
             <div class="row">

@@ -30,6 +30,10 @@ export class OrderService {
     return this._api.update(`orders/${id}`, order)
   }
 
+  review(id: string, model): Observable<Order> {
+    return this._api.update(`orders/review/${id}`, model)
+  }
+
   get(id): Observable<Order> {
     return this._api.get(`orders/${id}`)
   }

@@ -53,6 +53,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.router.navigate(["/order", order.id])
   }
 
+  review(order: Order) {
+    this.router.navigate(["/review", order.id])
+  }
+
   pay(order: Order) {
     this.router.navigate(["/payment", order.id])
   }

@@ -33,6 +33,15 @@
                 <mat-label>Name</mat-label>
                 <input matInput name="name" type="text" [(ngModel)]="category.name" [required]="true">
             </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="category.status">
+                    <mat-option value="active">Active
+                    </mat-option>
+                    <mat-option value="inactive">Inactive
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <mat-form-field *ngFor="let filter of category.filters;let i=index" class="full-width-input">
                 <mat-label>Filter {{i}}</mat-label>
                 <input matInput name="filter{{i}}" type="text" [(ngModel)]="filter.label" [required]="true">

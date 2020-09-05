@@ -25,7 +25,7 @@ export class ViewSubCategoriesComponent implements OnInit {
     if (window.screen.width < 781) {
       this.isMobile = true
     }
-    this.api.search({}).subscribe(page => {
+    this.api.search({ status: "all" }).subscribe(page => {
       this.subCategories = []
       for (const item of page.items) {
         this.subCategories.push(new SubCategory(item))

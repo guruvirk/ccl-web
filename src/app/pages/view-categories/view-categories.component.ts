@@ -25,7 +25,7 @@ export class ViewCategoriesComponent implements OnInit {
     if (window.screen.width < 781) {
       this.isMobile = true
     }
-    this.api.search({}).subscribe(page => {
+    this.api.search({status: "all"}).subscribe(page => {
       this.categories = []
       for (const item of page.items) {
         this.categories.push(new Category(item))

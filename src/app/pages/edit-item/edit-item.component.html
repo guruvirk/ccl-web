@@ -49,6 +49,15 @@
                 <input matInput name="code" type="text" [(ngModel)]="item.code" [required]="true">
             </mat-form-field>
             <mat-form-field>
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="item.status">
+                    <mat-option value="active">Active
+                    </mat-option>
+                    <mat-option value="inactive">Inactive
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
                 <mat-label>Category</mat-label>
                 <mat-select [(ngModel)]="selectedCategory" (selectionChange)="getSubCategories()">
                     <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name | titlecase}}

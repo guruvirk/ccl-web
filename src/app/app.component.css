@@ -4,7 +4,12 @@ mat-sidenav {
 
 .title {
     margin-right: 2%;
+    border: 0 !important;
 }
+
+.title:focus {
+    outline: 0;
+  }
 
 .fotterTitle {
     color: var(--accent);

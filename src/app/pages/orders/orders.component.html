@@ -22,10 +22,16 @@
                     <h6><b>Ordered on {{order.date | date}}</b></h6>
                     <div class="row primaryColor auto" style="width: 100%;margin: 0; padding: 0;margin-top: 4%;">
                         <div class="col-6 auto">
-                            <h6 *ngIf="order.status != 'pending' || order.transaction.status != 'pending'"><b>Status :
-                                </b>{{ order.status | titlecase }}</h6>
-                            <button *ngIf="order.status == 'pending' && order.transaction.status == 'pending'"
-                                (click)="pay(order)" mat-raised-button color="accent"><b>Pay</b></button>
+                            <ng-container *ngIf="order.status != 'done' || order.reviewDone">
+                                <h6 *ngIf="order.status != 'pending' || order.transaction.status != 'pending'"><b>Status
+                                        :
+                                    </b>{{ order.status | titlecase }}</h6>
+                                <button *ngIf="order.status == 'pending' && order.transaction.status == 'pending'"
+                                    (click)="pay(order)" mat-raised-button color="accent"><b>Pay</b></button>
+                            </ng-container>
+                            <ng-container *ngIf="order.status == 'done' && !order.reviewDone">
+                                <button (click)="review(order)" mat-raised-button color="accent"><b>Review</b></button>
+                            </ng-container>
                         </div>
                         <div class="col-6 auto">
                             <h6><b>Amount : </b>${{ order.amount }}</h6>

@@ -46,6 +46,10 @@ export class OrderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
+  review() {
+    this.router.navigate(["/review", this.order.id])
+  }
+
   back() {
     this.uxService.back()
   }

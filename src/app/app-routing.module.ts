@@ -23,6 +23,7 @@ import { AddItemComponent } from './pages/add-item/add-item.component';
 import { EditItemComponent } from './pages/edit-item/edit-item.component';
 import { ViewOrdersComponent } from './pages/view-orders/view-orders.component';
 import { EditOrderComponent } from './pages/edit-order/edit-order.component';
+import { ReviewOrderComponent } from './pages/review-order/review-order.component';
 
 const routes: Routes = [
   {
@@ -118,6 +119,7 @@ const routes: Routes = [
   },
   { path: 'orders', component: OrdersComponent, canActivate: [UserGuard] },
   { path: 'order/:id', component: OrderComponent, canActivate: [UserGuard] },
+  { path: 'review/:id', component: ReviewOrderComponent, canActivate: [UserGuard] },
   // { path: 'home/:status', component: HomeComponent, canActivate: [UserGuard] },
   // { path: 'setting', component: SettingComponent, canActivate: [UserGuard] },
   // { path: 'buy', component: PurchaseComponent, canActivate: [UserGuard] },

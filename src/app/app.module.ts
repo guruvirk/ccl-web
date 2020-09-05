@@ -49,6 +49,7 @@ import { AddItemComponent } from './pages/add-item/add-item.component';
 import { EditItemComponent } from './pages/edit-item/edit-item.component';
 import { ViewOrdersComponent } from './pages/view-orders/view-orders.component';
 import { EditOrderComponent } from './pages/edit-order/edit-order.component';
+import { ReviewOrderComponent } from './pages/review-order/review-order.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { EditOrderComponent } from './pages/edit-order/edit-order.component';
     AddItemComponent,
     EditItemComponent,
     ViewOrdersComponent,
-    EditOrderComponent
+    EditOrderComponent,
+    ReviewOrderComponent
   ],
   imports: [
     BrowserModule,

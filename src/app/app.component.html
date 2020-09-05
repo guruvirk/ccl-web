@@ -5,8 +5,8 @@
                 <mat-icon>menu</mat-icon>
             </button>
             <span *ngIf="isMobile" class="spacer"></span>
-            <span class="title">
-                <img class="logoImg" src="../assets/img/Black Bg 1.png"> 
+            <span [routerLink]="['home']" class="title">
+                <img class="logoImg" src="../assets/img/Black Bg 1.png">
                 Comfort <span class="accentColor">& Care</span>
             </span>
             <span class="spacer"></span>
@@ -21,7 +21,7 @@
                     [routerLink]="['view-sub-categories']" color="accent" mat-button>Sub Categories</button>
                 <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
                     [routerLink]="['view-items']" color="accent" mat-button>Items</button>
-                    <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
+                <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
                     [routerLink]="['view-orders']" color="accent" mat-button>Orders</button>
                 <button routerLinkActive="active" [routerLink]="['home']" color="accent" mat-button>Home</button>
                 <button routerLinkActive="active" [routerLink]="['items']" color="accent" mat-button>Best
@@ -61,7 +61,7 @@
                 <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;"
                     routerLinkActive="active" [routerLink]="['view-items']" color="accent" mat-button
                     routerLinkActive="active">Items</button>
-                    <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;"
+                <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;"
                     routerLinkActive="active" [routerLink]="['view-orders']" color="accent" mat-button
                     routerLinkActive="active">Orders</button>
                 <button style="width: fit-content; min-width: 60%;" [routerLink]="['home']" routerLinkActive="active"
@@ -91,7 +91,7 @@
                         <div class="row align-items-center">
                             <div class="col-12 col-md-4">
                                 <div class="single_widget_area">
-                                    <img class="fotterImg" src="../assets/img/Black Bg.png"> 
+                                    <img class="fotterImg" src="../assets/img/Black Bg.png">
                                     <p class="copywrite">
                                         Copyright &copy;
                                         <script>document.write(new Date().getFullYear());</script> All rights reserved |
