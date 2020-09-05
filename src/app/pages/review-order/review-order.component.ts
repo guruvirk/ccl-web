@@ -58,7 +58,7 @@ export class ReviewOrderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  submit() {
+  submitReview() {
     let isValidated = true
     for (const item of this.items) {
       if (!item.value) {

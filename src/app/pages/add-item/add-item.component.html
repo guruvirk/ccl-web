@@ -101,11 +101,11 @@
             <br>
             <br>
             <div class="row">
-                <div class="col-4" *ngFor="let tag of item.tags;let i=index"
+                <div class="col-4" *ngFor="let itemTag of item.tags;let i=index"
                     style="padding:10px;text-align: center;margin: auto;">
                     <mat-form-field class="full-width-input">
                         <mat-label>Tag {{i}}</mat-label>
-                        <input matInput name="tag{{i}}" type="text" [(ngModel)]="tag" [required]="true">
+                        <input matInput type="text" [value]="itemTag" [required]="true">
                     </mat-form-field>
                     <button class="unSelect" (click)="unSelectTag(i)" mat-raised-button color="primary">
                         Remove Tag
