@@ -5,6 +5,8 @@
 export const environment = {
   url: 'http://localhost:8080/api',
   // url: 'https://playludo.live/ccl',
+  // url: 'http://52.65.205.142/api',
+  // url: 'http://comfortcare.co.nz/api',
   production: false,
   tenant: "ccl",
   error: {

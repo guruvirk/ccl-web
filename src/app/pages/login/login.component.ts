@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   email: string
   isLoading = false
   isMobile: boolean;
+  isPassVisible = false;
 
   constructor(private auth: RoleService,
     private router: Router,

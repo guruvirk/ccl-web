@@ -22,7 +22,8 @@
                             [circularLens]="false" [minZoomRatio]="1" [maxZoomRatio]="5" [scrollStepSize]="0.1">
                         </lib-easy-zoom>
                         <div class="row imagesContainer">
-                            <div (click)="selectImage(image)" *ngFor="let image of item.images" class="col-4 col-md-3">
+                            <div (click)="selectImage(image)" *ngFor="let image of item.images"
+                                class="col-4 col-md-3 imageSelector">
                                 <img *ngIf="image == item.pic" class="selectedImage d-block w-100" [src]="image"
                                     alt="First slide">
                                 <img *ngIf="image != item.pic" class="otherImages d-block w-100" [src]="image"
@@ -40,7 +41,7 @@
                                     <div
                                         *ngIf="item.option && item.option.options && item.option.options.length && item.option.options.length > 1">
                                         <h4>Available {{item.option.type | titlecase}}'s</h4>
-                                        <div class="row">
+                                        <div class="row" style="padding: 10px; margin-bottom: 15px;">
                                             <ng-container *ngFor="let option of item.option.options;let i=index">
                                                 <div (click)="selectOption(i)"
                                                     [class.activeOption]="option.code == currentOption.code"
@@ -54,7 +55,7 @@
                                             </ng-container>
                                         </div>
                                     </div>
-                                    <div
+                                    <div class="singleOption"
                                         *ngIf="!item.option || !item.option.options || !item.option.options.length || item.option.options.length < 2">
                                         <h5>{{item.defaultOption.label | titlecase}}</h5>
                                         <p class="product-price">${{item.defaultOption.price}}</p>
@@ -62,20 +63,20 @@
                                     <div *ngIf="item.rating.value"
                                         class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                                         <div class="ratings">
-                                            <i [class.activeStar]="item.rating.value > 0" class="fa fa-star star"
+                                            <i [class.activeStar]="item.rating.value > 0" class="fa fa-star fa-2x star"
                                                 aria-hidden="true"></i>
-                                            <i [class.activeStar]="item.rating.value > 1" class="fa fa-star star"
+                                            <i [class.activeStar]="item.rating.value > 1" class="fa fa-star fa-2x star"
                                                 aria-hidden="true"></i>
-                                            <i [class.activeStar]="item.rating.value > 2" class="fa fa-star star"
+                                            <i [class.activeStar]="item.rating.value > 2" class="fa fa-star fa-2x star"
                                                 aria-hidden="true"></i>
-                                            <i [class.activeStar]="item.rating.value > 3" class="fa fa-star star"
+                                            <i [class.activeStar]="item.rating.value > 3" class="fa fa-star fa-2x star"
                                                 aria-hidden="true"></i>
-                                            <i [class.activeStar]="item.rating.value > 4" class="fa fa-star star"
+                                            <i [class.activeStar]="item.rating.value > 4" class="fa fa-star fa-2x star"
                                                 aria-hidden="true"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-md-3 extraCont">
                                     <div class="product-meta-data">
                                         <p *ngIf="currentOption.availability" class="available"><i
                                                 class="fa fa-circle"></i> In
@@ -92,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="short_overview my-1" [innerHTML]="item.description">
+                        <div style="padding-top: 20px;" class="short_overview my-1" [innerHTML]="item.description">
                         </div>
                         <div *ngIf="item.note" class="note short_overview my-1" [innerHTML]="item.note">
                         </div>

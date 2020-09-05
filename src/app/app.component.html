@@ -6,7 +6,7 @@
             </button>
             <span *ngIf="isMobile" class="spacer"></span>
             <span [routerLink]="['home']" class="title">
-                <img class="logoImg" src="/ccl-web/assets/img/Black Bg 1.png">
+                <img class="logoImg" src="/assets/img/Black Bg 1.png">
                 Comfort <span class="accentColor">& Care</span>
             </span>
             <span class="spacer"></span>
@@ -31,7 +31,7 @@
                         [routerLink]="['category', category.id]" color="accent"
                         mat-button>{{category.name | titlecase }}</button>
                 </ng-container>
-                <button routerLinkActive="active" *ngIf="currentUser" [routerLink]="['orders']" color="accent"
+                <button *ngIf="currentUser && !auth.hasPermission('admin')" routerLinkActive="active" [routerLink]="['orders']" color="accent"
                     mat-button>My Orders</button>
                 <button routerLinkActive="active" *ngIf="!currentUser" [routerLink]="['login']" color="accent"
                     mat-button>Login</button>
@@ -77,7 +77,7 @@
                 </ng-container>
                 <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="!currentUser"
                     [routerLink]="['login']" color="accent" mat-button>Login</button>
-                <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="currentUser"
+                <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="currentUser && !auth.hasPermission('admin')"
                     [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
                 <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="currentUser"
                     (click)="logout()" color="accent" mat-button>LogOut</button>
@@ -91,7 +91,7 @@
                         <div class="row align-items-center">
                             <div class="col-12 col-md-4">
                                 <div class="single_widget_area">
-                                    <img class="fotterImg" src="/ccl-web/assets/img/Black Bg.png">
+                                    <img class="fotterImg" src="/assets/img/Black Bg.png">
                                     <p class="copywrite">
                                         Copyright &copy;
                                         <script>document.write(new Date().getFullYear());</script> All rights reserved |

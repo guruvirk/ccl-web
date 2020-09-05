@@ -48,14 +48,19 @@
                 <div class="col-6">
                     <mat-form-field class="full-width-input">
                         <mat-label>Password</mat-label>
-                        <input matInput type="password" name="password" [(ngModel)]="password" [required]="true">
+                        <input matInput [type]="!isPassVisible ? 'password' : 'text'" name="password"
+                            [(ngModel)]="password" [required]="true">
+                        <mat-icon (click)="isPassVisible=!isPassVisible" color="primary" matSuffix>remove_red_eye
+                        </mat-icon>
                     </mat-form-field>
                 </div>
                 <div class="col-6">
                     <mat-form-field class="full-width-input">
                         <mat-label>Confirm Password</mat-label>
-                        <input matInput type="password" name="confirm-password" [(ngModel)]="confirmPassword"
-                            [required]="true">
+                        <input matInput [type]="!isConPassVisible ? 'password' : 'text'" name="confirm-password"
+                            [(ngModel)]="confirmPassword" [required]="true">
+                        <mat-icon (click)="isConPassVisible=!isConPassVisible" color="primary" matSuffix>remove_red_eye
+                        </mat-icon>
                     </mat-form-field>
                 </div>
             </div>

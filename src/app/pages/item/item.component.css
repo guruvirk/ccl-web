@@ -43,7 +43,8 @@
     }
 
 .imagesContainer {
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    padding: 2%;
 }
 
 .available {
@@ -61,4 +62,36 @@
 
 .warranty {
     color: green;
+}
+
+.extraCont {
+    text-align: left;
+}
+
+.short_overview {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.singleOption{
+    text-align: left;
+}
+
+.imageSelector {
+    margin: auto;
+}
+
+@media only screen and (max-width: 780px) {
+    .ratings {
+        margin: auto;
+    }
+    .extraCont {
+        text-align: center;
+    }
+    .short_overview {
+        text-align: center;
+    }
+    .singleOption{
+        text-align: center;
+    }
 }

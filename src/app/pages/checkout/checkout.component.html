@@ -110,7 +110,7 @@
                         <br>
                         <mat-radio-group class="radio-group" [(ngModel)]="isCod">
                             <mat-radio-button class="radio-button" [value]="false">Online</mat-radio-button>
-                            <mat-radio-button class="radio-button" [value]="true">COD</mat-radio-button>
+                            <mat-radio-button class="radio-button" [value]="true">Cash On Delivery</mat-radio-button>
                         </mat-radio-group>
                         <p>
                             <i *ngIf="!isCod" class="accentColor fa fa-credit-card fa-2x" aria-hidden="true"></i>
@@ -120,6 +120,11 @@
                             <h6>Sub Total : </h6>
                             <span class="spacer"></span>
                             <h6>${{cart.amount}}</h6>
+                        </div>
+                        <div *ngIf="!isCod" class="header">
+                            <h6>Tax : </h6>
+                            <span class="spacer"></span>
+                            <h6>${{getTax()}}</h6>
                         </div>
                         <div class="header">
                             <h6 style="margin:auto">Delivery : </h6>
@@ -131,10 +136,15 @@
                                 local_shipping
                             </span>
                         </div>
-                        <div class="header">
+                        <div *ngIf="isCod" class="header">
                             <h6>Total : </h6>
                             <span class="spacer"></span>
                             <h6>${{cart.amount}}</h6>
+                        </div>
+                        <div *ngIf="!isCod" class="header">
+                            <h6>Total : </h6>
+                            <span class="spacer"></span>
+                            <h6>${{cart.amount + getTax()}}</h6>
                         </div>
                     </div>
                     <section class="tnc-checkbox-section">

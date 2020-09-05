@@ -1,5 +1,5 @@
 export const environment = {
-  url: 'https://playludo.live/ccl',
+  url: 'http://comfortcare.co.nz/api',
   production: true,
   tenant: "ccl",
   error: {

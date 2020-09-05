@@ -181,4 +181,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
   }
 
+  getTax(): number {
+    let percent = (2.9 / 100) * this.cart.amount;
+    return Number((percent + 0.30).toFixed(2))
+  }
+
 }

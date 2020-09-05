@@ -45,6 +45,14 @@
                 <input matInput name="description" type="text" [(ngModel)]="item.description" [required]="true">
             </mat-form-field>
             <mat-form-field class="full-width-input">
+                <mat-label>Note</mat-label>
+                <input matInput name="note" type="text" [(ngModel)]="item.note" [required]="false">
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <mat-label>Warranty</mat-label>
+                <input matInput name="warranty" type="text" [(ngModel)]="item.warranty" [required]="false">
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
                 <mat-label>Code</mat-label>
                 <input matInput name="code" type="text" [(ngModel)]="item.code" [required]="true">
             </mat-form-field>

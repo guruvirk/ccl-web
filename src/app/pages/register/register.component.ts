@@ -21,6 +21,8 @@ export class RegisterComponent implements OnInit {
   isLoading = false;
   isMobile: boolean;
   address: Address = new Address;
+  isConPassVisible = false;
+  isPassVisible = false;
 
   constructor(private auth: RoleService,
     private router: Router,

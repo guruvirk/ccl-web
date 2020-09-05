@@ -16,7 +16,8 @@
             <h4>New Customer ?</h4>
             <p style="width: 80%;margin: auto;">Creating account will allow you shop faster. Be up to date with your
                 order and keep track or previous orders</p>
-            <button style="margin: 10px;" [routerLink]="['/','register']" mat-raised-button color="accent"><b>Click here to create an
+            <button style="margin: 10px;" [routerLink]="['/','register']" mat-raised-button color="accent"><b>Click here
+                    to create an
                     account</b></button>
         </div>
         <div class="loginCard">
@@ -36,7 +37,9 @@
             </mat-form-field>
             <mat-form-field class="full-width-input">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" name="password" [(ngModel)]="password" [required]="true">
+                <input matInput [type]="!isPassVisible ? 'password' : 'text'" name="password" [(ngModel)]="password"
+                    [required]="true">
+                <mat-icon (click)="isPassVisible=!isPassVisible" color="primary" matSuffix>remove_red_eye</mat-icon>
             </mat-form-field>
             <button (click)="login()" mat-raised-button color="accent"><b>Continue to Login</b></button>
             <br>
