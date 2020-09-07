@@ -27,7 +27,13 @@ export class Order {
       code: string,
       type: string,
     },
-    quantity: number
+    quantity: number,
+    optional: {
+      label: string,
+      price: number,
+      actualPrice: number,
+      code: string
+    }
   }[];
   updates: {
     label: string,
@@ -85,6 +91,7 @@ export class Order {
               code: item.option.code,
               type: item.option.type
             },
+            optional: null,
             quantity: item.quantity
           })
         } else {
@@ -97,6 +104,12 @@ export class Order {
               code: item.option.code,
               type: item.option.type
             },
+            optional: item.optional ? {
+              label: item.optional.label,
+              price: item.optional.price,
+              actualPrice: item.optional.actualPrice,
+              code: item.optional.code
+            } : null,
             quantity: item.quantity
           }]
         }

@@ -31,6 +31,12 @@ export class Item {
             availability: boolean
         }[]
     };
+    optionals: {
+        label: string
+        price: number
+        actualPrice: number
+        code: string
+    }[];
     tags: string[];
     status: string;
     meta: any;
@@ -72,6 +78,7 @@ export class Item {
             type: null,
             options: []
         }
+        this.optionals = []
         if (obj.images && obj.images.length) {
             for (const image of obj.images) {
                 if (this.images && this.images.length) {
@@ -126,6 +133,26 @@ export class Item {
                             availability: option.availability
                         }]
                     }
+                }
+            }
+        }
+
+        if (obj.optionals && obj.optionals.length) {
+            for (const option of obj.optionals) {
+                if (this.optionals && this.optionals.length) {
+                    this.optionals.push({
+                        label: option.label,
+                        price: option.price,
+                        actualPrice: option.actualPrice,
+                        code: option.code
+                    })
+                } else {
+                    this.optionals = [{
+                        label: option.label,
+                        price: option.price,
+                        actualPrice: option.actualPrice,
+                        code: option.code
+                    }]
                 }
             }
         }

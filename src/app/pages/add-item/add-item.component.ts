@@ -130,6 +130,17 @@ export class AddItemComponent implements OnInit {
     })
   }
 
+
+  addOptionals() {
+    this.item.optionals = this.item.optionals || []
+    this.item.optionals.push({
+      label: null,
+      price: null,
+      actualPrice: null,
+      code: null
+    })
+  }
+
   addOptions() {
     this.item.option.options = this.item.option.options || []
     this.item.option.options.push({
@@ -159,6 +170,10 @@ export class AddItemComponent implements OnInit {
 
   unSelectTag(index) {
     this.item.tags.splice(index, 1)
+  }
+
+  unSelectOptional(index) {
+    this.item.optionals.splice(index, 1)
   }
 
   upload(): Observable<boolean> {

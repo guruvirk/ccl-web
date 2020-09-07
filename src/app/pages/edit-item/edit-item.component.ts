@@ -216,6 +216,16 @@ export class EditItemComponent implements OnInit {
     })
   }
 
+  addOptionals() {
+    this.item.optionals = this.item.optionals || []
+    this.item.optionals.push({
+      label: null,
+      price: null,
+      actualPrice: null,
+      code: null
+    })
+  }
+
   onImageSelect($event, index) {
     const files = $event.srcElement.files;
     this.images[index].file = files && files.length ? files[0] : null;
@@ -234,6 +244,10 @@ export class EditItemComponent implements OnInit {
 
   unSelectTag(index) {
     this.tags.splice(index, 1)
+  }
+
+  unSelectOptional(index) {
+    this.item.optionals.splice(index, 1)
   }
 
   upload(): Observable<boolean> {

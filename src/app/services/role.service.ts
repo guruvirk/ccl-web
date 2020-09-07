@@ -133,13 +133,18 @@ export class RoleService implements IAuth {
     actualPrice: number;
     code: string;
     type: string;
-  }, quantity) {
+  }, quantity, optional?) {
     let added = false
     if (this._cart.items && this._cart.items.length) {
       let index = this.getIndexInCart(item)
       if (index || index == 0) {
         added = true
-        this._cart.amount = this._cart.amount - (this._cart.items[index].option.price * this._cart.items[index].quantity)
+
+        if (this._cart.items[index].optional) {
+          this._cart.amount = this._cart.amount - ((this._cart.items[index].option.price + this._cart.items[index].optional.price) * this._cart.items[index].quantity)
+        } else {
+          this._cart.amount = this._cart.amount - (this._cart.items[index].option.price * this._cart.items[index].quantity)
+        }
 
         this._cart.items[index].option = option
 
@@ -147,7 +152,13 @@ export class RoleService implements IAuth {
 
         this._cart.amount = this._cart.amount || 0
 
-        this._cart.amount = this._cart.amount + (option.price * this._cart.items[index].quantity)
+        if (optional) {
+          this._cart.amount = this._cart.amount + ((option.price + optional.price) * this._cart.items[index].quantity)
+          this._cart.items[index].optional = optional
+        } else {
+          this._cart.amount = this._cart.amount + (option.price * this._cart.items[index].quantity)
+          this._cart.items[index].optional = null
+        }
 
         this.localDb.update("cart", this._cart)
         this._cartSubject.next(this._cart)
@@ -157,12 +168,19 @@ export class RoleService implements IAuth {
       this._cart.items.push({
         item: item,
         option: option,
+        optional: optional || null,
         quantity: quantity
       })
 
-      this._cart.amount = this._cart.amount || 0
+      if (optional) {
+        this._cart.amount = this._cart.amount || 0
 
-      this._cart.amount = this._cart.amount + option.price
+        this._cart.amount = this._cart.amount + ((option.price + optional.price) * quantity)
+      } else {
+        this._cart.amount = this._cart.amount || 0
+
+        this._cart.amount = this._cart.amount + ((option.price) * quantity)
+      }
 
       this.localDb.update("cart", this._cart)
       this._cartSubject.next(this._cart)
@@ -176,7 +194,11 @@ export class RoleService implements IAuth {
 
       if (index || index == 0) {
 
-        this._cart.amount = this._cart.amount - (this._cart.items[index].option.price * this._cart.items[index].quantity)
+        if (this._cart.items[index].optional) {
+          this._cart.amount = this._cart.amount - ((this._cart.items[index].option.price + this._cart.items[index].optional.price) * this._cart.items[index].quantity)
+        } else {
+          this._cart.amount = this._cart.amount - (this._cart.items[index].option.price * this._cart.items[index].quantity)
+        }
 
         this._cart.items.splice(index, 1);
 

@@ -6,6 +6,7 @@ import { ItemService } from '../../services/item.service';
 import { Item } from 'src/app/models';
 import { MatDialog } from '@angular/material';
 import { OptionDialogComponent } from 'src/app/components/option-dialog/option-dialog.component';
+import { ImageViewComponent } from 'src/app/components/image-view/image-view.component';
 
 @Component({
   selector: 'app-item',
@@ -17,6 +18,7 @@ export class ItemComponent implements OnInit, OnDestroy {
   isMobile: boolean;
   item: Item;
   isLoading = false;
+  currentOptionalValue: any = 'no'
   currentOption: {
     label: string;
     price: number;
@@ -25,6 +27,13 @@ export class ItemComponent implements OnInit, OnDestroy {
     type: string;
     availability: boolean;
   }
+  currentOptional: {
+    label: string;
+    price: number;
+    actualPrice: number;
+    code: string;
+  }
+  zoomImage: string
 
   constructor(private api: ItemService,
     private route: ActivatedRoute,
@@ -69,6 +78,20 @@ export class ItemComponent implements OnInit, OnDestroy {
     }
   }
 
+  selectOptional(event) {
+    if (event.value != 'no') {
+      let selectedOption = this.item.optionals[event.value || 0]
+      this.currentOptional = {
+        label: selectedOption.label,
+        price: selectedOption.price,
+        actualPrice: selectedOption.actualPrice,
+        code: selectedOption.code
+      }
+    } else {
+      this.currentOptional = null
+    }
+  }
+
   selectImage(image: string) {
     this.item.pic = image
   }
@@ -78,8 +101,16 @@ export class ItemComponent implements OnInit, OnDestroy {
   }
 
   addToCart() {
-    this.auth.addToCart(this.item, this.currentOption, 1)
+    this.auth.addToCart(this.item, this.currentOption, 1, this.currentOptional || null)
     this.uxService.showInfo("Added to Cart Succesfully")
+  }
+
+  viewImage(pic) {
+    const dialogRef = this.dialog.open(ImageViewComponent);
+    dialogRef.componentInstance.url = pic
+    // dialogRef.componentInstance.screenWidth = this.screenWidth
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
 }

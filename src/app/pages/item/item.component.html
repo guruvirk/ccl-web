@@ -17,10 +17,12 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="single_product_thumb">
-                        <lib-easy-zoom class="d-block w-100" [thumbImage]="item.pic" [fullImage]="item.pic"
+                        <!-- <lib-easy-zoom class="d-block w-100" [thumbImage]="item.pic" [fullImage]="item.pic"
                             [enableLens]="false" [enableScrollZoom]="true" [lensWidth]="200" [lensHeight]="200"
                             [circularLens]="false" [minZoomRatio]="1" [maxZoomRatio]="5" [scrollStepSize]="0.1">
-                        </lib-easy-zoom>
+                        </lib-easy-zoom> -->
+                        <img style="width: 100%;cursor: pointer;" (click)="viewImage(item.pic)" class="d-block"
+                            [src]="item.pic">
                         <div class="row imagesContainer">
                             <div (click)="selectImage(image)" *ngFor="let image of item.images"
                                 class="col-4 col-md-3 imageSelector">
@@ -49,8 +51,14 @@
                                                     <mat-icon *ngIf="option.code == currentOption.code" class="check">
                                                         check_circle</mat-icon>
                                                     <h5>{{option.label | titlecase}}</h5>
-                                                    <h5 class="accentColor">${{option.price}}<s class="oldPrice">
+                                                    <h5 class="accentColor" *ngIf="!currentOptional">
+                                                        ${{option.price}}<s class="oldPrice">
                                                             ${{option.actualPrice}}</s></h5>
+                                                    <h5 class="accentColor" *ngIf="currentOptional">
+                                                        ${{option.price}}+${{currentOptional.price}}<s
+                                                            class="oldPrice">
+                                                            ${{option.actualPrice}}+${{currentOptional.actualPrice}}</s>
+                                                    </h5>
                                                 </div>
                                             </ng-container>
                                         </div>
@@ -58,7 +66,13 @@
                                     <div class="singleOption"
                                         *ngIf="!item.option || !item.option.options || !item.option.options.length || item.option.options.length < 2">
                                         <h5>{{item.defaultOption.label | titlecase}}</h5>
-                                        <p class="product-price">${{item.defaultOption.price}}</p>
+                                        <h5 class="accentColor" *ngIf="!currentOptional">
+                                            ${{item.defaultOption.price}}<s class="oldPrice">
+                                                ${{item.defaultOption.actualPrice}}</s></h5>
+                                        <h5 class="accentColor" *ngIf="currentOptional">
+                                            ${{item.defaultOption.price}}+${{currentOptional.price}}<s class="oldPrice">
+                                                ${{item.defaultOption.actualPrice}}+${{currentOptional.actualPrice}}</s>
+                                        </h5>
                                     </div>
                                     <div *ngIf="item.rating.value"
                                         class="ratings-review mb-15 d-flex align-items-center justify-content-between">
@@ -93,6 +107,17 @@
                                 </div>
                             </div>
                         </div>
+                        <mat-form-field *ngIf="item.optionals && item.optionals.length">
+                            <mat-label>Byuing Options</mat-label>
+                            <mat-select [(ngModel)]="currentOptionalValue" (selectionChange)="selectOptional($event)">
+                                <mat-option value="no">
+                                    Only {{item.name | titlecase}}
+                                </mat-option>
+                                <mat-option *ngFor="let optional of item.optionals;let i=index" [value]="i">
+                                    With {{optional.label | titlecase}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
                         <div style="padding-top: 20px;" class="short_overview my-1" [innerHTML]="item.description">
                         </div>
                         <div *ngIf="item.note" class="note short_overview my-1" [innerHTML]="item.note">

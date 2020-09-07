@@ -24,7 +24,10 @@
                             <div style="height: 100%;" class="row">
                                 <div class="col-12 col-md-6">
                                     <h6 style="margin-top: 10%;"><b>Name:</b> {{element.item.name}}</h6>
-                                    <h6 style="margin-top: 10%;"><b>Price:</b> ${{element.option.price}}</h6>
+                                    <h6 *ngIf="!element.optional" style="margin-top: 10%;"><b>Price:</b>
+                                        ${{element.option.price}}</h6>
+                                    <h6 *ngIf="element.optional" style="margin-top: 10%;"><b>Price:</b>
+                                        ${{element.option.price}}+${{element.optional.price}}</h6>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div style="margin-top: 10%;">
@@ -43,7 +46,7 @@
                         </div>
                         <div class="col-1">
                             <button (click)="remove(element.item)" mat-icon-button color="primary">
-                                <mat-icon>arrow_back</mat-icon>
+                                <mat-icon>close</mat-icon>
                             </button>
                         </div>
                     </div>
@@ -53,7 +56,7 @@
                 <mat-card class="checkoutCard">
                     <h5 class="tableHeader cardHeader">Cart Total</h5>
                     <div style="margin: 10px;">
-                        <div class="header">
+                        <!-- <div class="header">
                             <h6>Sub Total : </h6>
                             <span class="spacer"></span>
                             <h6>${{cart.amount}}</h6>
@@ -62,7 +65,7 @@
                             <h6>Delivery : </h6>
                             <span class="spacer"></span>
                             <h6>FREE</h6>
-                        </div>
+                        </div> -->
                         <div class="header">
                             <h6>Total : </h6>
                             <span class="spacer"></span>

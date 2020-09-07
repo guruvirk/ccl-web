@@ -205,12 +205,12 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.price) {
           result.type = item.option.type
-          this.auth.addToCart(item, result, 1)
+          this.auth.addToCart(item, result, 1, null)
           this.uxService.showInfo("Added to Cart Succesfully")
         }
       });
     } else {
-      this.auth.addToCart(item, item.defaultOption, 1)
+      this.auth.addToCart(item, item.defaultOption, 1, null)
       this.uxService.showInfo("Added to Cart Succesfully")
     }
   }

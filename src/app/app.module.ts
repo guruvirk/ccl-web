@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { MatProgressSpinnerModule } from '@angular/material';
+import { MatProgressSpinnerModule, MatTooltipModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,6 +49,7 @@ import { EditItemComponent } from './pages/edit-item/edit-item.component';
 import { ViewOrdersComponent } from './pages/view-orders/view-orders.component';
 import { EditOrderComponent } from './pages/edit-order/edit-order.component';
 import { ReviewOrderComponent } from './pages/review-order/review-order.component';
+import { ImageViewComponent } from './components/image-view/image-view.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ReviewOrderComponent } from './pages/review-order/review-order.componen
     EditItemComponent,
     ViewOrdersComponent,
     EditOrderComponent,
-    ReviewOrderComponent
+    ReviewOrderComponent,
+    ImageViewComponent
   ],
   imports: [
     BrowserModule,
@@ -108,11 +110,12 @@ import { ReviewOrderComponent } from './pages/review-order/review-order.componen
     MatTableModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    EasyZoomModule
+    EasyZoomModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [OptionDialogComponent, TncDialogComponent],
+  entryComponents: [OptionDialogComponent, TncDialogComponent, ImageViewComponent],
   exports: [ProcessingIndicatorComponent]
 })
 export class AppModule { }
