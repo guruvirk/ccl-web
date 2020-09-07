@@ -1,5 +1,5 @@
 export const environment = {
-  url: 'http://comfortcare.co.nz/api',
+  url: 'https://comfortcare.co.nz/api',
   production: true,
   tenant: "ccl",
   error: {
