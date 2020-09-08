@@ -7,8 +7,7 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <div class="bannerDiv"
-                style="background-size: contain;background-image: url(/assets/img/bg-1.jpg);">
+            <div class="bannerDiv" style="background-size: contain;background-image: url(/assets/img/bg-1.jpg);">
                 <div class="banner" style="position: absolute;;height: 100%;width: 100%;opacity: .8;">
                 </div>
                 <h1 class="accentColor bannnerHead">
@@ -16,8 +15,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <div class="bannerDiv"
-                style="background-size: contain;background-image: url('/assets/img/bg-1.jpg');">
+            <div class="bannerDiv" style="background-size: contain;background-image: url('/assets/img/bg-1.jpg');">
                 <div class="banner" style="position: absolute;;height: 100%;width: 100%;opacity: .8;">
                 </div>
                 <h1 class="accentColor bannnerHead">Lowest Price Guirentee
@@ -25,8 +23,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <div class="bannerDiv"
-                style="background-size: contain;background-image: url('/assets/img/bg-1.jpg');">
+            <div class="bannerDiv" style="background-size: contain;background-image: url('/assets/img/bg-1.jpg');">
                 <div class="banner" style="position: absolute;;height: 100%;width: 100%;opacity: .8;">
                 </div>
                 <h1 class="accentColor bannnerHead">
@@ -53,9 +50,13 @@
     <div *ngIf="categories && categories.length" class="container">
         <div class="row">
             <ng-container *ngFor="let category of categories">
-                <div class="col-md-4 col-6 catgoryCard single-products-catagory clearfix">
+                <div class="col-md-4 col-12 catgoryCard single-products-catagory clearfix">
                     <a (click)="select(category.id);">
-                        <img style="border-radius: 20px;" [src]="category.pic">
+                        <div style="border-radius: 20px; min-height: 500px;" class="loadingBackground">
+                            <img style="border-radius: 20px; visibility: hidden;" [src]="category.pic"
+                                (load)="markEventLoaded($event)">
+                        </div>
+
                         <div style="width: 70%;" class="hover-content">
                             <div class="line"></div>
                             <h3 style="color: #fff;">{{category.name | titlecase}}</h3>

@@ -9,10 +9,15 @@
     border-radius: 5px 5px;
 }
 
+.optionalSelect {
+    width: 30% !important;
+}
+
 .activeOption{
     border-radius: 2%;
     position:relative;
     border: 2px solid var(--accent);
+    background: rgb(255,167,38,.2);
 }
 
 .oldPrice {
@@ -81,6 +86,14 @@
     margin: auto;
 }
 
+.optionalLabel {
+    color: var(--accent);
+}
+
+.single_product_desc {
+    text-align: left;
+}
+
 @media only screen and (max-width: 780px) {
     .ratings {
         margin: auto;
@@ -92,6 +105,13 @@
         text-align: center;
     }
     .singleOption{
+        text-align: center;
+    }
+    .optionalSelect {
+        margin-top: 15px;
+        width: 40% !important;
+    }
+    .single_product_desc {
         text-align: center;
     }
 }

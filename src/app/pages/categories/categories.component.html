@@ -11,7 +11,10 @@
             <ng-container *ngFor="let subCategory of categories">
                 <div class="col-md-4 col-12 catgoryCard single-products-catagory clearfix">
                     <a (click)="select(subCategory);">
-                        <img style="border-radius: 20px;" [src]="subCategory.pic">
+                        <div style="border-radius: 20px; min-height: 500px;" class="loadingBackground">
+                            <img style="border-radius: 20px; visibility: hidden;" [src]="subCategory.pic"
+                                (load)="markEventLoaded($event)">
+                        </div>
                         <div class="hover-content">
                             <div class="line"></div>
                             <h2>{{subCategory.name | titlecase}}</h2>

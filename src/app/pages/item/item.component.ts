@@ -47,6 +47,10 @@ export class ItemComponent implements OnInit, OnDestroy {
         this.api.get(params.id).subscribe(item => {
           this.item = new Item(item)
           this.currentOption = this.item.defaultOption
+          if (this.item.optionals && this.item.optionals.length) {
+            this.currentOptional = this.item.optionals[0]
+            this.currentOptionalValue = 0
+          }
           this.isLoading = false;
         }, err => {
           this.isLoading = false;

@@ -50,6 +50,8 @@ import { ViewOrdersComponent } from './pages/view-orders/view-orders.component';
 import { EditOrderComponent } from './pages/edit-order/edit-order.component';
 import { ReviewOrderComponent } from './pages/review-order/review-order.component';
 import { ImageViewComponent } from './components/image-view/image-view.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -111,7 +113,9 @@ import { ImageViewComponent } from './components/image-view/image-view.component
     MatDialogModule,
     MatProgressSpinnerModule,
     EasyZoomModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

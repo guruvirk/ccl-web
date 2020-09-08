@@ -27,10 +27,10 @@
                                         :
                                     </b>{{ order.status | titlecase }}</h6>
                                 <button *ngIf="order.status == 'pending' && order.transaction.status == 'pending'"
-                                    (click)="pay(order)" mat-raised-button color="accent"><b>Pay</b></button>
+                                    (click)="pay(order)" mat-raised-button color="primary"><b>Pay</b></button>
                             </ng-container>
                             <ng-container *ngIf="order.status == 'done' && !order.reviewDone">
-                                <button (click)="review(order)" mat-raised-button color="accent"><b>Review</b></button>
+                                <button (click)="review(order)" mat-raised-button color="primary"><b>Review</b></button>
                             </ng-container>
                         </div>
                         <div class="col-6 auto">

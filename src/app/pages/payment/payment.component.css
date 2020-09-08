@@ -17,6 +17,10 @@ a {
   color: var(--accent);
 }
 
+.cardBg {
+  background: rgb(255,167,38,.4);
+}
+
 .price {
   color: var(--accent);
 }

@@ -21,6 +21,10 @@ h6 {
     margin-bottom: 0;
 }
 
+.cardBg {
+    background: rgb(255,167,38,.4);
+}
+
 .checkoutCard {
     width: 100%;
     text-align: center;

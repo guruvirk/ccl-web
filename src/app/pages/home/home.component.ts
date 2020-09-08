@@ -40,4 +40,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(["/category", id])
   }
 
+  markEventLoaded(element) {
+    element.target.style.visibility = 'unset'
+  }
+
 }

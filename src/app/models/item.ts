@@ -7,6 +7,7 @@ export class Item {
     id: string;
     code: string;
     pic: string;
+    thumbnail: string;
     images: string[];
     name: string;
     description: string;
@@ -70,6 +71,7 @@ export class Item {
         this.note = obj.note;
         this.status = obj.status;
         this.meta = obj.meta;
+        this.thumbnail = obj.thumbnail;
         this.category = new Category(obj.category)
         this.subCategory = new SubCategory(obj.subCategory)
         this.owner = new User(obj.owner)

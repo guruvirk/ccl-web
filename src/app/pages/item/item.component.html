@@ -55,8 +55,7 @@
                                                         ${{option.price}}<s class="oldPrice">
                                                             ${{option.actualPrice}}</s></h5>
                                                     <h5 class="accentColor" *ngIf="currentOptional">
-                                                        ${{option.price + currentOptional.price}}<s
-                                                            class="oldPrice">
+                                                        ${{option.price + currentOptional.price}}<s class="oldPrice">
                                                             ${{option.actualPrice + currentOptional.actualPrice}}</s>
                                                     </h5>
                                                 </div>
@@ -107,14 +106,16 @@
                                 </div>
                             </div>
                         </div>
-                        <mat-form-field *ngIf="item.optionals && item.optionals.length">
-                            <mat-label>Byuing Options</mat-label>
+                        <mat-form-field *ngIf="item.optionals && item.optionals.length" class="optionalSelect">
+                            <mat-label class="optionalLabel">BED OR MATTRESS</mat-label>
                             <mat-select [(ngModel)]="currentOptionalValue" (selectionChange)="selectOptional($event)">
-                                <mat-option value="no">
-                                    Only {{item.name | titlecase}}
+                                <mat-option style="background: rgb(255,167,38);"
+                                    *ngFor="let optional of item.optionals;let i=index" [value]="i">
+                                    {{optional.label | titlecase}} and Base
                                 </mat-option>
-                                <mat-option *ngFor="let optional of item.optionals;let i=index" [value]="i">
-                                    With {{optional.label | titlecase}}
+                                <mat-option style="background: rgb(255,167,38); border-top: 1px solid black;"
+                                    value="no">
+                                    Mattress Only
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>

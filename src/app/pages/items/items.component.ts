@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { RoleService } from '../../services/role.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UxService } from '../../services/ux.service';
@@ -10,6 +10,7 @@ import { OptionDialogComponent } from 'src/app/components/option-dialog/option-d
 import { MatDialog } from '@angular/material';
 import { IPager } from 'src/app/models/pager.interface';
 import { Observable } from 'rxjs';
+import { PaginatorComponent } from 'src/app/components/paginator/paginator.component';
 
 @Component({
   selector: 'app-items',
@@ -17,6 +18,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
+
+  @ViewChild('paginator', null)
+  paginatorComponent: PaginatorComponent;
 
   isMobile: boolean;
   query = {
@@ -32,6 +36,11 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
     label: String
   }[];
   isLoading = false;
+
+  imageLoaders: {
+    loaded: boolean,
+    key: string
+  }[] = []
 
   constructor(private api: ItemService,
     private subCategoryApi: SubCatgoryService,
@@ -86,6 +95,21 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
           }
         })
       }
+
+      for (let i = 0; i < 10; i++) {
+        this.imageLoaders.push({
+          loaded: false,
+          key: i + 'p'
+        })
+        this.imageLoaders.push({
+          loaded: false,
+          key: i + 's'
+        })
+        this.imageLoaders.push({
+          loaded: false,
+          key: i + 't'
+        })
+      }
     })
     if (window.screen.width < 781) {
       this.isMobile = true
@@ -106,7 +130,7 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
     this.get()
   }
 
-  get(options?) {
+  get(queryOptions?) {
     this.isLoading = true
     if (this.filters && this.filters.length) {
       let options = []
@@ -123,7 +147,16 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
     } else {
       delete this.query["options"];
     }
-    this.api.search(options || this.query).subscribe(page => {
+    if (queryOptions) {
+      if (queryOptions.offset) {
+        this.query['offset'] = queryOptions.offset
+      } else {
+        this.query['offset'] = 0
+      }
+    } else {
+      this.query['offset'] = 0
+    }
+    this.api.search(this.query).subscribe(page => {
       this.page = page
       if (page.items && page.items.length) {
         let i = 0
@@ -133,6 +166,9 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
         }
       }
       this.page.totalPages = (page.total / page.limit)
+      if (this.paginatorComponent) {
+        this.paginatorComponent.calculatePages(this)
+      }
       this.isLoading = false
     }, err => {
       this.isLoading = false;
@@ -213,6 +249,28 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
       this.auth.addToCart(item, item.defaultOption, 1, null)
       this.uxService.showInfo("Added to Cart Succesfully")
     }
+  }
+
+  getLoading(key): boolean {
+    let found = false
+    for (const imageLoader of this.imageLoaders) {
+      if (imageLoader.key == key) {
+        found = imageLoader.loaded
+      }
+    }
+    return found
+  }
+
+  markLoaded(key) {
+    for (const imageLoader of this.imageLoaders) {
+      if (imageLoader.key == key) {
+        imageLoader.loaded = true
+      }
+    }
+  }
+
+  markEventLoaded(element) {
+    element.target.style.visibility = 'unset'
   }
 
 }

@@ -38,33 +38,45 @@ export class PaginatorComponent implements OnInit, OnChanges {
     this.calculatePages();
   }
 
-  calculatePages() {
+  calculatePages(page?) {
+
+    if (page) {
+      this.page = page
+    }
+
     let index: number;
 
     const pageNos: number[] = [];
 
     let firstPage = 1;
 
-    let lastPage = (this.page.page.total / this.page.page.limit);
+    let lastPageStatic = Math.trunc(this.page.page.total / this.page.page.limit);
+    if ((this.page.page.total % this.page.page.limit) > 0) {
+      lastPageStatic++
+    }
+    const noChangelastPage = lastPageStatic
+    let lastPage = lastPageStatic
+    this.page.page.totalPages = lastPageStatic
 
-    if ((this.page.page.total / this.page.page.limit) > this.maxPagesToShow) {
+    if (lastPageStatic > this.maxPagesToShow) {
       if (this.page.page.pageNo < this.maxPagesToShow) {
         lastPage = this.maxPagesToShow;
-      } else if (this.page.page.pageNo > ((this.page.page.total / this.page.page.limit) - this.maxPagesToShow)) {
-        firstPage = (this.page.page.total / this.page.page.limit) - this.maxPagesToShow;
+      } else if (this.page.page.pageNo > (lastPageStatic - this.maxPagesToShow)) {
+        firstPage = lastPageStatic - this.maxPagesToShow;
       } else {
         firstPage = this.page.page.pageNo - this.maxPagesToShow / 2;
         if (firstPage < 1) { firstPage = 1; }
         lastPage = this.page.page.pageNo + this.maxPagesToShow / 2;
-        if (lastPage > (this.page.page.total / this.page.page.limit)) { lastPage = (this.page.page.total / this.page.page.limit); }
+        if (lastPage > lastPageStatic) { lastPage = lastPageStatic; }
       }
+      lastPageStatic = lastPage
     }
 
     if (firstPage !== 1) {
       pageNos.push(-2);
     }
 
-    for (index = firstPage; index <= lastPage; index++) {
+    for (index = firstPage; index <= lastPageStatic; index++) {
       pageNos.push(index);
     }
 
@@ -72,7 +84,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
       pageNos.push(1);
     }
 
-    if (lastPage !== (this.page.page.total / this.page.page.limit)) {
+    if (lastPageStatic !== noChangelastPage) {
       pageNos.push(-1);
     }
 

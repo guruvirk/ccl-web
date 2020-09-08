@@ -98,17 +98,22 @@
                                                 <li [attr.data-target]="'#carousel' + i" data-slide-to="2"></li>
                                             </ol>
                                             <div (click)="select(item)" style="cursor: pointer;" class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                    <img style="height: 50vh;" class="d-block w-100" [src]="item.pic"
+                                                <div class="carousel-item active loadingBackground">
+                                                    <img style="height: 50vh; visibility: hidden;" class="d-block w-100"
+                                                        [src]="item.pic" (load)="markEventLoaded($event)"
                                                         alt="First slide">
                                                 </div>
                                                 <div class="carousel-item" *ngIf="getSecandoryPic(item)">
-                                                    <img style="height: 50vh;" class="d-block w-100"
-                                                        [src]="getSecandoryPic(item)" alt="Second slide">
+                                                    <img style="height: 50vh; visibility: hidden;"
+                                                        *ngIf="getSecandoryPic(item)" class="d-block w-100"
+                                                        [src]="getSecandoryPic(item)" (load)="markEventLoaded($event)"
+                                                        alt="Second slide">
                                                 </div>
                                                 <div class="carousel-item" *ngIf="getTeratoryPic(item)">
-                                                    <img style="height: 50vh;" class="d-block w-100"
-                                                        [src]="getTeratoryPic(item)" alt="Third slide">
+                                                    <img style="height: 50vh; visibility: hidden;"
+                                                        *ngIf="getTeratoryPic(item)" class="d-block w-100"
+                                                        [src]="getTeratoryPic(item)" (load)="markEventLoaded($event)"
+                                                        alt="Second slide">
                                                 </div>
                                             </div>
                                             <a style="z-index: 100;" class="carousel-control-prev"
@@ -178,7 +183,7 @@
             </div>
         </div>
         <div class="paginator">
-            <app-paginator [page]="this"></app-paginator>
+            <app-paginator #paginator [page]="this"></app-paginator>
         </div>
     </div>
 </div>

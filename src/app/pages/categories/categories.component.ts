@@ -56,4 +56,8 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     this.router.navigate(["/items"], { queryParams: { subCategory: category.id } })
   }
 
+  markEventLoaded(element) {
+    element.target.style.visibility = 'unset'
+  }
+
 }

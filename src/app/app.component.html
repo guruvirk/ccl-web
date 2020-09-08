@@ -4,20 +4,86 @@
             <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
                 <mat-icon>menu</mat-icon>
             </button>
-            <span *ngIf="isMobile" class="spacer"></span>
-            <span [routerLink]="['home']" class="title">
+            <span *ngIf="isMobile && !searchSelected" class="spacer"></span>
+            <span *ngIf="!searchSelected" [routerLink]="['home']" class="title">
                 <img class="logoImg" src="/assets/img/Black Bg 1.png">
                 Comfort <span class="accentColor">& Care</span>
             </span>
             <span class="spacer"></span>
-            <a *ngIf="currentTenant" class="callButton" fxShow="true" fxHide.gt-sm [href]="'tel:'+currentTenant.phone" mat-icon-button>
+            <a *ngIf="!searchSelected" (click)="searchSelected = !searchSelected" class="callButton" fxShow="true"
+                fxHide.gt-sm mat-icon-button>
+                <mat-icon>search</mat-icon>
+            </a>
+            <mat-form-field *ngIf="searchSelected" style="width: 200px !important; margin-right: 5px;"
+                class="example-full-width searchBar" [floatLabel]="'never'">
+                <mat-label>Search Products</mat-label>
+                <input type="text" class="searchInput" matInput [(ngModel)]="selectedItem" [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <!-- <mat-icon (click)="searchSelected=!searchSelected" color="accent" matSuffix>close</mat-icon> -->
+                <!-- <i (click)="searchSelected=!searchSelected" class="fa fa-times accent"></i> -->
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option (click)="selectItem(option.id)"
+                        style="height: 50px; text-align: center; padding-top: 3px; padding-bottom: 3px;"
+                        *ngFor="let option of options" [value]="option">
+                        <div class="header">
+                            <img style="height: 30px; margin: auto;"
+                                [src]=" option.thumbnail || '/assets/img/White Bg 1.png'">
+                            <span class="spacer"></span>
+                            {{option.name | titlecase}}
+                            <span class="spacer"></span>
+                        </div>
+                    </mat-option>
+                    <mat-option *ngIf="!options || !options.length"
+                        style="height: 50px; text-align: center; padding-top: 3px; padding-bottom: 3px;">
+                        <div class="header">
+                            <span class="spacer"></span>
+                            No Products Available
+                            <span class="spacer"></span>
+                        </div>
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <span *ngIf="searchSelected" class="spacer"></span>
+            <a *ngIf="searchSelected" (click)="searchSelected = !searchSelected" class="callButton" fxShow="true"
+                fxHide.gt-sm mat-icon-button>
+                <mat-icon>close</mat-icon>
+            </a>
+            <a *ngIf="currentTenant && !searchSelected" class="callButton" fxShow="true" fxHide.gt-sm
+                [href]="'tel:'+currentTenant.phone" mat-icon-button>
                 <mat-icon>call</mat-icon>
             </a>
-            <button *ngIf="cart" [routerLink]="['cart']" mat-icon-button fxShow="true" fxHide.gt-sm>
+            <button *ngIf="cart && !searchSelected" [routerLink]="['cart']" mat-icon-button fxShow="true" fxHide.gt-sm>
                 <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
             </button>
             <span flex></span>
             <div fxShow="true" fxHide.lt-md>
+                <mat-form-field style="width: 200px !important; margin-right: 10px;"
+                    class="example-full-width searchBar" [floatLabel]="'never'">
+                    <mat-label>Search Products <i style="margin-left: 10px;" class="fa fa-search"></i></mat-label>
+                    <input type="text" class="searchInput" matInput [(ngModel)]="selectedItem" [formControl]="myControl"
+                        [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option (click)="selectItem(option.id)"
+                            style="height: 50px; text-align: center; padding-top: 3px; padding-bottom: 3px;"
+                            *ngFor="let option of options" [value]="option">
+                            <div class="header">
+                                <img style="height: 30px; margin: auto;"
+                                    [src]=" option.thumbnail || '/assets/img/White Bg 1.png'">
+                                <span class="spacer"></span>
+                                {{option.name | titlecase}}
+                                <span class="spacer"></span>
+                            </div>
+                        </mat-option>
+                        <mat-option *ngIf="!options || !options.length"
+                            style="height: 50px; text-align: center; padding-top: 3px; padding-bottom: 3px;">
+                            <div class="header">
+                                <span class="spacer"></span>
+                                No Products Available
+                                <span class="spacer"></span>
+                            </div>
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
                 <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
                     [routerLink]="['view-categories']" color="accent" mat-button>Categories</button>
                 <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
@@ -40,7 +106,8 @@
                     mat-button>Login</button>
                 <button routerLinkActive="active" *ngIf="currentUser" (click)="logout()" color="accent"
                     mat-button>LogOut</button>
-                <a *ngIf="currentTenant" class="callButton" [href]="'tel:'+currentTenant.phone" style="margin-left: 2%;" mat-icon-button>
+                <a *ngIf="currentTenant" class="callButton" [href]="'tel:'+currentTenant.phone" style="margin-left: 2%;"
+                    mat-icon-button>
                     <mat-icon>call</mat-icon>
                 </a>
                 <button *ngIf="cart" [routerLink]="['cart']" mat-icon-button>
