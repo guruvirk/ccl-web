@@ -71,3 +71,11 @@ mat-sidenav {
         height: 6vh;
     }
 }
+
+.callButton {
+    color: white;
+}
+
+.callButton:hover {
+    color: white;
+}

@@ -119,7 +119,7 @@ export class EditItemComponent implements OnInit {
     } else {
       this.item.category = new Category({ id: this.selectedCategory })
     }
-    if (!this.selectedSubCategory) {
+    if (this.subCategories && this.subCategories.length && !this.selectedSubCategory) {
       this.uxService.handleError("Sub Category is Required")
       return
     } else {

@@ -55,9 +55,9 @@
                                                         ${{option.price}}<s class="oldPrice">
                                                             ${{option.actualPrice}}</s></h5>
                                                     <h5 class="accentColor" *ngIf="currentOptional">
-                                                        ${{option.price}}+${{currentOptional.price}}<s
+                                                        ${{option.price + currentOptional.price}}<s
                                                             class="oldPrice">
-                                                            ${{option.actualPrice}}+${{currentOptional.actualPrice}}</s>
+                                                            ${{option.actualPrice + currentOptional.actualPrice}}</s>
                                                     </h5>
                                                 </div>
                                             </ng-container>
@@ -70,8 +70,8 @@
                                             ${{item.defaultOption.price}}<s class="oldPrice">
                                                 ${{item.defaultOption.actualPrice}}</s></h5>
                                         <h5 class="accentColor" *ngIf="currentOptional">
-                                            ${{item.defaultOption.price}}+${{currentOptional.price}}<s class="oldPrice">
-                                                ${{item.defaultOption.actualPrice}}+${{currentOptional.actualPrice}}</s>
+                                            ${{item.defaultOption.price + currentOptional.price}}<s class="oldPrice">
+                                                ${{item.defaultOption.actualPrice + currentOptional.actualPrice}}</s>
                                         </h5>
                                     </div>
                                     <div *ngIf="item.rating.value"

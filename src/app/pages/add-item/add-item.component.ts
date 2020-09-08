@@ -72,7 +72,7 @@ export class AddItemComponent implements OnInit {
       this.uxService.handleError("Category is Required")
       return
     }
-    if (!this.item.subCategory) {
+    if (this.subCategories && this.subCategories.length && !this.item.subCategory) {
       this.uxService.handleError("Sub Category is Required")
       return
     }

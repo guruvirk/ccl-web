@@ -76,7 +76,7 @@ export class EditCategoryComponent implements OnInit {
       this.api.update(this.category.id, this.category).subscribe(item => {
         this.isLoading = false;
         this.uxService.showInfo("Category Updated")
-        this.router.navigate(["view-sub-categories"])
+        this.router.navigate(["view-categories"])
       }, err => {
         this.isLoading = false;
       })

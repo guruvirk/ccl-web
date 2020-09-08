@@ -10,6 +10,9 @@
                 Comfort <span class="accentColor">& Care</span>
             </span>
             <span class="spacer"></span>
+            <a *ngIf="currentTenant" class="callButton" fxShow="true" fxHide.gt-sm [href]="'tel:'+currentTenant.phone" mat-icon-button>
+                <mat-icon>call</mat-icon>
+            </a>
             <button *ngIf="cart" [routerLink]="['cart']" mat-icon-button fxShow="true" fxHide.gt-sm>
                 <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
             </button>
@@ -31,13 +34,16 @@
                         [routerLink]="['category', category.id]" color="accent"
                         mat-button>{{category.name | titlecase }}</button>
                 </ng-container>
-                <button *ngIf="currentUser && !auth.hasPermission('admin')" routerLinkActive="active" [routerLink]="['orders']" color="accent"
-                    mat-button>My Orders</button>
+                <button *ngIf="currentUser && !auth.hasPermission('admin')" routerLinkActive="active"
+                    [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
                 <button routerLinkActive="active" *ngIf="!currentUser" [routerLink]="['login']" color="accent"
                     mat-button>Login</button>
                 <button routerLinkActive="active" *ngIf="currentUser" (click)="logout()" color="accent"
                     mat-button>LogOut</button>
-                <button *ngIf="cart" [routerLink]="['cart']" style="margin-left: 2%;" mat-icon-button>
+                <a *ngIf="currentTenant" class="callButton" [href]="'tel:'+currentTenant.phone" style="margin-left: 2%;" mat-icon-button>
+                    <mat-icon>call</mat-icon>
+                </a>
+                <button *ngIf="cart" [routerLink]="['cart']" mat-icon-button>
                     <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
             </div>
@@ -77,8 +83,9 @@
                 </ng-container>
                 <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="!currentUser"
                     [routerLink]="['login']" color="accent" mat-button>Login</button>
-                <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="currentUser && !auth.hasPermission('admin')"
-                    [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
+                <button routerLinkActive="active" style="width: fit-content; min-width: 60%;"
+                    *ngIf="currentUser && !auth.hasPermission('admin')" [routerLink]="['orders']" color="accent"
+                    mat-button>My Orders</button>
                 <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="currentUser"
                     (click)="logout()" color="accent" mat-button>LogOut</button>
             </mat-nav-list>

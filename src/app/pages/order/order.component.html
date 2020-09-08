@@ -47,7 +47,7 @@
                                 ${{element.option.price}}</h6>
                             <h6 *ngIf="element.optional && element.optional.price" style="margin-top: 10%;">
                                 <b>Price:</b>
-                                ${{element.option.price}}+${{element.optional.price}}</h6>
+                                ${{element.option.price + element.optional.price}}</h6>
                         </div>
                         <div class="col-12 col-md-6">
                             <h6 style="margin-top: 10%;"><b>Quantity:</b> {{element.quantity}}</h6>
@@ -62,11 +62,12 @@
                             <h6 *ngIf="!element.optional || !element.optional.price"><b>Price:</b>
                                 ${{element.option.price}}</h6>
                             <h6 *ngIf="element.optional && element.optional.price"><b>Price:</b>
-                                ${{element.option.price}}+${{element.optional.price}}</h6>
+                                ${{element.option.price + element.optional.price}}</h6>
                         </div>
                         <div class="col-12 col-md-6">
                             <h6><b>Quantity:</b> {{element.quantity}}</h6>
-                            <h6><b>{{element.option.label | titlecase}} <span *ngIf="element.optional && element.optional.price">
+                            <h6><b>{{element.option.label | titlecase}} <span
+                                        *ngIf="element.optional && element.optional.price">
                                         with {{element.optional.label | titlecase}}</span></b></h6>
                         </div>
                     </div>

@@ -29,8 +29,11 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         this.categoryApi.get(params.id).subscribe(item => {
           this.category = item
           this.api.search({ category: item.id }).subscribe(page => {
-            this.categories = page.items
             this.isLoading = false;
+            if (!page.items.length) {
+              this.router.navigate(["/items"], { queryParams: { category: this.category.id } })
+            }
+            this.categories = page.items
           }, err => {
             this.isLoading = false;
           })

@@ -50,7 +50,7 @@ export class AddCategoryComponent implements OnInit {
       this.api.create(this.category).subscribe(item => {
         this.isLoading = false;
         this.uxService.showInfo("Category Created")
-        this.router.navigate(["view-sub-categories"])
+        this.router.navigate(["view-categories"])
       }, err => {
         this.isLoading = false;
       })
