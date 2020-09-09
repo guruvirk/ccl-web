@@ -26,12 +26,7 @@ import { EditOrderComponent } from './pages/edit-order/edit-order.component';
 import { ReviewOrderComponent } from './pages/review-order/review-order.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   {
     path: 'category/:id', component: CategoriesComponent,
   },

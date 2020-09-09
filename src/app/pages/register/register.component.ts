@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     if (this.auth.currentUser()) {
-      this.router.navigate(["home"])
+      this.router.navigate([""])
     }
   }
 
