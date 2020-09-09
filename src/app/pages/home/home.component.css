@@ -1,6 +1,6 @@
 .listItems {
     text-align: center;
-    background-image: url(../../../assets/img/bg-1.jpg);
+    background-image: url(/assets/img/bg-1.jpg);
     background-size: cover;padding: 5%;
 }
 
@@ -10,7 +10,7 @@
     margin-top: 5%;
     margin-bottom: 5%;
     text-align: center;
-    background-image: url(../../../assets/img/bg-wood.jpg);
+    background-image: url(/assets/img/bg-wood.jpg);
     background-size: cover;
     padding: 0;
     border-radius: 20px;
