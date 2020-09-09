@@ -17,7 +17,7 @@
             <mat-form-field *ngIf="searchSelected" style="width: 200px !important; margin-right: 5px;"
                 class="example-full-width searchBar" [floatLabel]="'never'">
                 <mat-label>Search Products</mat-label>
-                <input type="text" class="searchInput" matInput [(ngModel)]="selectedItem" [formControl]="myControl"
+                <input type="text" class="searchInput" autofocus matInput [(ngModel)]="selectedItem" [formControl]="myControl"
                     [matAutocomplete]="auto">
                 <!-- <mat-icon (click)="searchSelected=!searchSelected" color="accent" matSuffix>close</mat-icon> -->
                 <!-- <i (click)="searchSelected=!searchSelected" class="fa fa-times accent"></i> -->
@@ -60,7 +60,7 @@
                 <mat-form-field style="width: 200px !important; margin-right: 10px;"
                     class="example-full-width searchBar" [floatLabel]="'never'">
                     <mat-label>Search Products <i style="margin-left: 10px;" class="fa fa-search"></i></mat-label>
-                    <input type="text" class="searchInput" matInput [(ngModel)]="selectedItem" [formControl]="myControl"
+                    <input type="text" #searchInput class="searchInput" matInput [(ngModel)]="selectedItem" [formControl]="myControl"
                         [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                         <mat-option (click)="selectItem(option.id)"
@@ -97,8 +97,7 @@
                     Sellers</button>
                 <ng-container *ngIf="categories && categories.length && !auth.hasPermission('admin')">
                     <button *ngFor="let category of categories" routerLinkActive="active"
-                        [routerLink]="['category', category.id]" color="accent"
-                        mat-button>{{category.name | titlecase }}</button>
+                        [routerLink]="['category', category.id]" color="accent" mat-button>{{category.name}}</button>
                 </ng-container>
                 <button *ngIf="currentUser && !auth.hasPermission('admin')" routerLinkActive="active"
                     [routerLink]="['orders']" color="accent" mat-button>My Orders</button>
@@ -146,7 +145,7 @@
                 <ng-container *ngIf="categories && categories.length && !auth.hasPermission('admin')">
                     <button routerLinkActive="active" *ngFor="let category of categories"
                         style="width: fit-content; min-width: 60%;" [routerLink]="['category', category.id]"
-                        color="accent" mat-button>{{category.name | titlecase }}</button>
+                        color="accent" mat-button>{{category.name}}</button>
                 </ng-container>
                 <button routerLinkActive="active" style="width: fit-content; min-width: 60%;" *ngIf="!currentUser"
                     [routerLink]="['login']" color="accent" mat-button>Login</button>

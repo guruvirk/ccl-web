@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { RoleService } from './services/role.service';
 import { User, Category, Order, Item } from './models';
 import { Tenant } from './models/tenant.model';
@@ -30,6 +30,9 @@ export class AppComponent {
   options: Item[] = [];
   selectedItem: Item;
   // filteredOptions: Observable<Item[]>;
+
+  @ViewChild("searchInput", null)
+  searchInputElement: ElementRef;
 
   constructor(
     private service: ItemService,
@@ -96,7 +99,12 @@ export class AppComponent {
   selectItem(id) {
     this.selectedItem = null
     this.searchSelected = false
+    this.searchInputElement.nativeElement.blur();
     this.roter.navigate(["item", id])
+  }
+
+  showSearch() {
+    
   }
 
   // userRefresh() {

@@ -23,12 +23,12 @@
 
             <ng-container matColumnDef="category">
                 <th mat-header-cell *matHeaderCellDef> Category </th>
-                <td mat-cell *matCellDef="let element"> {{element.category.name | titlecase}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="sub-category">
                 <th mat-header-cell *matHeaderCellDef> Sub Category </th>
-                <td mat-cell *matCellDef="let element"> {{element.subCategory.name | titlecase}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.subCategory.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="status">

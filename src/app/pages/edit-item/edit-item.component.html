@@ -68,7 +68,7 @@
             <mat-form-field>
                 <mat-label>Category</mat-label>
                 <mat-select [(ngModel)]="selectedCategory" (selectionChange)="getSubCategories()">
-                    <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name | titlecase}}
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -76,7 +76,7 @@
                 <mat-label>Sub Category</mat-label>
                 <mat-select [(ngModel)]="selectedSubCategory">
                     <mat-option *ngFor="let subCategory of subCategories" [value]="subCategory.id">
-                        {{subCategory.name | titlecase}}
+                        {{subCategory.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

@@ -34,6 +34,10 @@
                 <input matInput name="name" type="text" [(ngModel)]="category.name" [required]="true">
             </mat-form-field>
             <mat-form-field class="full-width-input">
+                <mat-label>Order</mat-label>
+                <input matInput name="order" type="number" [(ngModel)]="category.order" [required]="true">
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
                 <mat-label>Status</mat-label>
                 <mat-select [(ngModel)]="category.status">
                     <mat-option value="active">Active

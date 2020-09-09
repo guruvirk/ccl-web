@@ -7,6 +7,7 @@ export class SubCategory {
     name: string;
     pic: string;
     status: string;
+    order: number;
     category: Category;
     filters: {
         isSelected: boolean,
@@ -22,6 +23,7 @@ export class SubCategory {
         this.code = obj.code;
         this.name = obj.name;
         this.pic = obj.pic;
+        this.order = obj.order;
         this.status = obj.status;
         this.category = new Category(obj.category)
         if (obj.filters && obj.filters.length) {

@@ -34,6 +34,10 @@
                 <input matInput name="name" type="text" [(ngModel)]="subCategory.name" [required]="true">
             </mat-form-field>
             <mat-form-field class="full-width-input">
+                <mat-label>Order</mat-label>
+                <input matInput name="order" type="number" [(ngModel)]="subCategory.order" [required]="true">
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
                 <mat-label>Status</mat-label>
                 <mat-select [(ngModel)]="subCategory.status">
                     <mat-option value="active">Active
@@ -45,7 +49,7 @@
             <mat-form-field *ngIf="categories && categories.length">
                 <mat-label>Category</mat-label>
                 <mat-select [(ngModel)]="selectedCategory">
-                    <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name | titlecase}}
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
