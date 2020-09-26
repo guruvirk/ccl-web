@@ -4,21 +4,21 @@
             <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
                 <mat-icon>menu</mat-icon>
             </button>
-            <span *ngIf="isMobile && !searchSelected" class="spacer"></span>
-            <span *ngIf="!searchSelected" [routerLink]="['']" class="title">
-                <img class="logoImg" src="/assets/img/Black Bg 1.png">
-                Comfort <span class="accentColor">& Care</span>
-            </span>
-            <span class="spacer"></span>
             <a *ngIf="!searchSelected" (click)="searchSelected = !searchSelected" class="callButton" fxShow="true"
                 fxHide.gt-sm mat-icon-button>
                 <mat-icon>search</mat-icon>
             </a>
+            <span *ngIf="isMobile && !searchSelected" class="spacer"></span>
+            <span *ngIf="!searchSelected" [routerLink]="['']" class="title">
+                <img class="logoImg" src="/assets/img/Black Bg 1.png">
+                <ng-container>Comfort <span class="accentColor">& Care</span></ng-container>
+            </span>
+            <span class="spacer"></span>
             <mat-form-field *ngIf="searchSelected" style="width: 200px !important; margin-right: 5px;"
                 class="example-full-width searchBar" [floatLabel]="'never'">
                 <mat-label>Search Products</mat-label>
-                <input type="text" class="searchInput" autofocus matInput [(ngModel)]="selectedItem" [formControl]="myControl"
-                    [matAutocomplete]="auto">
+                <input type="text" class="searchInput" autofocus matInput [(ngModel)]="selectedItem"
+                    [formControl]="myControl" [matAutocomplete]="auto">
                 <!-- <mat-icon (click)="searchSelected=!searchSelected" color="accent" matSuffix>close</mat-icon> -->
                 <!-- <i (click)="searchSelected=!searchSelected" class="fa fa-times accent"></i> -->
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
@@ -52,7 +52,8 @@
                 [href]="'tel:'+currentTenant.phone" mat-icon-button>
                 <mat-icon>call</mat-icon>
             </a>
-            <button *ngIf="cart && !searchSelected" [routerLink]="['cart']" mat-icon-button fxShow="true" fxHide.gt-sm>
+            <button style="margin-right: 10px;" *ngIf="cart && !searchSelected" [routerLink]="['cart']" mat-icon-button
+                fxShow="true" fxHide.gt-sm>
                 <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
             </button>
             <span flex></span>
@@ -60,8 +61,8 @@
                 <mat-form-field style="width: 200px !important; margin-right: 10px;"
                     class="example-full-width searchBar" [floatLabel]="'never'">
                     <mat-label>Search Products <i style="margin-left: 10px;" class="fa fa-search"></i></mat-label>
-                    <input type="text" #searchInput class="searchInput" matInput [(ngModel)]="selectedItem" [formControl]="myControl"
-                        [matAutocomplete]="auto">
+                    <input type="text" #searchInput class="searchInput" matInput [(ngModel)]="selectedItem"
+                        [formControl]="myControl" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                         <mat-option (click)="selectItem(option.id)"
                             style="height: 50px; text-align: center; padding-top: 3px; padding-bottom: 3px;"
@@ -92,7 +93,8 @@
                     [routerLink]="['view-items']" color="accent" mat-button>Items</button>
                 <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
                     [routerLink]="['view-orders']" color="accent" mat-button>Orders</button>
-                <button routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['']" color="accent" mat-button>Home</button>
+                <button routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['']"
+                    color="accent" mat-button>Home</button>
                 <button routerLinkActive="active" [routerLink]="['items']" color="accent" mat-button>Best
                     Sellers</button>
                 <ng-container *ngIf="categories && categories.length && !auth.hasPermission('admin')">
@@ -109,7 +111,7 @@
                     mat-icon-button>
                     <mat-icon>call</mat-icon>
                 </a>
-                <button *ngIf="cart" [routerLink]="['cart']" mat-icon-button>
+                <button style="margin-right: 10px;" *ngIf="cart" [routerLink]="['cart']" mat-icon-button>
                     <mat-icon matBadge="{{cart.items.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
             </div>
@@ -136,8 +138,8 @@
                 <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;"
                     routerLinkActive="active" [routerLink]="['view-orders']" color="accent" mat-button
                     routerLinkActive="active">Orders</button>
-                <button style="width: fit-content; min-width: 60%;" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['']" routerLinkActive="active"
-                    color="accent" mat-button>Home</button>
+                <button style="width: fit-content; min-width: 60%;" [routerLinkActiveOptions]="{ exact: true }"
+                    [routerLink]="['']" routerLinkActive="active" color="accent" mat-button>Home</button>
                 <br>
                 <button style="width: fit-content; min-width: 60%;" [routerLink]="['items']" routerLinkActive="active"
                     color="accent" mat-button>Best
