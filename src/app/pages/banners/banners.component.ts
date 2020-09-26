@@ -97,7 +97,9 @@ export class BannersComponent implements OnInit {
       if (!image.url || !image.file) {
         totalUploads++
         if (totalUploads == this.images.length) {
-          uploader.next(true)
+          setTimeout(() => {
+            uploader.next(true)
+          })
         }
       } else {
         this.auth.upload(image.file).subscribe(url => {
