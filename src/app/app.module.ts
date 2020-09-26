@@ -52,6 +52,7 @@ import { ReviewOrderComponent } from './pages/review-order/review-order.componen
 import { ImageViewComponent } from './components/image-view/image-view.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BannersComponent } from './pages/banners/banners.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ViewOrdersComponent,
     EditOrderComponent,
     ReviewOrderComponent,
-    ImageViewComponent
+    ImageViewComponent,
+    BannersComponent
   ],
   imports: [
     BrowserModule,

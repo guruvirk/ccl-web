@@ -1,0 +1,50 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="page">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3>Edit Banners</h3>
+        <span class="spacer"></span>
+        <button *ngIf="isMobile" (click)="back()" class="backIcon" mat-icon-button color="primary">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button *ngIf="!isMobile" (click)="back()" class="backButton" mat-raised-button color="primary">
+            BACK
+        </button>
+    </div>
+    <div *ngIf="tenant" class="container page">
+        <div class="loginCard">
+            <div class="row">
+                <div class="col-4" *ngFor="let image of images;let i=index"
+                    style="padding:10px;text-align: center;margin: auto;">
+                    <div *ngIf="image.url">
+                        <img [src]="image.url">
+                    </div>
+                    <div *ngIf="image.link">
+                        <img [src]="image.link">
+                    </div>
+                    <button *ngIf="!image.url && !image.link" #file mat-flat-button color="primary">Select Image
+                        <input (change)="onImageSelect($event, i)"
+                            style="opacity: 0; position:absolute; left:0px; top:0px; width:100%; height:100%;"
+                            type="file" />
+                    </button>
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Label</mat-label>
+                        <input matInput name="bannerText" type="text" [(ngModel)]="image.text" [required]="true">
+                    </mat-form-field>
+                    <button class="unSelect" (click)="unSelect(i)" mat-raised-button color="primary">
+                        Remove Item
+                    </button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <button (click)="addImages()" mat-raised-button color="primary"><b>Add Image</b></button>
+            <br>
+            <br>
+            <button (click)="create()" mat-raised-button color="accent"><b>Update</b></button>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>

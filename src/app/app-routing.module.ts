@@ -24,6 +24,7 @@ import { EditItemComponent } from './pages/edit-item/edit-item.component';
 import { ViewOrdersComponent } from './pages/view-orders/view-orders.component';
 import { EditOrderComponent } from './pages/edit-order/edit-order.component';
 import { ReviewOrderComponent } from './pages/review-order/review-order.component';
+import { BannersComponent } from './pages/banners/banners.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,6 +47,12 @@ const routes: Routes = [
   { path: 'payment/:id', component: PaymentComponent },
   { path: 'register', component: RegisterComponent },
   // { path: 'confirm/:id', component: ConfirmComponent },
+  {
+    path: 'banners', component: BannersComponent, canActivate: [UserGuard],
+    data: {
+      permissions: ['admin']
+    }
+  },
   {
     path: 'add-category', component: AddCategoryComponent, canActivate: [UserGuard],
     data: {

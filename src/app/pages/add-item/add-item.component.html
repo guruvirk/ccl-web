@@ -34,9 +34,18 @@
                 <mat-label>Name</mat-label>
                 <input matInput name="name" type="text" [(ngModel)]="item.name" [required]="true">
             </mat-form-field>
-            <mat-form-field class="full-width-input">
+            <mat-form-field appearance="fill" class="full-width-input">
                 <mat-label>Description</mat-label>
-                <input matInput name="description" type="text" [(ngModel)]="item.description" [required]="true">
+                <textarea matInput name="description" type="text" [(ngModel)]="item.description"
+                    [required]="true"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Note</mat-label>
+                <textarea matInput name="note" type="text" [(ngModel)]="item.note" [required]="true"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Warranty</mat-label>
+                <textarea matInput name="warranty" type="text" [(ngModel)]="item.warranty" [required]="true"></textarea>
             </mat-form-field>
             <mat-form-field class="full-width-input">
                 <mat-label>Code</mat-label>

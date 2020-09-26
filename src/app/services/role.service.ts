@@ -89,6 +89,10 @@ export class RoleService implements IAuth {
     return this._authApi.create('users', user)
   }
 
+  updateTenant(tenant): Observable<Tenant> {
+    return this._authApi.update('tenants/' + tenant.id, tenant)
+  }
+
   updateCart(cart: Order) {
     this._cart = cart
     this.localDb.update("cart", this._cart)

@@ -1,5 +1,5 @@
 export class Tenant {
-  
+
   id: string;
   code: string;
   name: string;
@@ -8,6 +8,7 @@ export class Tenant {
   supportPhone: number;
   supportEmail: string;
   address: string;
+  banners: { url: string, text: string }[]
 
   constructor(obj?: any) {
 
@@ -23,6 +24,16 @@ export class Tenant {
     this.supportPhone = obj.supportPhone;
     this.supportEmail = obj.supportEmail;
     this.address = obj.address;
+    this.banners = []
+
+    if (obj.banners && obj.banners.length) {
+      for (const banner of obj.banners) {
+        this.banners.push({
+          url: banner.url,
+          text: banner.text
+        })
+      }
+    }
 
   }
 }

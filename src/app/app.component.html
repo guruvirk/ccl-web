@@ -86,6 +86,8 @@
                     </mat-autocomplete>
                 </mat-form-field>
                 <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
+                    [routerLink]="['banners']" color="accent" mat-button>Banners</button>
+                <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
                     [routerLink]="['view-categories']" color="accent" mat-button>Categories</button>
                 <button *ngIf="currentUser && auth.hasPermission('admin')" routerLinkActive="active"
                     [routerLink]="['view-sub-categories']" color="accent" mat-button>Sub Categories</button>
@@ -126,6 +128,8 @@
                         <mat-icon>close</mat-icon>
                     </button>
                 </div>
+                <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;" routerLinkActive="active"
+                    [routerLink]="['banners']" color="accent" mat-button>Banners</button>
                 <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;"
                     routerLinkActive="active" [routerLink]="['view-categories']" color="accent" mat-button
                     routerLinkActive="active">Categories</button>
