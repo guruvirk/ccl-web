@@ -119,8 +119,9 @@
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div style="padding-top: 20px;" class="short_overview my-1" [innerHTML]="item.description">
-                        </div>
+                        <h4 style="padding-top: 20px;">Description</h4>
+                        <h5 class="short_overview my-1" [innerHTML]="item.description">
+                        </h5>
                         <div *ngIf="item.note" class="note short_overview my-1" [innerHTML]="item.note">
                         </div>
                         <div *ngIf="item.warranty" class="warranty short_overview my-1" [innerHTML]="item.warranty">

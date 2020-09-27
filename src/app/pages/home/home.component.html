@@ -13,20 +13,18 @@
         <ng-container *ngFor="let banner of tenant.banners;let i=index">
             <div *ngIf="i==0" class="carousel-item active">
                 <div class="bannerDiv" [ngStyle]="{'background-image': 'url(' + banner.url + ')'}"
-                    style="background-size: contain;">
+                    style="background-size: cover;">
                     <div class="banner" style="position: absolute;;height: 100%;width: 100%;opacity: .8;">
                     </div>
-                    <h1 class="accentColor bannnerHead">
-                        {{banner.text}}</h1>
+                    <h1 class="accentColor bannnerHead" [innerHtml]="banner.text"></h1>
                 </div>
             </div>
             <div *ngIf="i!=0" class="carousel-item">
                 <div class="bannerDiv" [ngStyle]="{'background-image': 'url(' + banner.url + ')'}"
-                    style="background-size: contain;">
+                    style="background-size: cover;">
                     <div class="banner" style="position: absolute;;height: 100%;width: 100%;opacity: .8;">
                     </div>
-                    <h1 class="accentColor bannnerHead">
-                        {{banner.text}}</h1>
+                    <h1 class="accentColor bannnerHead" [innerHtml]="banner.text"></h1>
                 </div>
             </div>
         </ng-container>
