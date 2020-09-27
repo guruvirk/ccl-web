@@ -83,9 +83,13 @@
                         <input matInput name="price{{i}}" type="number" [(ngModel)]="option.price" [required]="true">
                     </mat-form-field>
                     <mat-form-field class="full-width-input">
-                        <mat-label>ActualPrice</mat-label>
+                        <mat-label>Actual Price</mat-label>
                         <input matInput name="actualPrice{{i}}" type="text" [(ngModel)]="option.actualPrice"
                             [required]="true">
+                    </mat-form-field>
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Base Price</mat-label>
+                        <input matInput name="basePrice{{i}}" type="text" [(ngModel)]="option.basePrice">
                     </mat-form-field>
                     <mat-form-field class="full-width-input">
                         <mat-label>Code</mat-label>
@@ -108,34 +112,15 @@
             <button (click)="addOptions()" mat-raised-button color="primary"><b>Add Option</b></button>
             <br>
             <br>
-            <div class="row">
-                <div class="col-4" *ngFor="let option of item.optionals;let i=index"
-                    style="padding:10px;text-align: center;margin: auto;">
-                    Optional {{i+1}}
-                    <mat-form-field class="full-width-input">
-                        <mat-label>Label</mat-label>
-                        <input matInput name="label{{i}}" type="text" [(ngModel)]="option.label" [required]="true">
-                    </mat-form-field>
-                    <mat-form-field class="full-width-input">
-                        <mat-label>Price</mat-label>
-                        <input matInput name="price{{i}}" type="number" [(ngModel)]="option.price" [required]="true">
-                    </mat-form-field>
-                    <mat-form-field class="full-width-input">
-                        <mat-label>ActualPrice</mat-label>
-                        <input matInput name="actualPrice{{i}}" type="text" [(ngModel)]="option.actualPrice"
-                            [required]="true">
-                    </mat-form-field>
-                    <mat-form-field class="full-width-input">
-                        <mat-label>Code</mat-label>
-                        <input matInput name="code{{i}}" type="text" [(ngModel)]="option.code" [required]="true">
-                    </mat-form-field>
-                    <button class="unSelect" (click)="unSelectOptional(i)" mat-raised-button color="primary">
-                        Remove Optional
-                    </button>
-                </div>
-            </div>
-            <button (click)="addOptionals()" mat-raised-button color="primary"><b>Add Optionals</b></button>
-            <br>
+            <mat-form-field>
+                <mat-label>Base Option</mat-label>
+                <mat-select [(ngModel)]="item.baseOption">
+                    <mat-option [value]="true">True
+                    </mat-option>
+                    <mat-option [value]="false">False
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <br>
             <br>
             <div class="row">

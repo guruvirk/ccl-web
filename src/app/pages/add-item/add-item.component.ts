@@ -8,7 +8,6 @@ import { Category } from 'src/app/models';
 import { CatgoryService } from 'src/app/services/catgory.service';
 import { ItemService } from 'src/app/services/item.service';
 import { Observable, Subject } from 'rxjs';
-import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-add-item',
@@ -92,6 +91,7 @@ export class AddItemComponent implements OnInit {
       type: this.item.option.type,
       price: this.item.option.options[0].price,
       label: this.item.option.options[0].label,
+      basePrice: this.item.option.options[0].basePrice,
       actualPrice: this.item.option.options[0].actualPrice,
       availability: this.item.option.options[0].availability,
       code: this.item.option.options[0].code,
@@ -133,22 +133,13 @@ export class AddItemComponent implements OnInit {
   }
 
 
-  addOptionals() {
-    this.item.optionals = this.item.optionals || []
-    this.item.optionals.push({
-      label: null,
-      price: null,
-      actualPrice: null,
-      code: null
-    })
-  }
-
   addOptions() {
     this.item.option.options = this.item.option.options || []
     this.item.option.options.push({
       label: null,
       price: null,
       actualPrice: null,
+      basePrice: null,
       code: null,
       availability: null
     })
@@ -172,10 +163,6 @@ export class AddItemComponent implements OnInit {
 
   unSelectTag(index) {
     this.item.tags.splice(index, 1)
-  }
-
-  unSelectOptional(index) {
-    this.item.optionals.splice(index, 1)
   }
 
   upload(): Observable<boolean> {

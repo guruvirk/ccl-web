@@ -42,8 +42,27 @@
                                 <div class="col-12 col-md-9">
                                     <div
                                         *ngIf="item.option && item.option.options && item.option.options.length && item.option.options.length > 1">
-                                        <h4>Available {{item.option.type | titlecase}}'s</h4>
-                                        <div class="row" style="padding: 10px; margin-bottom: 15px;">
+                                        <div class="row">
+                                            <h4 class="col-6" style="margin: auto;margin-left: 0;">Available
+                                                {{item.option.type | titlecase}}'s</h4>
+                                            <mat-form-field style="margin: auto;margin-left: 0;" appearance="outline"
+                                                class="col-6" *ngIf="item.baseOption" class="optionalSelect">
+                                                <mat-label class="optionalLabel">BED OR MATTRESS</mat-label>
+                                                <mat-select [(ngModel)]="baseOption">
+                                                    <mat-option
+                                                        [ngStyle]="{'background': baseOption ? 'rgb(255,167,38)': 'white'}"
+                                                        [value]="true">
+                                                        Mattress and Base
+                                                    </mat-option>
+                                                    <mat-option
+                                                        [ngStyle]="{'background': !baseOption ? 'rgb(255,167,38)': 'white'}"
+                                                        style="border-top: 2px solid black;" [value]="false">
+                                                        Mattress Only
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="row">
                                             <ng-container *ngFor="let option of item.option.options;let i=index">
                                                 <div (click)="selectOption(i)"
                                                     [class.activeOption]="option.code == currentOption.code"
@@ -51,27 +70,52 @@
                                                     <mat-icon *ngIf="option.code == currentOption.code" class="check">
                                                         check_circle</mat-icon>
                                                     <h5>{{option.label | titlecase}}</h5>
-                                                    <h5 class="accentColor" *ngIf="!currentOptional">
+                                                    <h5 class="accentColor"
+                                                        *ngIf="!baseOption && option.code == currentOption.code">
                                                         ${{option.price}}<s class="oldPrice">
                                                             ${{option.actualPrice}}</s></h5>
-                                                    <h5 class="accentColor" *ngIf="currentOptional">
-                                                        ${{option.price + currentOptional.price}}<s class="oldPrice">
-                                                            ${{option.actualPrice + currentOptional.actualPrice}}</s>
+                                                    <h5 class="accentColor"
+                                                        *ngIf="baseOption && option.code == currentOption.code">
+                                                        ${{option.price + option.basePrice}}<s class="oldPrice">
+                                                            ${{option.actualPrice + option.basePrice}}</s>
                                                     </h5>
                                                 </div>
                                             </ng-container>
                                         </div>
                                     </div>
-                                    <div class="singleOption"
+                                    <div class="row"
                                         *ngIf="!item.option || !item.option.options || !item.option.options.length || item.option.options.length < 2">
-                                        <h5>{{item.defaultOption.label | titlecase}}</h5>
-                                        <h5 class="accentColor" *ngIf="!currentOptional">
-                                            ${{item.defaultOption.price}}<s class="oldPrice">
-                                                ${{item.defaultOption.actualPrice}}</s></h5>
-                                        <h5 class="accentColor" *ngIf="currentOptional">
-                                            ${{item.defaultOption.price + currentOptional.price}}<s class="oldPrice">
-                                                ${{item.defaultOption.actualPrice + currentOptional.actualPrice}}</s>
-                                        </h5>
+                                        <div class="col-6">
+                                            <div class="singleOption">
+                                                <h5>{{item.defaultOption.label | titlecase}}</h5>
+                                                <h5 class="accentColor" *ngIf="!baseOption">
+                                                    ${{item.defaultOption.price}}<s class="oldPrice">
+                                                        ${{item.defaultOption.actualPrice}}</s></h5>
+                                                <h5 class="accentColor" *ngIf="baseOption">
+                                                    ${{item.defaultOption.price + item.defaultOption.basePrice}}<s
+                                                        class="oldPrice">
+                                                        ${{item.defaultOption.actualPrice + item.defaultOption.basePrice}}</s>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-6" *ngIf="item.baseOption">
+                                            <mat-form-field style="margin: auto;margin-left: 0;width: 70% !important;"
+                                                appearance="outline" class="optionalSelect">
+                                                <mat-label class="optionalLabel">BED OR MATTRESS</mat-label>
+                                                <mat-select [(ngModel)]="baseOption">
+                                                    <mat-option
+                                                        [ngStyle]="{'background': baseOption ? 'rgb(255,167,38)': 'white'}"
+                                                        [value]="true">
+                                                        Mattress and Base
+                                                    </mat-option>
+                                                    <mat-option
+                                                        [ngStyle]="{'background': !baseOption ? 'rgb(255,167,38)': 'white'}"
+                                                        style="border-top: 2px solid black;" [value]="false">
+                                                        Mattress Only
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                     <div *ngIf="item.rating.value"
                                         class="ratings-review mb-15 d-flex align-items-center justify-content-between">
@@ -106,19 +150,6 @@
                                 </div>
                             </div>
                         </div>
-                        <mat-form-field *ngIf="item.optionals && item.optionals.length" class="optionalSelect">
-                            <mat-label class="optionalLabel">BED OR MATTRESS</mat-label>
-                            <mat-select [(ngModel)]="currentOptionalValue" (selectionChange)="selectOptional($event)">
-                                <mat-option style="background: rgb(255,167,38);"
-                                    *ngFor="let optional of item.optionals;let i=index" [value]="i">
-                                    {{optional.label | titlecase}} and Base
-                                </mat-option>
-                                <mat-option style="background: rgb(255,167,38); border-top: 1px solid black;"
-                                    value="no">
-                                    Mattress Only
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
                         <h4 style="padding-top: 20px;">Description</h4>
                         <h5 class="short_overview my-1" [innerHTML]="item.description">
                         </h5>

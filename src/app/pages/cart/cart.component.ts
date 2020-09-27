@@ -68,7 +68,11 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cart.amount = 0
     if (this.cart.items && this.cart.items) {
       this.cart.items.forEach(item => {
-        this.cart.amount = this.cart.amount + (item.option.price * item.quantity)
+        if (item.baseOption) {
+          this.cart.amount = this.cart.amount + ((item.option.price + item.option.basePrice) * item.quantity)
+        } else {
+          this.cart.amount = this.cart.amount + (item.option.price * item.quantity)
+        }
       });
     }
     this.auth.updateCart(this.cart)

@@ -141,6 +141,7 @@ export class EditItemComponent implements OnInit {
       type: this.item.option.type,
       price: this.item.option.options[0].price,
       label: this.item.option.options[0].label,
+      basePrice: this.item.option.options[0].basePrice,
       actualPrice: this.item.option.options[0].actualPrice,
       availability: this.item.option.options[0].availability,
       code: this.item.option.options[0].code,
@@ -214,17 +215,8 @@ export class EditItemComponent implements OnInit {
       price: null,
       actualPrice: null,
       code: null,
-      availability: null
-    })
-  }
-
-  addOptionals() {
-    this.item.optionals = this.item.optionals || []
-    this.item.optionals.push({
-      label: null,
-      price: null,
-      actualPrice: null,
-      code: null
+      availability: null,
+      basePrice: null
     })
   }
 
@@ -246,10 +238,6 @@ export class EditItemComponent implements OnInit {
 
   unSelectTag(index) {
     this.tags.splice(index, 1)
-  }
-
-  unSelectOptional(index) {
-    this.item.optionals.splice(index, 1)
   }
 
   upload(): Observable<boolean> {

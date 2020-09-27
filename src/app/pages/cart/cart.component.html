@@ -23,11 +23,12 @@
                         <div class="col-7 col-md-8">
                             <div style="height: 100%;" class="row">
                                 <div class="col-12 col-md-6">
-                                    <h6 style="margin-top: 10%;"><b>Name:</b> {{element.item.name}}</h6>
-                                    <h6 *ngIf="!element.optional" style="margin-top: 10%;"><b>Price:</b>
+                                    <h6 style="margin-top: 10%;"><b>Name:</b> {{element.item.name}}
+                                        ({{element.option.label}}) {{element.baseOption ? 'with Base': ''}}</h6>
+                                    <h6 *ngIf="!element.baseOption" style="margin-top: 10%;"><b>Price:</b>
                                         ${{element.option.price}}</h6>
-                                    <h6 *ngIf="element.optional" style="margin-top: 10%;"><b>Price:</b>
-                                        ${{element.option.price + element.optional.price}}</h6>
+                                    <h6 *ngIf="element.baseOption" style="margin-top: 10%;"><b>Price:</b>
+                                        ${{element.option.price + element.option.basePrice}}</h6>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div style="margin-top: 10%;">

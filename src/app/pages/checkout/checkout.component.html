@@ -63,16 +63,16 @@
                                 <input [(ngModel)]="user.lastName" matInput required>
                             </mat-form-field>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-3 col-md-3">
                             <mat-form-field class="field-full-width">
-                                <mat-label>Line 1</mat-label>
+                                <mat-label>Street No</mat-label>
                                 <input [(ngModel)]="user.address.line1" matInput required>
                             </mat-form-field>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-9 col-md-9">
                             <mat-form-field class="field-full-width">
-                                <mat-label>Line 2</mat-label>
-                                <input [(ngModel)]="user.address.line2" matInput>
+                                <mat-label>Street Name</mat-label>
+                                <input [(ngModel)]="user.address.line2" matInput required>
                             </mat-form-field>
                         </div>
                         <div class="col-4">
@@ -121,11 +121,6 @@
                             <span class="spacer"></span>
                             <h6>${{cart.amount}}</h6>
                         </div>
-                        <div *ngIf="!isCod" class="header">
-                            <h6>Tax : </h6>
-                            <span class="spacer"></span>
-                            <h6>${{getTax()}}</h6>
-                        </div>
                         <div class="header">
                             <h6 style="margin:auto">Delivery : </h6>
                             <span class="spacer"></span>
@@ -144,7 +139,7 @@
                         <div *ngIf="!isCod" class="header">
                             <h6>Total : </h6>
                             <span class="spacer"></span>
-                            <h6>${{cart.amount + getTax()}}</h6>
+                            <h6>${{cart.amount}}</h6>
                         </div>
                     </div>
                     <section class="tnc-checkbox-section">

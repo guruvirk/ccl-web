@@ -135,33 +135,34 @@ export class RoleService implements IAuth {
     label: string,
     price: number;
     actualPrice: number;
+    basePrice: number;
     code: string;
     type: string;
-  }, quantity, optional?) {
+  }, quantity, baseOption?) {
     let added = false
     if (this._cart.items && this._cart.items.length) {
       let index = this.getIndexInCart(item)
       if (index || index == 0) {
         added = true
 
-        if (this._cart.items[index].optional) {
-          this._cart.amount = this._cart.amount - ((this._cart.items[index].option.price + this._cart.items[index].optional.price) * this._cart.items[index].quantity)
+        if (this._cart.items[index].baseOption) {
+          this._cart.amount = this._cart.amount - ((this._cart.items[index].option.price + this._cart.items[index].option.basePrice) * this._cart.items[index].quantity)
         } else {
           this._cart.amount = this._cart.amount - (this._cart.items[index].option.price * this._cart.items[index].quantity)
         }
 
-        this._cart.items[index].option = option
+        this._cart.items[index].baseOption = baseOption
 
         this._cart.items[index].quantity = quantity
 
         this._cart.amount = this._cart.amount || 0
 
-        if (optional) {
-          this._cart.amount = this._cart.amount + ((option.price + optional.price) * this._cart.items[index].quantity)
-          this._cart.items[index].optional = optional
+        if (baseOption) {
+          this._cart.amount = this._cart.amount + ((option.price + option.basePrice) * this._cart.items[index].quantity)
+          this._cart.items[index].baseOption = baseOption
         } else {
           this._cart.amount = this._cart.amount + (option.price * this._cart.items[index].quantity)
-          this._cart.items[index].optional = null
+          this._cart.items[index].baseOption = false
         }
 
         this.localDb.update("cart", this._cart)
@@ -172,14 +173,14 @@ export class RoleService implements IAuth {
       this._cart.items.push({
         item: item,
         option: option,
-        optional: optional || null,
+        baseOption: baseOption || false,
         quantity: quantity
       })
 
-      if (optional) {
+      if (baseOption) {
         this._cart.amount = this._cart.amount || 0
 
-        this._cart.amount = this._cart.amount + ((option.price + optional.price) * quantity)
+        this._cart.amount = this._cart.amount + ((option.price + option.basePrice) * quantity)
       } else {
         this._cart.amount = this._cart.amount || 0
 
@@ -198,8 +199,8 @@ export class RoleService implements IAuth {
 
       if (index || index == 0) {
 
-        if (this._cart.items[index].optional) {
-          this._cart.amount = this._cart.amount - ((this._cart.items[index].option.price + this._cart.items[index].optional.price) * this._cart.items[index].quantity)
+        if (this._cart.items[index].baseOption) {
+          this._cart.amount = this._cart.amount - ((this._cart.items[index].option.price + this._cart.items[index].option.basePrice) * this._cart.items[index].quantity)
         } else {
           this._cart.amount = this._cart.amount - (this._cart.items[index].option.price * this._cart.items[index].quantity)
         }

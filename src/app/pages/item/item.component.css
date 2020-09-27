@@ -115,3 +115,7 @@
         text-align: center;
     }
 }
+
+::ng-deep .optionalSelect .mat-form-field-underline {
+        display: none;
+    }

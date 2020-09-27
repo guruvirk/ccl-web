@@ -5,7 +5,6 @@ import { UxService } from '../../services/ux.service';
 import { ItemService } from '../../services/item.service';
 import { Item } from 'src/app/models';
 import { MatDialog } from '@angular/material';
-import { OptionDialogComponent } from 'src/app/components/option-dialog/option-dialog.component';
 import { ImageViewComponent } from 'src/app/components/image-view/image-view.component';
 
 @Component({
@@ -18,20 +17,15 @@ export class ItemComponent implements OnInit, OnDestroy {
   isMobile: boolean;
   item: Item;
   isLoading = false;
-  currentOptionalValue: any = 'no'
+  baseOption: boolean = true
   currentOption: {
     label: string;
     price: number;
     actualPrice: number;
+    basePrice: number;
     code: string;
     type: string;
     availability: boolean;
-  }
-  currentOptional: {
-    label: string;
-    price: number;
-    actualPrice: number;
-    code: string;
   }
   zoomImage: string
 
@@ -47,10 +41,6 @@ export class ItemComponent implements OnInit, OnDestroy {
         this.api.get(params.id).subscribe(item => {
           this.item = new Item(item)
           this.currentOption = this.item.defaultOption
-          if (this.item.optionals && this.item.optionals.length) {
-            this.currentOptional = this.item.optionals[0]
-            this.currentOptionalValue = 0
-          }
           this.isLoading = false;
         }, err => {
           this.isLoading = false;
@@ -76,23 +66,10 @@ export class ItemComponent implements OnInit, OnDestroy {
       label: selectedOption.label,
       price: selectedOption.price,
       actualPrice: selectedOption.actualPrice,
+      basePrice: selectedOption.basePrice,
       code: selectedOption.code,
       type: this.item.option.type,
       availability: selectedOption.availability
-    }
-  }
-
-  selectOptional(event) {
-    if (event.value != 'no') {
-      let selectedOption = this.item.optionals[event.value || 0]
-      this.currentOptional = {
-        label: selectedOption.label,
-        price: selectedOption.price,
-        actualPrice: selectedOption.actualPrice,
-        code: selectedOption.code
-      }
-    } else {
-      this.currentOptional = null
     }
   }
 
@@ -105,7 +82,7 @@ export class ItemComponent implements OnInit, OnDestroy {
   }
 
   addToCart() {
-    this.auth.addToCart(this.item, this.currentOption, 1, this.currentOptional || null)
+    this.auth.addToCart(this.item, this.currentOption, 1, this.baseOption || false)
     this.uxService.showInfo("Added to Cart Succesfully")
   }
 

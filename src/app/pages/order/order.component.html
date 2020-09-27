@@ -42,33 +42,33 @@
                     <div *ngIf="!isMobile" style="height: 100%;" class="row">
                         <div class="col-12 col-md-6">
                             <h6 style="margin-top: 10%;"><b>Name:</b> {{element.item.name}}</h6>
-                            <h6 *ngIf="!element.optional || !element.optional.price" style="margin-top: 10%;">
+                            <h6 *ngIf="!element.baseOption" style="margin-top: 10%;">
                                 <b>Price:</b>
                                 ${{element.option.price}}</h6>
-                            <h6 *ngIf="element.optional && element.optional.price" style="margin-top: 10%;">
+                            <h6 *ngIf="element.baseOption" style="margin-top: 10%;">
                                 <b>Price:</b>
-                                ${{element.option.price + element.optional.price}}</h6>
+                                ${{element.option.price + element.option.basePrice}}</h6>
                         </div>
                         <div class="col-12 col-md-6">
                             <h6 style="margin-top: 10%;"><b>Quantity:</b> {{element.quantity}}</h6>
                             <h6 style="margin-top: 10%;"><b>{{element.option.label | titlecase}} <span
-                                        *ngIf="element.optional && element.optional.price">
-                                        with {{element.optional.label | titlecase}}</span></b></h6>
+                                        *ngIf="element.baseOption">
+                                        with Base</span></b></h6>
                         </div>
                     </div>
                     <div *ngIf="isMobile" style="height: 100%;text-align: left;" class="row">
                         <div class="col-12 col-md-6">
                             <h6><b>Name:</b> {{element.item.name}}</h6>
-                            <h6 *ngIf="!element.optional || !element.optional.price"><b>Price:</b>
+                            <h6 *ngIf="!element.baseOption"><b>Price:</b>
                                 ${{element.option.price}}</h6>
-                            <h6 *ngIf="element.optional && element.optional.price"><b>Price:</b>
-                                ${{element.option.price + element.optional.price}}</h6>
+                            <h6 *ngIf="element.baseOption"><b>Price:</b>
+                                ${{element.option.price + element.option.basePrice}}</h6>
                         </div>
                         <div class="col-12 col-md-6">
                             <h6><b>Quantity:</b> {{element.quantity}}</h6>
                             <h6><b>{{element.option.label | titlecase}} <span
-                                        *ngIf="element.optional && element.optional.price">
-                                        with {{element.optional.label | titlecase}}</span></b></h6>
+                                        *ngIf="element.baseOption">
+                                        with Base</span></b></h6>
                         </div>
                     </div>
                 </div>
@@ -111,11 +111,11 @@
         <mat-card *ngIf="order.address" class="checkoutCard">
             <h5>Billing/Delivery Address</h5>
             <div class="row">
-                <div *ngIf="order.address.line1" class="col-12 col-md-6 auto">
-                    <b>Line 1 : </b>{{order.address.line1}}
+                <div *ngIf="order.address.line1" class="col-3 col-md-3 auto">
+                    <b>Street No : </b>{{order.address.line1}}
                 </div>
-                <div *ngIf="order.address.line2" class="col-12 col-md-6 auto">
-                    <b>Line 2 : </b>{{order.address.line2}}
+                <div *ngIf="order.address.line2" class="col-9 col-md-9 auto">
+                    <b>Street Name : </b>{{order.address.line2}}
                 </div>
                 <div *ngIf="order.address.city" class="col-12 col-md-6 auto">
                     <b>City : </b>{{order.address.city}}

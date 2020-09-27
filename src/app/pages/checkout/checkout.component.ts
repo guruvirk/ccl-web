@@ -113,7 +113,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       return
     }
     if (!this.user.address.line1) {
-      this.uxService.handleError("Line 1 is required")
+      this.uxService.handleError("Street No is required")
+      return
+    }
+    if (!this.user.address.line2) {
+      this.uxService.handleError("Street Name is required")
       return
     }
     if (!this.user.address.city) {
@@ -179,11 +183,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       })
     }
-  }
-
-  getTax(): number {
-    let percent = (2.9 / 100) * this.cart.amount;
-    return Number((percent + 0.30).toFixed(2))
   }
 
 }

@@ -18,6 +18,7 @@ export class Item {
         label: string;
         price: number;
         actualPrice: number;
+        basePrice: number
         code: string;
         type: string;
         availability: boolean;
@@ -28,16 +29,12 @@ export class Item {
             label: string
             price: number
             actualPrice: number
+            basePrice: number
             code: string
             availability: boolean
         }[]
     };
-    optionals: {
-        label: string
-        price: number
-        actualPrice: number
-        code: string
-    }[];
+    baseOption: boolean;
     tags: string[];
     status: string;
     meta: any;
@@ -80,7 +77,7 @@ export class Item {
             type: null,
             options: []
         }
-        this.optionals = []
+        this.baseOption = obj.baseOption
         if (obj.images && obj.images.length) {
             for (const image of obj.images) {
                 if (this.images && this.images.length) {
@@ -121,6 +118,7 @@ export class Item {
                         label: option.label,
                         price: option.price,
                         actualPrice: option.actualPrice,
+                        basePrice: option.basePrice,
                         code: option.code,
                         availability: option.availability
                     })
@@ -131,30 +129,11 @@ export class Item {
                             label: option.label,
                             price: option.price,
                             actualPrice: option.actualPrice,
+                            basePrice: option.basePrice,
                             code: option.code,
                             availability: option.availability
                         }]
                     }
-                }
-            }
-        }
-
-        if (obj.optionals && obj.optionals.length) {
-            for (const option of obj.optionals) {
-                if (this.optionals && this.optionals.length) {
-                    this.optionals.push({
-                        label: option.label,
-                        price: option.price,
-                        actualPrice: option.actualPrice,
-                        code: option.code
-                    })
-                } else {
-                    this.optionals = [{
-                        label: option.label,
-                        price: option.price,
-                        actualPrice: option.actualPrice,
-                        code: option.code
-                    }]
                 }
             }
         }
@@ -164,6 +143,7 @@ export class Item {
                 label: obj.defaultOption.label,
                 price: obj.defaultOption.price,
                 actualPrice: obj.defaultOption.actualPrice,
+                basePrice: obj.defaultOption.basePrice,
                 code: obj.defaultOption.code,
                 type: obj.defaultOption.type,
                 availability: obj.defaultOption.availability

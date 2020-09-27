@@ -24,16 +24,12 @@ export class Order {
       label: string,
       price: number,
       actualPrice: number,
+      basePrice: number,
       code: string,
       type: string,
     },
     quantity: number,
-    optional: {
-      label: string,
-      price: number,
-      actualPrice: number,
-      code: string
-    }
+    baseOption: boolean
   }[];
   updates: {
     label: string,
@@ -88,10 +84,11 @@ export class Order {
               label: item.option.label,
               price: item.option.price,
               actualPrice: item.option.actualPrice,
+              basePrice: item.option.basePrice,
               code: item.option.code,
               type: item.option.type
             },
-            optional: null,
+            baseOption: item.baseOption,
             quantity: item.quantity
           })
         } else {
@@ -101,15 +98,11 @@ export class Order {
               label: item.option.label,
               price: item.option.price,
               actualPrice: item.option.actualPrice,
+              basePrice: item.option.basePrice,
               code: item.option.code,
               type: item.option.type
             },
-            optional: item.optional ? {
-              label: item.optional.label,
-              price: item.optional.price,
-              actualPrice: item.optional.actualPrice,
-              code: item.optional.code
-            } : null,
+            baseOption: item.baseOption,
             quantity: item.quantity
           }]
         }
