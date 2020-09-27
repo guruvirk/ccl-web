@@ -207,7 +207,10 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
   }
 
   back() {
-    this.uxService.back()
+    if (this.subCategory) {
+      this.uxService.back()
+    }
+    this.router.navigate([""])
   }
 
   getSecandoryPic(item: Item): string {

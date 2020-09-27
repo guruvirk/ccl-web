@@ -73,12 +73,12 @@ export class EditItemComponent implements OnInit {
     }, err => {
       this.isLoading = false;
     })
-    this.categoryApi.search({}).subscribe(page => {
+    this.categoryApi.search({ status: 'active' }).subscribe(page => {
       this.categories = page.items
     }, err => {
       this.isLoading = false;
     })
-    this.subCategoryApi.search({}).subscribe(page => {
+    this.subCategoryApi.search({ status: 'active' }).subscribe(page => {
       this.subCategories = page.items
     }, err => {
       this.isLoading = false;
@@ -94,7 +94,7 @@ export class EditItemComponent implements OnInit {
 
   getSubCategories() {
     if (this.item.category) {
-      this.subCategoryApi.search({ category: this.item.category.id }).subscribe(page => {
+      this.subCategoryApi.search({status: 'active', category: this.item.category.id }).subscribe(page => {
         this.subCategories = page.items
       })
     }
@@ -171,6 +171,8 @@ export class EditItemComponent implements OnInit {
           }, err => {
             this.isLoading = false;
           })
+        } else {
+          this.isLoading = false;
         }
       }, err => {
         this.isLoading = false;

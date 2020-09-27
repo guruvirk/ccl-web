@@ -35,7 +35,7 @@ export class AddItemComponent implements OnInit {
     if (window.screen.width < 781) {
       this.isMobile = true
     }
-    this.categoryApi.search({}).subscribe(page => {
+    this.categoryApi.search({ status: 'active' }).subscribe(page => {
       this.categories = page.items
     })
   }
@@ -49,7 +49,7 @@ export class AddItemComponent implements OnInit {
 
   getSubCategories() {
     if (this.item.category) {
-      this.subCategoryApi.search({ category: this.item.category.id }).subscribe(page => {
+      this.subCategoryApi.search({ status: 'active', category: this.item.category.id }).subscribe(page => {
         this.subCategories = page.items
       })
     }
@@ -111,6 +111,8 @@ export class AddItemComponent implements OnInit {
         }, err => {
           this.isLoading = false;
         })
+      } else {
+        this.isLoading = false;
       }
     })
 

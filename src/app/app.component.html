@@ -16,7 +16,8 @@
             <span class="spacer"></span>
             <mat-form-field *ngIf="searchSelected" style="width: 200px !important; margin-right: 5px;"
                 class="example-full-width searchBar" [floatLabel]="'never'">
-                <mat-label>Search Products</mat-label>
+                <!-- <mat-label></mat-label> -->
+                <mat-placeholder class="placeholder">Search Products</mat-placeholder>
                 <input type="text" class="searchInput" autofocus matInput [(ngModel)]="selectedItem"
                     [formControl]="myControl" [matAutocomplete]="auto">
                 <!-- <mat-icon (click)="searchSelected=!searchSelected" color="accent" matSuffix>close</mat-icon> -->
@@ -60,7 +61,9 @@
             <div fxShow="true" fxHide.lt-md>
                 <mat-form-field style="width: 200px !important; margin-right: 10px;"
                     class="example-full-width searchBar" [floatLabel]="'never'">
-                    <mat-label>Search Products <i style="margin-left: 10px;" class="fa fa-search"></i></mat-label>
+                    <mat-placeholder id="yellowPlaceholder" class="placeholder">Search Products <i style="margin-left: 10px;"
+                            class="fa fa-search"></i></mat-placeholder>
+                    <!-- <mat-label>Search Products <i style="margin-left: 10px;" class="fa fa-search"></i></mat-label> -->
                     <input type="text" #searchInput class="searchInput" matInput [(ngModel)]="selectedItem"
                         [formControl]="myControl" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
@@ -128,8 +131,8 @@
                         <mat-icon>close</mat-icon>
                     </button>
                 </div>
-                <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;" routerLinkActive="active"
-                    [routerLink]="['banners']" color="accent" mat-button>Banners</button>
+                <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;"
+                    routerLinkActive="active" [routerLink]="['banners']" color="accent" mat-button>Banners</button>
                 <button *ngIf="currentUser && auth.hasPermission('admin')" style="width: fit-content; min-width: 60%;"
                     routerLinkActive="active" [routerLink]="['view-categories']" color="accent" mat-button
                     routerLinkActive="active">Categories</button>

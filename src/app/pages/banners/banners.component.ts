@@ -62,6 +62,8 @@ export class BannersComponent implements OnInit {
         }, err => {
           this.isLoading = false;
         })
+      } else {
+        this.isLoading = false;
       }
     })
 
