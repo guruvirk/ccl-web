@@ -83,7 +83,7 @@ export class ItemComponent implements OnInit, OnDestroy {
 
   addToCart() {
     this.auth.addToCart(this.item, this.currentOption, 1, this.baseOption || false)
-    this.uxService.showInfo("Added to Cart Succesfully")
+    this.uxService.addToCart("Added to Cart Succesfully")
   }
 
   viewImage(pic) {

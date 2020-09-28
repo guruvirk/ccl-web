@@ -11,8 +11,22 @@ mat-sidenav {
     outline: 0;
   }
 
+.titleMobile {
+    margin-right: 2%;
+    border: 0 !important;
+    font-size: 18px;
+}
+
+.titleMobile:focus {
+    outline: 0;
+}
+
 .fotterTitle {
     color: var(--accent);
+}
+
+.fotterTitleExpention {
+    color: var(--primary);
 }
 
 .spacer {
@@ -49,7 +63,7 @@ mat-sidenav {
         margin-top: 9vh !important;
     }
     .logoImg {
-        height: 5vh;
+        height: 4vh;
     }
     .fotterImg {
         height: 7vh;
@@ -65,7 +79,7 @@ mat-sidenav {
         margin-top: 8vh !important;
     }
     .logoImg {
-        height: 4vh;
+        height: 3vh;
     }
     .fotterImg {
         height: 6vh;
@@ -121,5 +135,19 @@ mat-sidenav {
 
 .mat-focused .placeholder {
     color: transparent !important;
+}
+
+mat-expansion-panel {
+    background-color: rgb(255,167,38,.8);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+::ng-deep mat-expansion-panel-header:hover{
+    background: none !important;
+}
+
+::ng-deep mat-expansion-panel-header.mat-expanded:hover{
+    background: none !important;
 }
   

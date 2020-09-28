@@ -16,7 +16,7 @@ export class TncDialogComponent implements OnInit, OnDestroy {
     private auth: RoleService,
     private router: Router,
     private uxService: UxService,
-    public dialogRef: MatDialogRef<TncDialogComponent>,) {
+    public dialogRef: MatDialogRef<TncDialogComponent>) {
   }
 
   ngOnInit() {

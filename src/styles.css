@@ -141,3 +141,7 @@ mat-form-field {
       margin-top: 8px !important;
   }
 }
+
+.main-span{
+  background-color: white;
+}

@@ -72,11 +72,10 @@
     <div *ngIf="categories && categories.length" class="container">
         <div class="row">
             <ng-container *ngFor="let category of categories">
-                <div class="col-md-4 col-12 catgoryCard single-products-catagory clearfix">
+                <div class="col-md-4 col-6 catgoryCard single-products-catagory clearfix">
                     <a (click)="select(category.id);">
-                        <div style="border-radius: 20px; min-height: 500px;" class="loadingBackground">
-                            <img style="border-radius: 20px; visibility: hidden;height: 500px;" [src]="category.pic"
-                                (load)="markEventLoaded($event)">
+                        <div style="border-radius: 20px;" class="loadingBackground">
+                            <img class="categoryImage" [src]="category.pic" (load)="markEventLoaded($event)">
                         </div>
 
                         <div style="width: 70%;" class="hover-content">

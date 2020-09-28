@@ -9,7 +9,11 @@
                 <mat-icon>search</mat-icon>
             </a>
             <span *ngIf="isMobile && !searchSelected" class="spacer"></span>
-            <span *ngIf="!searchSelected" [routerLink]="['']" class="title">
+            <span *ngIf="!searchSelected && isMobile" [routerLink]="['']" class="titleMobile">
+                <img style="margin-right: 5px;" class="logoImg" src="/assets/img/Black Bg 1.png">
+                <ng-container>Comfort <span class="accentColor">& Care</span></ng-container>
+            </span>
+            <span *ngIf="!searchSelected && !isMobile" [routerLink]="['']" class="title">
                 <img class="logoImg" src="/assets/img/Black Bg 1.png">
                 <ng-container>Comfort <span class="accentColor">& Care</span></ng-container>
             </span>
@@ -61,8 +65,8 @@
             <div fxShow="true" fxHide.lt-md>
                 <mat-form-field style="width: 200px !important; margin-right: 10px;"
                     class="example-full-width searchBar" [floatLabel]="'never'">
-                    <mat-placeholder id="yellowPlaceholder" class="placeholder">Search Products <i style="margin-left: 10px;"
-                            class="fa fa-search"></i></mat-placeholder>
+                    <mat-placeholder id="yellowPlaceholder" class="placeholder">Search Products <i
+                            style="margin-left: 10px;" class="fa fa-search"></i></mat-placeholder>
                     <!-- <mat-label>Search Products <i style="margin-left: 10px;" class="fa fa-search"></i></mat-label> -->
                     <input type="text" #searchInput class="searchInput" matInput [(ngModel)]="selectedItem"
                         [formControl]="myControl" [matAutocomplete]="auto">
@@ -187,6 +191,43 @@
                                     <div class="col-12 col-md-6">
                                         <div class="single_widget_area">
                                             <div class="footer_menu">
+                                                <mat-accordion>
+                                                    <mat-expansion-panel>
+                                                        <mat-expansion-panel-header>
+                                                            <mat-panel-title>
+                                                                <span class="fotterTitleExpention">About us</span>
+                                                            </mat-panel-title>
+                                                        </mat-expansion-panel-header>
+                                                        <span style="color: black; font-size: 15px;"
+                                                            [innerHtml]="currentTenant.about">
+                                                        </span>
+                                                    </mat-expansion-panel>
+                                                </mat-accordion>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="single_widget_area">
+                                            <div class="footer_menu">
+                                                <mat-accordion>
+                                                    <mat-expansion-panel>
+                                                        <mat-expansion-panel-header>
+                                                            <mat-panel-title>
+                                                                <span class="fotterTitleExpention">Contact us</span>
+                                                            </mat-panel-title>
+                                                        </mat-expansion-panel-header>
+                                                        <span style="color: black; font-size: 15px;">
+                                                            Email: {{currentTenant.phone}}<br>
+                                                            Phone: {{currentTenant.email}}<br>
+                                                            Address: {{currentTenant.address}}</span>
+                                                    </mat-expansion-panel>
+                                                </mat-accordion>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12 col-md-6">
+                                        <div class="single_widget_area">
+                                            <div class="footer_menu">
                                                 <span class="fotterTitle">Follow us</span>
                                                 <div class="row" style="padding-top: 5px;">
                                                     <div class="col-2 col-md-2">
@@ -202,7 +243,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 col-md-6">
                                         <div class="single_widget_area">
                                             <div class="footer_menu">

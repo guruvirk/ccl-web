@@ -245,12 +245,12 @@ export class ItemsComponent implements OnInit, OnDestroy, IPager<Item> {
         if (result && result.price) {
           result.type = item.option.type
           this.auth.addToCart(item, result, 1, null)
-          this.uxService.showInfo("Added to Cart Succesfully")
+          this.uxService.addToCart("Added to Cart Succesfully")
         }
       });
     } else {
       this.auth.addToCart(item, item.defaultOption, 1, null)
-      this.uxService.showInfo("Added to Cart Succesfully")
+      this.uxService.addToCart("Added to Cart Succesfully")
     }
   }
 

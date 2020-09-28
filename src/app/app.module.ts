@@ -53,6 +53,8 @@ import { ImageViewComponent } from './components/image-view/image-view.component
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BannersComponent } from './pages/banners/banners.component';
+import { CheckoutConfirmComponent } from './components/checkout-confirm/checkout-confirm.component';
+import { SnackBarComponent } from './services/ux.service';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,7 @@ import { BannersComponent } from './pages/banners/banners.component';
     ChangePasswordComponent,
     PaginatorComponent,
     TncDialogComponent,
+    CheckoutConfirmComponent,
     AddCategoryComponent,
     EditCategoryComponent,
     ViewCategoriesComponent,
@@ -89,7 +92,8 @@ import { BannersComponent } from './pages/banners/banners.component';
     EditOrderComponent,
     ReviewOrderComponent,
     ImageViewComponent,
-    BannersComponent
+    BannersComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +125,7 @@ import { BannersComponent } from './pages/banners/banners.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [OptionDialogComponent, TncDialogComponent, ImageViewComponent],
+  entryComponents: [OptionDialogComponent, TncDialogComponent, ImageViewComponent, CheckoutConfirmComponent, SnackBarComponent],
   exports: [ProcessingIndicatorComponent]
 })
 export class AppModule { }

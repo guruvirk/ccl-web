@@ -1,0 +1,113 @@
+a {
+    cursor: pointer;
+}
+
+.field-full-width {
+    width: 100%;
+}
+
+.cartImage {
+    width: 100px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.tableHeader {
+    background-color: var(--primary);
+    color: var(--accent);
+}
+
+.price {
+    color: var(--accent);
+}
+
+h6 {
+    margin-bottom: 0;
+}
+
+.checkoutCard {
+    background: rgb(255,167,38,.2);
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+
+.detailsCard {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+
+.cardHeader {
+    padding: 12px;
+    vertical-align: middle;
+    height: 50px;
+}
+
+.quantityBod {
+    width: 20%;
+    border: none;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: var(--primary) !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: var(--primary) !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: var(--primary) !important;;
+  }
+
+  mat-label {
+    color: var(--primary) !important;
+  }
+
+  .primaryColor {
+    color: var(--primary) !important;
+  }
+
+  .radio-group {
+    margin: 15px 0;
+  }
+  
+  .radio-button {
+    margin: 5px;
+  }
+
+  .checkbox-margin {
+    margin: 0 12px;
+  }
+
+  .checkbox-section {
+    margin-top: 10px;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .tnc-checkbox-section {
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .dialogContent{ 
+    min-height: 50vh;
+    overflow: scroll;
+  }

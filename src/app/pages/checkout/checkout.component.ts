@@ -6,6 +6,7 @@ import { Item, Order, User, Address } from 'src/app/models';
 import { OrderService } from 'src/app/services/order.service';
 import { TncDialogComponent } from 'src/app/components/tnc-dialog/tnc-dialog.component';
 import { MatDialog } from '@angular/material';
+import { CheckoutConfirmComponent } from 'src/app/components/checkout-confirm/checkout-confirm.component';
 
 @Component({
   selector: 'app-checkout',
@@ -136,53 +137,66 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.uxService.handleError("Please accept terms and conditions")
       return
     }
-    this.isLoading = true;
-    this.user.address.country = "New Zealand"
-    this.cart.status = "pending"
-    this.cart.address = new Address(this.user.address)
-    if (this.isCod) {
-      this.cart.method = "cod"
-    } else {
-      this.cart.method = "online"
-    }
-    if (this.isPickup) {
-      this.cart.delivery = "pickup"
-    } else {
-      this.cart.delivery = "delivery"
-    }
-    if (this.isRegistered) {
-      if (this.changeDetails) {
-        this.auth.updateMyUser(this.user).subscribe(item => {
-          this.auth.changeUser(item)
-        })
+    const dialogRef = this.dialog.open(CheckoutConfirmComponent);
+    dialogRef.componentInstance.cart = this.cart
+    dialogRef.componentInstance.user = this.user
+    dialogRef.componentInstance.isCod = this.isCod
+    dialogRef.componentInstance.isMobile = this.isMobile
+    dialogRef.componentInstance.isPickup = this.isPickup
+    dialogRef.componentInstance.isRegistered = this.isRegistered
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.isLoading = true;
+        this.user.address.country = "New Zealand"
+        this.cart.status = "pending"
+        this.cart.address = new Address(this.user.address)
+        if (this.isCod) {
+          this.cart.method = "cod"
+        } else {
+          this.cart.method = "online"
+        }
+        if (this.isPickup) {
+          this.cart.delivery = "pickup"
+        } else {
+          this.cart.delivery = "delivery"
+        }
+        if (this.isRegistered) {
+          if (this.changeDetails) {
+            this.auth.updateMyUser(this.user).subscribe(item => {
+              this.auth.changeUser(item)
+            })
+          }
+          this.api.create(this.cart).subscribe(cart => {
+            this.uxService.showInfo("Order Created")
+            this.cart = cart
+            this.auth.emptyCart()
+            this.isLoading = false;
+            this.router.navigate(["/payment", cart.id])
+          }, err => {
+            this.isLoading = false;
+          })
+        } else {
+          this.user.isValidated = true
+          this.auth.register(this.user).subscribe(user => {
+            this.user = user
+            this.auth.changeUser(user)
+            this.api.create(this.cart).subscribe(cart => {
+              this.uxService.showInfo("Order Created")
+              this.cart = cart
+              this.auth.emptyCart()
+              this.isLoading = false;
+              this.router.navigate(["/payment", cart.id])
+            }, err => {
+              this.isLoading = false;
+            })
+          }, err => {
+            this.isLoading = false;
+          })
+        }
+      } else {
+        return
       }
-      this.api.create(this.cart).subscribe(cart => {
-        this.uxService.showInfo("Order Created")
-        this.cart = cart
-        this.auth.emptyCart()
-        this.isLoading = false;
-        this.router.navigate(["/payment", cart.id])
-      }, err => {
-        this.isLoading = false;
-      })
-    } else {
-      this.user.isValidated = true
-      this.auth.register(this.user).subscribe(user => {
-        this.user = user
-        this.auth.changeUser(user)
-        this.api.create(this.cart).subscribe(cart => {
-          this.uxService.showInfo("Order Created")
-          this.cart = cart
-          this.auth.emptyCart()
-          this.isLoading = false;
-          this.router.navigate(["/payment", cart.id])
-        }, err => {
-          this.isLoading = false;
-        })
-      }, err => {
-        this.isLoading = false;
-      })
-    }
+    });
   }
 
 }

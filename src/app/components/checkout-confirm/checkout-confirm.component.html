@@ -1,0 +1,88 @@
+<h2 mat-dialog-title>Confirm Details</h2>
+<div *ngIf="cart && user" class="dialogContent">
+    <div *ngIf="cart && cart.items && cart.items.length" class="container page">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <mat-card class="detailsCard">
+                    <br>
+                    <h6 class="accentColor"><b>Contact Details</b></h6>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            Email: {{user.email}}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            Mobile: {{user.phone}}
+                        </div>
+                    </div>
+                    <br>
+                    <div *ngIf="isPickup">
+                        <b>Delivery: Store PickUp</b>
+                    </div>
+                    <br>
+                    <h6 *ngIf="!isPickup" class="accentColor"><b>Delivery Address / Billing Address</b></h6>
+                    <h6 *ngIf="isPickup" class="accentColor"><b>Billing Address</b></h6>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            First Name: {{user.firstName}}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            Last Name: {{user.lastName}}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            Street No: {{user.address.line1}}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            Street Name: {{user.address.line2}}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            Suburb: {{user.address.suburb}}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            Post Code: {{user.address.pinCode}}
+                        </div>
+                        <div class="col-12">
+                            Room No/Unit or delivery instructions: {{user.address.special}}
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="col-12 col-lg-3">
+                <mat-card class="checkoutCard">
+                    <h5 class="tableHeader cardHeader">Cart Total</h5>
+                    <div style="margin: 10px;padding-left: 10px;padding-right: 10px;">
+                        <h6>Payment Option: {{isCod? 'Cash On Delivery': 'Online'}}</h6>
+                        <div class="header">
+                            <h6>Sub Total : </h6>
+                            <span class="spacer"></span>
+                            <h6>${{cart.amount}}</h6>
+                        </div>
+                        <div class="header">
+                            <h6 style="margin:auto">Delivery : </h6>
+                            <span class="spacer"></span>
+                            <span *ngIf="isPickup" class="material-icons primaryColor">
+                                store
+                            </span>
+                            <span *ngIf="!isPickup" class="material-icons primaryColor">
+                                local_shipping
+                            </span>
+                        </div>
+                        <div *ngIf="isCod" class="header">
+                            <h6>Total : </h6>
+                            <span class="spacer"></span>
+                            <h6>${{cart.amount}}</h6>
+                        </div>
+                        <div *ngIf="!isCod" class="header">
+                            <h6>Total : </h6>
+                            <span class="spacer"></span>
+                            <h6>${{cart.amount}}</h6>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+<mat-dialog-actions style="margin: 10px;">
+    <button style="margin: auto;" (click)="confirm()" mat-raised-button color="accent"><b>Confirm</b></button>
+    <button style="margin: auto;" mat-dialog-close mat-raised-button color="warn"><b>Cancel</b></button>
+</mat-dialog-actions>

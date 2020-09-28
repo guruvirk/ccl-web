@@ -1,4 +1,4 @@
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Component, ErrorHandler, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs';
 import { Location } from '@angular/common';
@@ -38,6 +38,14 @@ export class UxService implements ErrorHandler,
     });
   }
 
+  addToCart(message: string, title?: string): void {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
+  }
+
   getError(err): string {
     if (environment.error[err]) {
       return environment.error[err]
@@ -49,3 +57,14 @@ export class UxService implements ErrorHandler,
     this.location.back()
   }
 }
+
+@Component({
+  selector: 'snack-bar',
+  templateUrl: 'snack-bar.html',
+  styles: [`
+    .main-span {
+      background-color: white;
+    }
+  `],
+})
+export class SnackBarComponent { }

@@ -3,6 +3,7 @@ export class Tenant {
   id: string;
   code: string;
   name: string;
+  about: string;
   phone: number;
   email: string;
   supportPhone: number;
@@ -24,6 +25,7 @@ export class Tenant {
     this.supportPhone = obj.supportPhone;
     this.supportEmail = obj.supportEmail;
     this.address = obj.address;
+    this.about = obj.about;
     this.banners = []
 
     if (obj.banners && obj.banners.length) {
