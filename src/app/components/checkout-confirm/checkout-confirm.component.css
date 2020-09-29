@@ -108,6 +108,16 @@ input::-webkit-inner-spin-button {
   }
 
   .dialogContent{ 
-    min-height: 50vh;
+    height: 50vh;
     overflow: scroll;
+  }
+
+  .dialogContent::-webkit-scrollbar {
+    width: .5em;
+    background: transparent;
+  }
+   
+  .dialogContent::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: .5em;
   }
