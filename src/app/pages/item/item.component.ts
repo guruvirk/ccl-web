@@ -17,7 +17,7 @@ export class ItemComponent implements OnInit, OnDestroy {
   isMobile: boolean;
   item: Item;
   isLoading = false;
-  baseOption: boolean = true
+  baseOption: boolean = false
   currentOption: {
     label: string;
     price: number;
@@ -41,6 +41,9 @@ export class ItemComponent implements OnInit, OnDestroy {
         this.api.get(params.id).subscribe(item => {
           this.item = new Item(item)
           this.currentOption = this.item.defaultOption
+          if (this.item.baseOption) {
+            this.baseOption = true
+          }
           this.isLoading = false;
         }, err => {
           this.isLoading = false;
