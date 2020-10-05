@@ -54,6 +54,10 @@ mat-sidenav {
     height: 13vh;
 }
 
+.fotterImgLogo {
+    height: 8vh;
+}
+
 @media only screen and (max-width: 780px) {
     .topvh {
         height: 9vh !important;
@@ -67,6 +71,9 @@ mat-sidenav {
     }
     .fotterImg {
         height: 7vh;
+    }
+    .fotterImgLogo {
+        height: 6vh;
     }
 }
 
@@ -83,6 +90,9 @@ mat-sidenav {
     }
     .fotterImg {
         height: 6vh;
+    }
+    .fotterImgLogo {
+        height: 5vh;
     }
 }
 
